@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Matt Jaquith — EffortlessFlow</title>
+<meta name="description" content="Matt Jaquith is the founder of EffortlessFlow. Ivey Business School HBA, enterprise AI systems experience at VersaBank, and a competitive background that shows up in every report." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.google.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #faf7f2;
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-faint: #8a8580;
+  --rule: #e8e2d7;
+  --accent: #0f5132;
+  --accent-soft: #e7f0ec;
+  --warm: #d97757;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+.mono-tab { font-family: 'Inter', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Promo bar ── */
+.promo-bar {
+  background: var(--warm); color: #fff;
+  text-align: center; padding: 10px 16px;
+  font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+}
+.promo-bar strong { font-weight: 700; }
+.promo-bar .promo-strike { text-decoration: line-through; opacity: 0.7; font-weight: 400; margin-right: 4px; }
+
+/* ── Header ── */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.wordmark { font-family: 'Instrument Serif', serif; font-size: 22px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+.wordmark em { font-style: italic; color: var(--accent); }
+.header-cta {
+  background: var(--ink); color: var(--bg);
+  padding: 8px 16px; border-radius: 999px;
+  font-size: 13px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s;
+}
+.header-cta:hover { background: var(--accent); }
+
+/* ── Hero ── */
+.about-hero {
+  padding: 80px 0 0;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.hero-text { padding-bottom: 64px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 28px;
+}
+.hero-eyebrow::before { content: ""; display: block; width: 28px; height: 1px; background: var(--ink-faint); }
+.hero-text h1 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(42px, 5.5vw, 72px);
+  line-height: 1.03; letter-spacing: -0.025em;
+  margin-bottom: 24px;
+}
+.hero-text h1 em { color: var(--accent); font-style: italic; }
+.hero-text .lede {
+  font-size: 19px; color: var(--ink-soft);
+  line-height: 1.55; max-width: 520px;
+  margin-bottom: 36px;
+}
+.hero-photo-wrap {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+.hero-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.hero-photo-badge {
+  position: absolute; bottom: 24px; left: 24px;
+  background: var(--paper);
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  display: flex; align-items: center; gap: 12px;
+}
+.badge-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.badge-text { font-size: 13px; font-weight: 500; }
+.badge-sub { font-size: 11px; color: var(--ink-faint); }
+
+/* ── Credential bar ── */
+.cred-bar {
+  background: var(--ink);
+  padding: 28px 0;
+}
+.cred-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+}
+.cred-item {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.cred-label {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(250,247,242,0.5);
+}
+.cred-value {
+  font-family: 'Instrument Serif', serif; font-size: 18px;
+  color: var(--bg); letter-spacing: -0.01em;
+}
+.cred-divider {
+  width: 1px; height: 36px; background: rgba(250,247,242,0.15);
+}
+
+/* ── Story section ── */
+section { padding: 80px 0; }
+.section-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.02em; line-height: 1.1;
+  margin-bottom: 16px;
+}
+.section-title em { color: var(--accent); font-style: italic; }
+.section-lede { font-size: 19px; color: var(--ink-soft); max-width: 640px; margin-bottom: 40px; }
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.story-text p {
+  font-size: 17px; color: var(--ink-soft);
+  line-height: 1.7; margin-bottom: 20px;
+}
+.story-text p:last-child { margin-bottom: 0; }
+.story-text p strong { color: var(--ink); }
+
+/* ── Photo mosaic ── */
+.mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.mosaic-item {
+  overflow: hidden; position: relative;
+}
+.mosaic-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.mosaic-item:hover img { transform: scale(1.03); }
+.mosaic-item.tall { grid-row: span 2; }
+.mosaic-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  padding: 20px 16px 14px;
+  color: white; font-size: 12px; letter-spacing: 0.05em;
+  text-transform: uppercase; opacity: 0;
+  transition: opacity 0.3s;
+}
+.mosaic-item:hover .mosaic-caption { opacity: 1; }
+
+/* ── Credential cards ── */
+.cred-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.cred-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s;
+}
+.cred-card:hover { transform: translateY(-3px); }
+.cred-card::before {
+  content: ""; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent);
+}
+.cred-card.warm::before { background: var(--warm); }
+.cred-card.dark::before { background: var(--ink); }
+.cred-icon {
+  font-size: 32px; margin-bottom: 16px; display: block;
+}
+.cred-card h3 {
+  font-size: 18px; font-weight: 600; margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.cred-card .school {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent); font-weight: 600; margin-bottom: 12px;
+  display: block;
+}
+.cred-card.warm .school { color: var(--warm); }
+.cred-card.dark .school { color: var(--ink-faint); }
+.cred-card p {
+  font-size: 15px; color: var(--ink-soft); line-height: 1.6;
+}
+
+/* ── Big photo feature ── */
+.photo-feature {
+  background: var(--paper);
+  padding: 80px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.photo-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.photo-feature-img {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 440px;
+}
+.photo-feature-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.photo-feature-text .mono-tab { margin-bottom: 20px; }
+.photo-feature-text h2 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(30px, 3.5vw, 44px);
+  letter-spacing: -0.02em; line-height: 1.1;
+  margin-bottom: 20px;
+}
+.photo-feature-text h2 em { color: var(--accent); font-style: italic; }
+.photo-feature-text p {
+  font-size: 17px; color: var(--ink-soft);
+  line-height: 1.7; margin-bottom: 16px;
+}
+.photo-feature-text p:last-of-type { margin-bottom: 0; }
+
+/* ── Second photo feature (reversed) ── */
+.photo-feature-grid.reverse { direction: rtl; }
+.photo-feature-grid.reverse > * { direction: ltr; }
+
+/* ── Values / approach ── */
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.approach-item {
+  padding: 28px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--paper);
+}
+.approach-num {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 40px; color: var(--accent); line-height: 1;
+  margin-bottom: 12px;
+}
+.approach-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.approach-item p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ── Final CTA ── */
+.final-cta {
+  background: var(--ink); color: var(--bg);
+  border-radius: 24px; padding: 72px 48px;
+  text-align: center; margin: 48px 0;
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: "EF"; position: absolute;
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 300px; opacity: 0.04;
+  top: -60px; right: -30px; line-height: 1;
+  letter-spacing: -0.05em;
+}
+.final-cta h2 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(36px, 5vw, 52px); letter-spacing: -0.02em;
+  margin-bottom: 16px; color: var(--bg);
+}
+.final-cta h2 em { color: var(--warm); font-style: italic; }
+.final-cta p {
+  font-size: 18px; color: rgba(250,247,242,0.7);
+  margin-bottom: 40px; max-width: 500px;
+  margin-left: auto; margin-right: auto;
+}
+.cta-pair { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 18px 28px; border-radius: 12px;
+  font-size: 16px; font-weight: 500; text-decoration: none;
+  transition: all 0.2s; cursor: pointer; border: none;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--bg); color: var(--ink); }
+.btn-primary:hover { background: var(--warm); color: var(--bg); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--bg);
+  border: 1px solid rgba(250,247,242,0.3);
+}
+.btn-secondary:hover { border-color: var(--bg); transform: translateY(-1px); }
+.btn .icon { font-size: 18px; }
+.btn-meta { display: block; font-size: 12px; opacity: 0.6; margin-top: 3px; font-weight: 400; }
+
+/* ── Footer ── */
+footer {
+  padding: 48px 0 32px;
+  border-top: 1px solid var(--rule); margin-top: 32px;
+  font-size: 14px; color: var(--ink-faint);
+}
+.footer-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-row a { color: var(--ink-soft); text-decoration: none; margin-left: 24px; }
+.footer-row a:hover { color: var(--ink); }
+
+/* ── Mobile ── */
+@media (max-width: 800px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 0; }
+  .hero-text { padding-bottom: 40px; }
+  .hero-photo-wrap { height: 420px; border-radius: 16px; }
+  .about-hero { padding: 56px 0 0; }
+  .cred-row { gap: 24px; }
+  .cred-divider { display: none; }
+  .story-grid { grid-template-columns: 1fr; gap: 40px; }
+  .mosaic { grid-template-rows: 200px 200px; }
+  .cred-cards { grid-template-columns: 1fr; }
+  .photo-feature-grid { grid-template-columns: 1fr; gap: 32px; }
+  .photo-feature-grid.reverse { direction: ltr; }
+  .photo-feature-img { height: 300px; }
+  .approach-grid { grid-template-columns: 1fr; }
+  .final-cta { padding: 48px 24px; }
+  .btn { width: 100%; }
+  .cta-pair { flex-direction: column; }
+}
+
+/* ── Fade in ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-text > * { animation: fadeUp 0.8s ease-out both; }
+.hero-eyebrow { animation-delay: 0.05s; }
+.hero-text h1 { animation-delay: 0.15s; }
+.hero-text .lede { animation-delay: 0.25s; }
+.hero-text .hero-cta-row { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- PROMO BAR -->
+<div class="promo-bar">
+  🎉 Launch Promo: <span class="promo-strike">$1,000 CAD</span> <strong>$199 CAD</strong> — first 10 clients only. Offer ends May 2, 2026.
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="container nav">
+    <a href="index.html" class="wordmark">
+      <img src="./assets/other_pics/effortlessflow_logo_vector.svg" alt="EffortlessFlow" style="height:38px;width:auto;display:block;" />
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="index.html" style="font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">← Back</a>
+      <a href="tel:PHONE-PENDING" class="header-cta">Call Annie</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Founder · London, Ontario</div>
+        <h1>The person behind<br /><em>every</em> report.</h1>
+        <p class="lede">Every AI Opportunity Assessment that leaves EffortlessFlow has Matt's eyes on it. That's not a promise — it's how the business is designed.</p>
+        <div class="hero-cta-row" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+          <a href="tel:PHONE-PENDING" class="btn btn-primary" style="background:var(--ink);color:var(--bg);">
+            <span class="icon">📞</span>
+            <span>
+              Call Annie Now
+              <span class="btn-meta">Start your assessment, 24/7</span>
+            </span>
+          </a>
+          <a href="mailto:EffortlessFlowsupport@outlook.com" style="font-size:14px;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;">Or email Matt directly →</a>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <img src="./assets/founder.png" alt="Matt Jaquith, EffortlessFlow" />
+        <div class="hero-photo-badge">
+          <div class="badge-dot"></div>
+          <div>
+            <div class="badge-text">Matt Jaquith</div>
+            <div class="badge-sub">Founder · London, Ontario</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CREDENTIAL BAR -->
+<div class="cred-bar">
+  <div class="container">
+    <div class="cred-row">
+      <div class="cred-item">
+        <span class="cred-label">Education</span>
+        <span class="cred-value">Ivey Business School, HBA</span>
+      </div>
+      <div class="cred-divider"></div>
+      <div class="cred-item">
+        <span class="cred-label">Award</span>
+        <span class="cred-value">BCG Case Competition Winner</span>
+      </div>
+      <div class="cred-divider"></div>
+      <div class="cred-item">
+        <span class="cred-label">Current Role</span>
+        <span class="cred-value">AI Systems · VersaBank</span>
+      </div>
+      <div class="cred-divider"></div>
+      <div class="cred-item">
+        <span class="cred-label">Based in</span>
+        <span class="cred-value">London, Ontario</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section>
+  <div class="container">
+    <div class="story-grid">
+      <div>
+        <div class="mono-tab" style="margin-bottom:16px;">The story</div>
+        <h2 class="section-title">From a business school<br /><em>case study</em> to a real business.</h2>
+        <p class="section-lede">Most AI consultants talk strategy. Matt builds systems that actually run.</p>
+      </div>
+
+      <div class="story-text">
+        <p>Matt grew up in London, Ontario, and went on to earn his HBA from <strong>Ivey Business School</strong> at Western University — consistently ranked among Canada's top business programs and known for its case-method approach to problem solving. He competed at the national level in case competitions, including taking <strong>first place at the BCG case competition at Ivey</strong>.</p>
+        <p>After Ivey, Matt went into <strong>banking and financial services</strong>, where he's spent recent years working on AI systems implementation at <strong>VersaBank</strong>, one of Canada's fully digital commercial banks. That work gave him a firsthand view of where AI genuinely creates efficiency — and where it doesn't — at an operational scale that most consultants never see.</p>
+        <p>He started EffortlessFlow after one too many conversations with small business owners who were overwhelmed, not underinformed. They knew AI mattered. They just didn't know where to start. <strong>"I kept seeing the same thing: smart operators, clear pain points, and nobody giving them a short, specific, honest plan."</strong></p>
+        <p>So he built one. A fast, flat-fee, no-jargon assessment that fits on one page and takes 48 hours. Every report has Matt's eyes on it. Every tool recommendation is one he's verified himself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO MOSAIC -->
+<section style="padding-top:0;padding-bottom:80px;">
+  <div class="container">
+    <div class="mosaic">
+      <div class="mosaic-item tall">
+        <img src="./assets/other_pics/Matt Presenting to people.JPG" alt="Matt presenting at Ivey Business School" />
+        <div class="mosaic-caption">Presenting at Ivey Business School</div>
+      </div>
+      <div class="mosaic-item">
+        <img src="./assets/other_pics/Ivey Case Competition Winner (BCG).jpeg" alt="BCG Case Competition Win at Ivey" />
+        <div class="mosaic-caption">BCG Case Competition · Ivey HBA</div>
+      </div>
+      <div class="mosaic-item">
+        <img src="./assets/other_pics/matt_football_western.jpg" alt="Matt playing football for Western University" style="object-position: center 20%;" />
+        <div class="mosaic-caption">Western Mustangs Football · #17</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIAL CARDS -->
+<section style="background:var(--paper);padding-top:64px;padding-bottom:64px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);">
+  <div class="container">
+    <div class="mono-tab" style="margin-bottom:16px;">What shaped him</div>
+    <h2 class="section-title">Three things that make<br />every <em>assessment better</em>.</h2>
+
+    <div class="cred-cards">
+
+      <div class="cred-card">
+        <span class="cred-icon">🎓</span>
+        <span class="school">Ivey Business School · HBA</span>
+        <h3>Business school trained in real-world problem solving</h3>
+        <p>Ivey's case method means every problem is treated as a live business decision, not a textbook exercise. Matt's training was built around cutting through complexity quickly and delivering a clear recommendation — exactly what an AI assessment is.</p>
+      </div>
+
+      <div class="cred-card warm">
+        <span class="cred-icon">🏦</span>
+        <span class="school">VersaBank · AI Systems</span>
+        <h3>Enterprise AI experience before the buzzword era</h3>
+        <p>Working on AI systems at VersaBank means Matt knows the difference between tools that actually integrate into a working business and tools that look impressive in a demo. He vets every recommendation against that lens before it goes into a report.</p>
+      </div>
+
+      <div class="cred-card dark">
+        <span class="cred-icon">🏈</span>
+        <span class="school">Western Mustangs Football · #17</span>
+        <h3>A competitive discipline that shows up in every report</h3>
+        <p>Four years of university football — at the CIS level — builds something that business school doesn't: the ability to prepare hard, perform under pressure, and do the unglamorous work consistently. That's what each assessment gets.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO FEATURE: PRESENTING -->
+<div class="photo-feature">
+  <div class="container">
+    <div class="photo-feature-grid">
+      <div class="photo-feature-img">
+        <img src="./assets/other_pics/Matt Presenting to people.JPG" alt="Matt presenting" style="object-position: center 10%;" />
+      </div>
+      <div class="photo-feature-text">
+        <div class="mono-tab">What clients notice</div>
+        <h2>He explains things <em>without jargon</em>.</h2>
+        <p>The 30-minute walkthrough call after every assessment is where most clients say they finally feel like they understand what AI can actually do for their business. Not because it's technical — because Matt doesn't make it technical.</p>
+        <p>Years of presenting to live rooms, competing in case competitions, and explaining complex systems to non-technical stakeholders means Matt knows how to read an audience and give them exactly what they need to act on the report.</p>
+        <p>That's the whole point: not to impress you with the complexity, but to give you a clear next step for Monday morning.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO FEATURE: FOOTBALL (reversed) -->
+<div class="photo-feature" style="background:var(--bg);">
+  <div class="container">
+    <div class="photo-feature-grid reverse">
+      <div class="photo-feature-img">
+        <img src="./assets/other_pics/matt_football_western.jpg" alt="Matt Jaquith #17 Western Mustangs Football" style="object-position: center 20%;" />
+      </div>
+      <div class="photo-feature-text">
+        <div class="mono-tab">Character over credentials</div>
+        <h2>The kind of hard work<br />you can't <em>fake</em>.</h2>
+        <p>Playing football at Western University isn't on the résumé to look impressive. It's there because it's the best explanation of how Matt actually works: prepared, thorough, and at his best when it matters.</p>
+        <p>Every AI Opportunity Assessment takes 4–6 hours to build properly — verifying tools, checking current pricing, writing recommendations that fit the client's actual workflow. There are no shortcuts in that process, and Matt doesn't take any.</p>
+        <p>What you get back is a report that someone genuinely worked on, not a template with your name swapped in.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW MATT APPROACHES ASSESSMENTS -->
+<section>
+  <div class="container">
+    <div class="mono-tab" style="margin-bottom:16px;">Matt's approach</div>
+    <h2 class="section-title">Four rules that go into<br /><em>every single</em> report.</h2>
+    <p class="section-lede">Not policies — just the way Matt thinks about this work.</p>
+
+    <div class="approach-grid">
+      <div class="approach-item">
+        <div class="approach-num">01</div>
+        <h4>Never recommend a tool you haven't verified</h4>
+        <p>Every tool in every report gets Googled. Current pricing, current feature set, reviews from real operators. If Matt doesn't recognize it, it goes to the back of the queue until he does.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">02</div>
+        <h4>The "would I install this?" test</h4>
+        <p>Before anything goes into a client's report, Matt asks whether he'd install it in his own business. Vague tools that look impressive but don't integrate fail this test immediately.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">03</div>
+        <h4>Hours saved, not "productivity gains"</h4>
+        <p>Every report quantifies time savings in hours per week, per tool. Not "efficiency improvements" or "streamlined workflows" — actual hours. If the math doesn't check out, the recommendation doesn't ship.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">04</div>
+        <h4>No long engagement to pad the fee</h4>
+        <p>The assessment is <strong>$199 CAD</strong> flat for the launch promo (regularly $1,000). No discovery retainer, no implementation fees built in, no ongoing contract. If you want help implementing — that's a separate, optional conversation after you've read the report.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="final-cta">
+      <h2>Ready to find out where<br /><em>your hours are going?</em></h2>
+      <p>Annie is available 24/7. A 20-minute call is all it takes — Matt handles the rest within 48 hours.</p>
+      <div class="cta-pair">
+        <a href="tel:PHONE-PENDING" class="btn btn-primary">
+          <span class="icon">📞</span>
+          <span>
+            Call Annie Now
+            <span class="btn-meta">Available 24/7 · 20 minutes</span>
+          </span>
+        </a>
+        <a href="mailto:EffortlessFlowsupport@outlook.com?subject=Prefer to skip the AI intake" class="btn btn-secondary">
+          Email Matt directly
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-row">
+    <div>© 2026 EffortlessFlow · Based in London, Ontario · <a href="mailto:EffortlessFlowsupport@outlook.com">EffortlessFlowsupport@outlook.com</a></div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EffortlessFlow — Get 8 hours a week back. In 48 hours, we'll tell you how.</title>
+<meta name="description" content="A flat $199 CAD launch promo AI Opportunity Assessment for Canadian small businesses. Start with a 20-minute call — report delivered in 48 hours." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #faf7f2;
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-faint: #8a8580;
+  --rule: #e8e2d7;
+  --accent: #0f5132;
+  --accent-soft: #e7f0ec;
+  --warm: #d97757;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+.mono-tab { font-family: 'Inter', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250, 247, 242, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.wordmark { font-family: 'Instrument Serif', serif; font-size: 22px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+.wordmark em { font-style: italic; color: var(--accent); }
+.header-cta {
+  background: var(--ink); color: var(--bg);
+  padding: 8px 16px; border-radius: 999px;
+  font-size: 13px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s;
+}
+.header-cta:hover { background: var(--accent); }
+
+/* Hero */
+.hero { padding: 80px 0 64px; position: relative; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 32px;
+}
+.hero-eyebrow::before { content: ""; display: block; width: 28px; height: 1px; background: var(--ink-faint); }
+.hero h1 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 1.02; letter-spacing: -0.025em;
+  margin-bottom: 28px; color: var(--ink);
+}
+.hero h1 em { color: var(--accent); font-style: italic; }
+.hero-sub {
+  font-size: clamp(18px, 2vw, 21px);
+  color: var(--ink-soft); max-width: 620px;
+  line-height: 1.5; margin-bottom: 48px;
+}
+.hero-sub strong { color: var(--ink); font-weight: 600; }
+
+/* CTA buttons */
+.cta-pair { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px 28px; border-radius: 12px;
+  font-size: 16px; font-weight: 500; text-decoration: none;
+  transition: all 0.2s; cursor: pointer; border: none;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--ink); color: var(--bg);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.btn-primary:hover { background: var(--accent); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(15,81,50,0.2); }
+.btn-secondary {
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule);
+}
+.btn-secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
+.btn .icon { font-size: 18px; }
+.btn-meta { display: block; font-size: 12px; color: var(--ink-faint); margin-top: 4px; font-weight: 400; }
+
+.escape-link {
+  display: inline-block; margin-top: 8px;
+  font-size: 14px; color: var(--ink-faint);
+  text-decoration: underline; text-decoration-color: var(--rule);
+  text-underline-offset: 4px;
+  transition: color 0.2s;
+}
+.escape-link:hover { color: var(--ink); text-decoration-color: var(--ink); }
+
+.cta-reassurance {
+  font-size: 14px; color: var(--ink-faint);
+  max-width: 540px; line-height: 1.5;
+  font-style: italic;
+}
+
+/* Hero decorative mark */
+.hero-mark {
+  position: absolute; top: 80px; right: -60px;
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 280px; color: var(--accent-soft);
+  line-height: 1; pointer-events: none; user-select: none;
+  z-index: -1;
+}
+
+/* Section spacing */
+section { padding: 80px 0; position: relative; }
+.section-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.02em; line-height: 1.1;
+  margin-bottom: 16px; max-width: 760px;
+}
+.section-title em { color: var(--accent); font-style: italic; }
+.section-lede {
+  font-size: 19px; color: var(--ink-soft);
+  max-width: 640px; margin-bottom: 48px;
+}
+
+/* Social proof strip */
+.social-proof {
+  padding: 32px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.proof-row {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.proof-label {
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-faint); white-space: nowrap;
+}
+.proof-industries {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  font-size: 14px; color: var(--ink-soft);
+}
+.proof-industries span { position: relative; }
+.proof-industries span + span::before {
+  content: "·"; position: absolute; left: -14px; color: var(--ink-faint);
+}
+
+/* How it works — three column with step numbers */
+.steps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; margin-top: 48px;
+}
+.step {
+  background: var(--paper); padding: 32px 28px;
+  border-radius: 16px; border: 1px solid var(--rule);
+  position: relative; transition: transform 0.25s;
+}
+.step:hover { transform: translateY(-2px); }
+.step-num {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 44px; color: var(--accent); line-height: 1; margin-bottom: 20px;
+}
+.step h3 { font-size: 20px; margin-bottom: 10px; font-weight: 600; letter-spacing: -0.01em; }
+.step p { color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
+
+/* Sample report preview */
+.report-preview {
+  background: var(--paper); border-radius: 20px;
+  border: 1px solid var(--rule); padding: 48px;
+  position: relative; margin-top: 48px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+}
+.report-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  align-items: center;
+}
+.report-mockup {
+  background: linear-gradient(135deg, var(--accent-soft), var(--paper));
+  border-radius: 12px; padding: 24px;
+  border: 1px solid var(--rule);
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+.report-mockup-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px; margin-bottom: 16px;
+  color: var(--ink); filter: blur(0.3px);
+}
+.report-mockup-row {
+  height: 10px; background: var(--rule); border-radius: 4px;
+  margin-bottom: 8px; filter: blur(0.5px);
+}
+.report-mockup-row:nth-child(2) { width: 85%; }
+.report-mockup-row:nth-child(3) { width: 65%; }
+.report-mockup-row:nth-child(4) { width: 90%; }
+.report-mockup-row:nth-child(5) { width: 70%; }
+.report-matrix {
+  margin-top: 20px; height: 120px;
+  background: var(--bg); border-radius: 8px;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+  gap: 2px; padding: 8px;
+  position: relative;
+  filter: blur(0.4px);
+}
+.report-matrix div {
+  background: rgba(15, 81, 50, 0.1); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--ink-faint);
+}
+.report-matrix div:nth-child(1) { background: rgba(217, 119, 87, 0.15); }
+.report-matrix div:nth-child(4) { background: rgba(15, 81, 50, 0.2); }
+.callout {
+  display: flex; gap: 12px; margin-bottom: 20px;
+  padding-bottom: 20px; border-bottom: 1px dashed var(--rule);
+}
+.callout:last-child { border-bottom: none; padding-bottom: 0; }
+.callout-num {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 24px; color: var(--accent); line-height: 1;
+  flex-shrink: 0; min-width: 32px;
+}
+.callout h4 { font-size: 16px; margin-bottom: 4px; font-weight: 600; }
+.callout p { font-size: 14px; color: var(--ink-soft); }
+
+/* Comparison box */
+.compare-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  background: var(--rule); border-radius: 16px; overflow: hidden;
+  margin-top: 48px; border: 1px solid var(--rule);
+}
+.compare-col { background: var(--paper); padding: 40px 32px; }
+.compare-col.no { background: #faf7f2; }
+.compare-col h4 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 24px; margin-bottom: 20px; font-weight: 400;
+  display: flex; align-items: center; gap: 10px;
+}
+.compare-col.yes h4 em { color: var(--accent); font-style: italic; }
+.compare-col.no h4 { color: var(--ink-faint); }
+.compare-col ul { list-style: none; }
+.compare-col li {
+  padding: 10px 0 10px 28px; position: relative;
+  font-size: 15px; color: var(--ink-soft);
+  border-bottom: 1px dotted var(--rule);
+}
+.compare-col li:last-child { border-bottom: none; }
+.compare-col.yes li::before {
+  content: "✓"; position: absolute; left: 0; top: 10px;
+  color: var(--accent); font-weight: 600;
+}
+.compare-col.no li::before {
+  content: "✗"; position: absolute; left: 0; top: 10px;
+  color: var(--ink-faint);
+}
+
+/* Founder section */
+.founder {
+  display: grid; grid-template-columns: 200px 1fr; gap: 48px;
+  align-items: center; padding: 64px 48px;
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: 20px; margin-top: 48px;
+}
+.founder-photo {
+  width: 200px; height: 200px; border-radius: 50%;
+  background: var(--accent-soft);
+  background-size: cover; background-position: center;
+  border: 3px solid var(--paper);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif; font-size: 64px;
+  color: var(--accent);
+}
+.founder-body p { font-size: 17px; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.6; }
+.founder-body p:first-child { font-size: 20px; color: var(--ink); }
+.signature {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 28px; color: var(--ink); margin-top: 16px;
+}
+
+/* FAQ */
+.faq { max-width: 780px; margin-top: 48px; }
+.faq-item {
+  border-bottom: 1px solid var(--rule); padding: 20px 0;
+  cursor: pointer;
+}
+.faq-item summary {
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+  font-size: 18px; font-weight: 500; letter-spacing: -0.01em;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+"; font-family: 'Instrument Serif', serif; font-size: 28px;
+  color: var(--accent); transition: transform 0.25s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p {
+  padding-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.6;
+}
+
+/* Final CTA */
+.final-cta {
+  background: var(--ink); color: var(--bg);
+  border-radius: 24px; padding: 72px 48px;
+  text-align: center; margin: 48px 0;
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: "48"; position: absolute;
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 400px; opacity: 0.05;
+  top: -100px; right: -50px; line-height: 1;
+}
+.final-cta h2 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(36px, 5vw, 56px); letter-spacing: -0.02em;
+  margin-bottom: 16px; color: var(--bg);
+}
+.final-cta h2 em { color: var(--warm); font-style: italic; }
+.final-cta p {
+  font-size: 18px; color: rgba(250,247,242,0.7);
+  margin-bottom: 40px; max-width: 540px; margin-left: auto; margin-right: auto;
+}
+.final-cta .cta-pair { justify-content: center; }
+.final-cta .btn-primary { background: var(--bg); color: var(--ink); }
+.final-cta .btn-primary:hover { background: var(--warm); color: var(--bg); }
+.final-cta .btn-secondary { background: transparent; color: var(--bg); border-color: rgba(250,247,242,0.3); }
+.final-cta .btn-secondary:hover { border-color: var(--bg); }
+.final-cta .cta-reassurance { color: rgba(250,247,242,0.55); }
+
+/* Footer */
+footer {
+  padding: 48px 0 32px;
+  border-top: 1px solid var(--rule); margin-top: 32px;
+  font-size: 14px; color: var(--ink-faint);
+}
+.footer-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-row a { color: var(--ink-soft); text-decoration: none; margin-left: 24px; }
+.footer-row a:hover { color: var(--ink); }
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero > * { animation: fadeUp 0.8s ease-out both; }
+.hero-eyebrow { animation-delay: 0.05s; }
+.hero h1 { animation-delay: 0.15s; }
+.hero-sub { animation-delay: 0.25s; }
+.cta-pair { animation-delay: 0.35s; }
+.cta-reassurance { animation-delay: 0.45s; }
+
+/* Promo bar */
+.promo-bar {
+  background: var(--warm); color: #fff;
+  text-align: center; padding: 10px 16px;
+  font-size: 14px; font-weight: 500;
+  letter-spacing: 0.01em; line-height: 1.4;
+}
+.promo-bar strong { font-weight: 700; }
+.promo-bar .promo-strike {
+  text-decoration: line-through;
+  opacity: 0.7; font-weight: 400; margin-right: 4px;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .hero { padding: 48px 0 32px; }
+  .hero h1 { font-size: clamp(38px, 9vw, 56px); }
+  .hero-mark { display: none; }
+  section { padding: 56px 0; }
+  .steps-grid { grid-template-columns: 1fr; gap: 16px; }
+  .report-grid { grid-template-columns: 1fr; gap: 24px; }
+  .report-preview { padding: 32px 24px; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .founder { grid-template-columns: 1fr; padding: 40px 24px; text-align: center; }
+  .founder-photo { margin: 0 auto; }
+  .final-cta { padding: 48px 24px; }
+  .btn { width: 100%; }
+  .cta-pair { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- PROMO ANNOUNCEMENT BAR -->
+<div class="promo-bar">
+  🎉 Launch Promo: <span class="promo-strike">$1,000 CAD</span> <strong>$199 CAD</strong> — first 10 clients only. Offer ends May 2, 2026.
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="wordmark">
+      <img src="./assets/other_pics/effortlessflow_logo_vector.svg" alt="EffortlessFlow" style="height:38px;width:auto;display:block;" />
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="about.html" style="font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">About Matt</a>
+      <a href="tel:PHONE-PENDING" class="header-cta">Call now</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-mark">48</div>
+  <div class="container">
+    <div class="hero-eyebrow">AI Opportunity Assessment · London, Ontario</div>
+    <h1>Get <em>8 hours</em> a week back.<br />In 48 hours, we'll tell you how.</h1>
+    <p class="hero-sub">
+      A flat <strong>$199 CAD</strong> assessment for Canadian small businesses — <strong>launch promo, first 10 clients.</strong>
+      We look at how you actually run your week, then send you a one-page plan
+      with the specific AI tools that give you real time back.
+      <strong>Start with a 20-minute call.</strong>
+    </p>
+    <div class="cta-pair">
+      <a href="tel:PHONE-PENDING" class="btn btn-primary">
+        <span class="icon">📞</span>
+        <span>
+          Call Annie Now
+          <span class="btn-meta">Our AI intake agent, available 24/7</span>
+        </span>
+      </a>
+    </div>
+    <p class="cta-reassurance">
+      Annie is our AI intake agent — she'll ask you about your workflow for 20 minutes, then hand everything to Matt who personally builds your report within 48 hours.<br />
+      <a href="mailto:EffortlessFlowsupport@outlook.com?subject=Prefer to skip the AI intake" class="escape-link">Prefer to skip the AI intake? Email Matt directly →</a>
+    </p>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF STRIP -->
+<div class="social-proof">
+  <div class="container proof-row">
+    <div class="proof-label">Trusted by local operators in:</div>
+    <div class="proof-industries">
+      <span>Professional services</span>
+      <span>Home services</span>
+      <span>Health clinics</span>
+      <span>Trades</span>
+      <span>E-commerce</span>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="mono-tab">How it works</div>
+    <h2 class="section-title">Three steps. <em>Forty-eight hours.</em> One plan.</h2>
+    <p class="section-lede">No preparation required. No homework. You'll spend less time on this than you do on a coffee meeting.</p>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Annie listens, about 20 minutes.</h3>
+        <p>Call our AI intake agent anytime, day or night. She asks about your week, your tools, and your bottlenecks — nothing technical, no prep required.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Matt builds your plan.</h3>
+        <p>Annie hands everything to Matt. He researches the specific tools that match your pain points and personally reviews every recommendation before it reaches you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>You get a one-page plan.</h3>
+        <p>Effort-vs-impact matrix. 4–7 specific tools, with pricing. A 30-minute walkthrough call with Matt. That's it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE REPORT -->
+<section style="background: var(--paper); padding-top: 64px; padding-bottom: 64px;">
+  <div class="container">
+    <div class="mono-tab">What you get</div>
+    <h2 class="section-title">A plan that fits on <em>one page</em>.</h2>
+    <p class="section-lede">Not a 40-slide deck. Not a 6-month engagement. A short, specific, actionable plan you can start on Monday.</p>
+
+    <div class="report-preview">
+      <div class="report-grid">
+        <div class="report-mockup">
+          <div class="report-mockup-title">Your AI Opportunity Plan</div>
+          <div class="report-mockup-row"></div>
+          <div class="report-mockup-row"></div>
+          <div class="report-mockup-row"></div>
+          <div class="report-mockup-row"></div>
+          <div class="report-matrix">
+            <div>LO·LO</div><div>HI·LO</div>
+            <div>LO·HI</div><div>HI·HI</div>
+          </div>
+        </div>
+        <div>
+          <div class="callout">
+            <div class="callout-num">01</div>
+            <div>
+              <h4>Executive summary</h4>
+              <p>Quantified time savings from installing the recommendations — in hours per week, and dollars saved.</p>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="callout-num">02</div>
+            <div>
+              <h4>Effort vs. impact matrix</h4>
+              <p>Every pain point mapped so you can see the quick wins — the things to install this week.</p>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="callout-num">03</div>
+            <div>
+              <h4>Tool-by-tool recommendations</h4>
+              <p>The specific tool, the price, how to install it, and how many hours it gives you back.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section>
+  <div class="container">
+    <div class="mono-tab">What this isn't</div>
+    <h2 class="section-title">We do one thing, <em>really well</em>.</h2>
+    <p class="section-lede">This is an assessment, not a commitment. Here's what that means.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col yes">
+        <h4>What you <em>get</em></h4>
+        <ul>
+          <li>20-minute intake (phone or Zoom)</li>
+          <li>One-page prioritized plan, delivered in 48 hours</li>
+          <li>4–7 specific off-the-shelf AI / SaaS tool recommendations</li>
+          <li>Effort-vs-impact matrix with quick wins flagged</li>
+          <li>30-minute walkthrough call with Matt</li>
+          <li>Projected hours saved per week, per tool</li>
+          <li>A flat fee, paid once: <strong>$199 CAD</strong> <span style="font-size:13px;color:var(--ink-faint);">(launch promo — reg. $1,000)</span></li>
+        </ul>
+      </div>
+      <div class="compare-col no">
+        <h4>What you won't get</h4>
+        <ul>
+          <li>A 40-slide strategy deck</li>
+          <li>A six-week discovery engagement</li>
+          <li>Generic "AI transformation roadmap"</li>
+          <li>Locked-in retainer contracts</li>
+          <li>Jargon, buzzwords, or vague deliverables</li>
+          <li>Custom software we built in-house we need you to license</li>
+          <li>Surprise invoices or scope creep</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section style="background: var(--paper);">
+  <div class="container">
+    <div class="mono-tab">Who's behind this</div>
+    <h2 class="section-title">Matt personally reviews <em>every</em> report.</h2>
+
+    <div class="founder">
+      <div class="founder-photo" style="background-image: url('./assets/founder.png'); background-size: cover; background-position: center top;"></div>
+      <div class="founder-body">
+        <p>Hi — I'm Matt Jaquith. I'm based in London, Ontario and I've spent the last few years building and deploying AI systems at the enterprise level and for small businesses.</p>
+        <p>I started this practice because I kept hearing the same thing from friends who run companies: "I know AI matters but I don't know where to start." So I built a short, focused process that takes the overwhelm out. Every report I send has my eyes on it. Every recommendation is one I'd install in my own business.</p>
+        <p>If that sounds useful, give Annie a call — she'll take it from there.</p>
+        <div class="signature">— Matt Jaquith</div>
+        <a href="about.html" style="display:inline-block;margin-top:20px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">More about Matt →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="mono-tab">Quick answers</div>
+    <h2 class="section-title">A few things <em>people ask</em>.</h2>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary>What if I'd rather not talk to an AI agent?</summary>
+        <p>No problem — email Matt directly and he'll schedule a regular Zoom intake with you instead. Most clients are pleasantly surprised by Annie once they try her (she sounds human, adapts to what you say, and calls take about 20 minutes), but the AI path is never forced. Same price, same 48-hour turnaround either way.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is Annie actually an AI?</summary>
+        <p>Yes — Annie is an AI voice agent. She asks the questions that help us understand your business. Matt personally reviews the transcript and every recommendation in your report before it's sent. No robot signs off on what you get.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I don't know anything about AI yet?</summary>
+        <p>Perfect — that's exactly who this is for. You don't need to prepare. We ask about your week, your tools, and your headaches. You don't have to know a single AI tool by name.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you do the implementation for me?</summary>
+        <p>Not as part of the assessment — that keeps the scope tight and the price predictable. Most clients install the tools themselves with the step-by-step guidance in the report. If you'd rather we set everything up, we offer an implementation sprint as a separate engagement after the assessment.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What about my data — is the call recorded?</summary>
+        <p>Yes, calls are recorded and securely stored to generate your transcript. We use Retell for the voice agent and Anthropic's Claude for analysis. We delete recordings and transcripts after 90 days and never share your data. Full privacy policy linked in the footer. Questions? Email <a href="mailto:EffortlessFlowsupport@outlook.com" style="color: var(--accent);">EffortlessFlowsupport@outlook.com</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="final-cta">
+      <h2>One call. <em>One plan.</em><br />Forty-eight hours.</h2>
+      <p>Annie's standing by. A 20-minute conversation is all it takes to get a specific AI plan for your business by this time Friday.</p>
+      <div class="cta-pair">
+        <a href="tel:PHONE-PENDING" class="btn btn-primary">
+          <span class="icon">📞</span>
+          <span>
+            Call Annie Now
+            <span class="btn-meta">Available 24/7</span>
+          </span>
+        </a>
+      </div>
+      <p class="cta-reassurance" style="margin-top: 16px;">
+        <a href="mailto:EffortlessFlowsupport@outlook.com?subject=Prefer to skip the AI intake" class="escape-link" style="color: rgba(250,247,242,0.55);">Prefer to skip the AI intake? Email Matt directly →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-row">
+    <div>© 2026 EffortlessFlow · Based in London, Ontario · <a href="mailto:EffortlessFlowsupport@outlook.com">EffortlessFlowsupport@outlook.com</a></div>
+    <div>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
