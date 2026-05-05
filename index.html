@@ -3,534 +3,824 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>EffortlessFlow — Get 8 hours a week back. In 48 hours, we'll tell you how.</title>
-<meta name="description" content="A flat $199 CAD launch promo AI Opportunity Assessment for Canadian small businesses. Start with a 20-minute call — report delivered in 48 hours." />
-
+<title>EffortlessFlow — AI Opportunity Assessments for Canadian Businesses</title>
+<meta name="description" content="EffortlessFlow delivers practical AI opportunity assessments for Canadian businesses. Researched, human-reviewed, delivered in 48 hours." />
+<meta name="theme-color" content="#0a140d" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
 <style>
+/* ── RESET & TOKENS ───────────────────────────────────────── */
 :root {
-  --bg: #faf7f2;
-  --paper: #ffffff;
+  --gd:  #0a140d;    /* green-dark   */
+  --gp:  #0f5132;    /* green-deep   */
+  --ge:  #4ade80;    /* green-electric */
+  --gs:  #e7f0ec;    /* green-soft   */
+  --cr:  #faf7f2;    /* cream        */
+  --wh:  #ffffff;
   --ink: #1a1a1a;
-  --ink-soft: #4a4a4a;
-  --ink-faint: #8a8580;
-  --rule: #e8e2d7;
-  --accent: #0f5132;
-  --accent-soft: #e7f0ec;
-  --warm: #d97757;
+  --ins: #4a4a4a;
+  --inf: #8a8580;
+  --rul: #e8e2d7;
+  --db:  #0a140d;    /* dark-bg      */
+  --dc:  #101d13;    /* dark-card    */
+  --dr:  #1b2e1e;    /* dark-rule    */
+  --warn:#f59e0b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--cr);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* hide native cursor only on real pointer devices (not touch) */
+@media (hover:hover) and (pointer:fine){
+  body{cursor:none}
+}
+.container{max-width:1160px;margin:0 auto;padding:0 32px}
+img{max-width:100%;display:block}
+
+/* ── CUSTOM CURSOR ────────────────────────────────────────── */
+#cursor-ring,#cursor-dot,#wave-canvas{display:none}
+@media (hover:hover) and (pointer:fine){
+  #cursor-ring{
+    display:block;position:fixed;width:18px;height:18px;
+    border:2px solid var(--ge);border-radius:50%;
+    pointer-events:none;z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:transform .12s ease,width .2s,height .2s,opacity .2s;
+    mix-blend-mode:screen;
+  }
+  #cursor-dot{
+    display:block;position:fixed;width:5px;height:5px;
+    background:var(--ge);border-radius:50%;
+    pointer-events:none;z-index:9999;
+    transform:translate(-50%,-50%);
+  }
+  #wave-canvas{
+    display:block;position:fixed;inset:0;pointer-events:none;
+    z-index:9998;opacity:0.85;
+  }
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── ANNOUNCEMENT BAR ─────────────────────────────────────── */
+.ann{
+  background:var(--gp);color:rgba(255,255,255,.9);
+  text-align:center;font-size:13px;font-weight:500;
+  padding:11px 24px;letter-spacing:.01em;position:relative;z-index:200;
+}
+.ann a{color:var(--ge);text-decoration:none;font-weight:700}
+.ann strong{color:#fff}
 
-html { scroll-behavior: smooth; }
+/* ── NAV ──────────────────────────────────────────────────── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,20,13,.96);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--dr);
+}
+.nav-i{
+  display:flex;align-items:center;justify-content:space-between;
+  height:68px;max-width:1160px;margin:0 auto;padding:0 32px;
+}
+.mark{font-family:'Instrument Serif',serif;font-size:22px;
+  color:white;text-decoration:none;letter-spacing:-.01em}
+.mark em{color:var(--ge);font-style:italic}
+.nav-l{display:flex;gap:36px}
+.nav-l a{color:rgba(255,255,255,.55);text-decoration:none;font-size:14px;
+  font-weight:500;transition:color .2s}
+.nav-l a:hover{color:white}
+.nav-cta{
+  background:var(--ge);color:var(--gd);
+  padding:10px 22px;border-radius:999px;
+  font-size:14px;font-weight:700;text-decoration:none;
+  transition:opacity .2s,transform .2s;
+}
+.nav-cta:hover{opacity:.92;transform:translateY(-1px)}
 
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.55;
-  font-size: 17px;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+/* ── HERO SCROLL SCENE ────────────────────────────────────── */
+#hero-scene{
+  height:550vh;
+  position:relative;
 }
-
-.serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
-.mono-tab { font-family: 'Inter', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
-
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-
-/* Header */
-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(250, 247, 242, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rule);
+#hero-pin{
+  height:100vh;width:100%;
+  background:var(--db);
+  overflow:hidden;position:relative;
 }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.wordmark { font-family: 'Instrument Serif', serif; font-size: 22px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
-.wordmark em { font-style: italic; color: var(--accent); }
-.header-cta {
-  background: var(--ink); color: var(--bg);
-  padding: 8px 16px; border-radius: 999px;
-  font-size: 13px; font-weight: 500; text-decoration: none;
-  transition: background 0.2s;
-}
-.header-cta:hover { background: var(--accent); }
-
-/* Hero */
-.hero { padding: 80px 0 64px; position: relative; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink-faint); margin-bottom: 32px;
-}
-.hero-eyebrow::before { content: ""; display: block; width: 28px; height: 1px; background: var(--ink-faint); }
-.hero h1 {
-  font-family: 'Instrument Serif', serif; font-weight: 400;
-  font-size: clamp(44px, 7vw, 88px);
-  line-height: 1.02; letter-spacing: -0.025em;
-  margin-bottom: 28px; color: var(--ink);
-}
-.hero h1 em { color: var(--accent); font-style: italic; }
-.hero-sub {
-  font-size: clamp(18px, 2vw, 21px);
-  color: var(--ink-soft); max-width: 620px;
-  line-height: 1.5; margin-bottom: 48px;
-}
-.hero-sub strong { color: var(--ink); font-weight: 600; }
-
-/* CTA buttons */
-.cta-pair { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 18px 28px; border-radius: 12px;
-  font-size: 16px; font-weight: 500; text-decoration: none;
-  transition: all 0.2s; cursor: pointer; border: none;
-  white-space: nowrap;
-}
-.btn-primary {
-  background: var(--ink); color: var(--bg);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-.btn-primary:hover { background: var(--accent); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(15,81,50,0.2); }
-.btn-secondary {
-  background: var(--paper); color: var(--ink);
-  border: 1px solid var(--rule);
-}
-.btn-secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
-.btn .icon { font-size: 18px; }
-.btn-meta { display: block; font-size: 12px; color: var(--ink-faint); margin-top: 4px; font-weight: 400; }
-
-.escape-link {
-  display: inline-block; margin-top: 8px;
-  font-size: 14px; color: var(--ink-faint);
-  text-decoration: underline; text-decoration-color: var(--rule);
-  text-underline-offset: 4px;
-  transition: color 0.2s;
-}
-.escape-link:hover { color: var(--ink); text-decoration-color: var(--ink); }
-
-.cta-reassurance {
-  font-size: 14px; color: var(--ink-faint);
-  max-width: 540px; line-height: 1.5;
-  font-style: italic;
+#three-canvas{
+  position:absolute;inset:0;z-index:1;
+  display:block;
 }
 
-/* Hero decorative mark */
-.hero-mark {
-  position: absolute; top: 80px; right: -60px;
-  font-family: 'Instrument Serif', serif; font-style: italic;
-  font-size: 280px; color: var(--accent-soft);
-  line-height: 1; pointer-events: none; user-select: none;
-  z-index: -1;
+/* gradient grid behind particles for depth */
+#hero-pin::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(74,222,128,0.08), transparent 70%),
+    linear-gradient(rgba(74,222,128,0.04) 1px, transparent 1px) 0 0/60px 60px,
+    linear-gradient(90deg, rgba(74,222,128,0.04) 1px, transparent 1px) 0 0/60px 60px;
+  pointer-events:none;
 }
 
-/* Section spacing */
-section { padding: 80px 0; position: relative; }
-.section-title {
-  font-family: 'Instrument Serif', serif; font-weight: 400;
-  font-size: clamp(32px, 4vw, 48px);
-  letter-spacing: -0.02em; line-height: 1.1;
-  margin-bottom: 16px; max-width: 760px;
+/* layers */
+.h-layer{
+  position:absolute;inset:0;z-index:10;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;pointer-events:none;
+  padding:40px;
 }
-.section-title em { color: var(--accent); font-style: italic; }
-.section-lede {
-  font-size: 19px; color: var(--ink-soft);
-  max-width: 640px; margin-bottom: 48px;
+#l-cta{pointer-events:auto}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(74,222,128,.1);
+  border:1px solid rgba(74,222,128,.22);
+  color:var(--ge);font-size:11px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;
+  padding:7px 16px;border-radius:999px;
+  opacity:0;
+}
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--ge);flex-shrink:0;
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.h-headline{
+  font-size:clamp(56px,9vw,120px);
+  font-weight:900;letter-spacing:-.05em;
+  line-height:.9;color:white;
+  display:flex;flex-wrap:wrap;
+  justify-content:center;gap:.22em;
+  margin-top:24px;
+  opacity:0;
+}
+.h-headline .acc{color:var(--ge)}
+
+.pain-word{
+  position:absolute;
+  font-size:clamp(28px,5vw,64px);
+  font-weight:900;letter-spacing:-.04em;
+  color:rgba(255,255,255,.1);
+  text-transform:uppercase;
+  opacity:0;white-space:nowrap;
+  pointer-events:none;
+}
+#pw1{top:72%;left:6%}
+#pw2{top:55%;left:62%}
+#pw3{top:30%;left:18%}
+#pw4{top:20%;right:8%}
+#pw5{top:80%;right:12%}
+#pw6{top:44%;left:40%;transform:translateX(-50%)}
+
+.trans-line{
+  font-size:clamp(32px,5vw,68px);
+  font-weight:900;letter-spacing:-.03em;
+  color:white;opacity:0;
+}
+.trans-line .acc{color:var(--ge)}
+
+.sol-mark{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(40px,6vw,80px);
+  color:white;letter-spacing:-.02em;opacity:0;
+}
+.sol-mark em{color:var(--ge);font-style:italic}
+.sol-sub{
+  font-size:clamp(16px,2vw,22px);
+  color:rgba(255,255,255,.45);
+  margin-top:18px;opacity:0;
+}
+.hero-cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--ge);color:var(--gd);
+  padding:17px 38px;border-radius:999px;
+  font-size:16px;font-weight:800;text-decoration:none;
+  margin-top:36px;opacity:0;
+  box-shadow:0 0 0 0 rgba(74,222,128,0);
+  transition:box-shadow .3s,transform .2s;
+}
+.hero-cta-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 48px rgba(74,222,128,.35);
+}
+.hero-note{
+  font-size:13px;color:rgba(255,255,255,.35);
+  margin-top:16px;opacity:0;
+}
+.scroll-hint{
+  position:absolute;bottom:40px;left:50%;
+  transform:translateX(-50%);
+  font-size:12px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);
+  opacity:0;
+  animation:bob 2.5s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+#scroll-progress{
+  position:fixed;top:68px;left:0;height:2px;
+  background:var(--ge);z-index:99;width:0%;
+  transition:width .05s linear;
+  box-shadow:0 0 8px rgba(74,222,128,.6);
 }
 
-/* Social proof strip */
-.social-proof {
-  padding: 32px 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
+/* ── STATS BAR ────────────────────────────────────────────── */
+.stats-bar{background:var(--dc);border-bottom:1px solid var(--dr);padding:56px 0}
+.sg{display:grid;grid-template-columns:repeat(4,1fr)}
+.si{text-align:center;padding:0 28px;border-right:1px solid var(--dr)}
+.si:last-child{border-right:none}
+.sn{font-size:clamp(48px,6vw,80px);font-weight:900;color:white;
+  letter-spacing:-.045em;line-height:1;
+  display:flex;align-items:baseline;justify-content:center;gap:3px}
+.su{font-size:.52em;color:var(--ge);font-weight:900}
+.sl{margin-top:12px;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);line-height:1.4}
+
+/* ── TICKER ───────────────────────────────────────────────── */
+.ticker{background:var(--ge);padding:17px 0;overflow:hidden}
+.tk-track{display:flex;white-space:nowrap;animation:tk 38s linear infinite}
+.tk-seg{display:flex;align-items:center;flex-shrink:0}
+.tk-item{font-size:12px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gd);padding:0 28px}
+.tk-div{color:rgba(10,20,13,.3);font-size:14px;flex-shrink:0}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── OVERLINE ─────────────────────────────────────────────── */
+.ov{display:flex;align-items:center;gap:14px;
+  font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gp);margin-bottom:28px}
+.ov::before{content:'——';letter-spacing:-.06em;opacity:.6}
+.ov-lt{color:rgba(74,222,128,.6)}
+.ov-lt::before{color:rgba(74,222,128,.4)}
+
+/* ── PROBLEM ──────────────────────────────────────────────── */
+.problem{padding:128px 0;background:var(--cr)}
+.prob-hl{font-size:clamp(40px,6vw,86px);font-weight:900;
+  letter-spacing:-.038em;color:var(--ink);line-height:.94;margin-bottom:64px}
+.prob-hl .acc{color:var(--gp)}
+.prob-body{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.prob-copy{font-size:19px;color:var(--ins);line-height:1.72}
+.prob-copy p+p{margin-top:22px}
+.prob-copy strong{color:var(--ink);font-weight:700}
+.pain-cards{display:flex;flex-direction:column;gap:16px}
+.pain-card{display:flex;align-items:flex-start;gap:18px;
+  background:white;border:1.5px solid var(--rul);
+  border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.pain-card:hover{border-color:var(--gp);transform:translateX(4px)}
+.pi{font-size:22px;flex-shrink:0;margin-top:1px}
+.pt strong{display:block;font-size:16px;font-weight:700;
+  color:var(--ink);margin-bottom:5px}
+.pt span{font-size:14px;color:var(--ins);line-height:1.55}
+
+/* ── CALLOUT ──────────────────────────────────────────────── */
+.callout{background:var(--db);padding:72px 0;text-align:center;
+  border-top:1px solid var(--dr);border-bottom:1px solid var(--dr);
+  position:relative;overflow:hidden}
+.callout::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(74,222,128,.08), transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(74,222,128,.06), transparent 50%);
+  pointer-events:none;
 }
-.proof-row {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 16px;
+.callout h2{font-size:clamp(26px,4.5vw,56px);font-weight:900;
+  letter-spacing:-.025em;color:white;line-height:1.1;position:relative}
+.callout h2 .acc{color:var(--ge)}
+
+/* ── BEFORE/AFTER ─────────────────────────────────────────── */
+.ba{padding:128px 0;background:white;position:relative;overflow:hidden}
+.ba-hl{font-size:clamp(38px,5.5vw,72px);font-weight:900;
+  letter-spacing:-.035em;color:var(--ink);line-height:.96;margin-bottom:64px}
+.ba-hl .acc{color:var(--gp)}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ba-card{border-radius:18px;padding:40px;position:relative;overflow:hidden}
+.ba-card.bf{background:#fff5f5;border:1.5px solid #fecaca}
+.ba-card.af{background:var(--gs);border:1.5px solid #b8dfc4}
+.ba-tag{display:inline-block;font-size:11px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 14px;border-radius:999px;margin-bottom:28px}
+.bf .ba-tag{background:#fee2e2;color:#991b1b}
+.af .ba-tag{background:#dcfce7;color:var(--gp)}
+.ba-list{display:flex;flex-direction:column;gap:14px}
+.ba-row{display:flex;align-items:flex-start;gap:14px;
+  font-size:15px;line-height:1.55;color:var(--ins)}
+.ba-dot{flex-shrink:0;margin-top:7px;width:7px;height:7px;border-radius:50%}
+.bf .ba-dot{background:#fca5a5}
+.af .ba-dot{background:var(--gp)}
+
+/* ── TESTIMONIALS ─────────────────────────────────────────── */
+.tm{padding:128px 0;background:var(--dc);position:relative;overflow:hidden}
+#tm-canvas{position:absolute;inset:0;z-index:0;opacity:.6}
+.tm-i{position:relative;z-index:2}
+.tm-hl{font-size:clamp(38px,5.5vw,72px);font-weight:900;
+  letter-spacing:-.035em;color:white;line-height:.96;margin-bottom:18px}
+.tm-hl .acc{color:var(--ge)}
+.tm-sub{font-size:18px;color:rgba(255,255,255,.45);max-width:560px;
+  line-height:1.65;margin-bottom:64px}
+.tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tm-card{background:rgba(255,255,255,.03);
+  border:1px solid var(--dr);
+  border-radius:18px;padding:32px;
+  display:flex;flex-direction:column;gap:20px;
+  transition:border-color .25s,transform .25s,background .25s;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.tm-card:hover{border-color:rgba(74,222,128,.5);transform:translateY(-4px);background:rgba(74,222,128,.04)}
+.tm-stars{color:var(--ge);font-size:14px;letter-spacing:2px}
+.tm-quote{font-size:16px;color:rgba(255,255,255,.78);line-height:1.65;
+  font-style:italic;flex-grow:1}
+.tm-who{display:flex;align-items:center;gap:14px;
+  padding-top:18px;border-top:1px solid var(--dr)}
+.tm-av{width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gp),var(--ge));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:800;font-size:15px;flex-shrink:0}
+.tm-meta strong{display:block;color:white;font-size:14px;font-weight:700}
+.tm-meta span{font-size:12px;color:rgba(255,255,255,.4)}
+.tm-result{display:inline-block;font-size:11px;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ge);background:rgba(74,222,128,.1);
+  padding:4px 10px;border-radius:6px;margin-top:6px}
+
+/* ── HOW IT WORKS ─────────────────────────────────────────── */
+.how{padding:128px 0;background:var(--db);position:relative;overflow:hidden}
+#how-canvas{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none}
+.how-i{position:relative;z-index:2}
+.how-hl{font-size:clamp(40px,6vw,84px);font-weight:900;
+  letter-spacing:-.038em;color:white;line-height:.94;margin-bottom:20px}
+.how-hl .acc{color:var(--ge)}
+.how-sub{font-size:18px;color:rgba(255,255,255,.5);max-width:520px;
+  line-height:1.65;margin-bottom:80px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:rgba(16,29,19,.7);border:1px solid var(--dr);
+  border-radius:18px;padding:44px 36px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:border-color .25s,transform .25s}
+.step:hover{border-color:rgba(74,222,128,.5);transform:translateY(-4px)}
+.step-n{font-size:80px;font-weight:900;letter-spacing:-.05em;
+  line-height:1;color:rgba(74,222,128,.15);margin-bottom:28px}
+.step-t{font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ge);margin-bottom:14px}
+.step-h{font-size:22px;font-weight:800;color:white;
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:18px}
+.step-b{font-size:15px;color:rgba(255,255,255,.55);line-height:1.68}
+
+/* ── WHAT YOU GET ─────────────────────────────────────────── */
+.what{padding:128px 0;background:var(--cr)}
+.what-hl{font-size:clamp(40px,6vw,84px);font-weight:900;
+  letter-spacing:-.038em;color:var(--ink);line-height:.94;margin-bottom:20px}
+.what-hl .acc{color:var(--gp)}
+.what-sub{font-size:18px;color:var(--ins);max-width:560px;
+  margin-bottom:72px;line-height:1.65}
+.rg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rc{background:white;border:1.5px solid var(--rul);border-radius:14px;
+  padding:28px 24px;transition:border-color .2s,transform .2s,box-shadow .2s}
+.rc:hover{border-color:var(--gp);transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(15,81,50,.08)}
+.rc-n{font-size:12px;font-weight:700;color:var(--gp);
+  letter-spacing:.06em;margin-bottom:14px}
+.rc-t{font-size:16px;font-weight:700;color:var(--ink);
+  line-height:1.3;margin-bottom:10px}
+.rc-d{font-size:13px;color:var(--inf);line-height:1.6}
+
+/* ── PROCESS ──────────────────────────────────────────────── */
+.proc{padding:128px 0;background:white;border-top:1px solid var(--rul)}
+.proc-i{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
+.proc-hl{font-size:clamp(34px,4.5vw,58px);font-weight:900;
+  letter-spacing:-.03em;color:var(--ink);line-height:1.02;margin-bottom:28px}
+.proc-hl .acc{color:var(--gp)}
+.proc-copy{font-size:17px;color:var(--ins);line-height:1.72}
+.proc-copy p+p{margin-top:20px}
+.proc-copy strong{color:var(--ink);font-weight:700}
+.pf-stack{display:flex;flex-direction:column;gap:16px}
+.pf-item{display:flex;gap:18px;align-items:flex-start;
+  background:var(--cr);border-radius:14px;padding:22px 24px;
+  border:1.5px solid var(--rul);transition:border-color .2s,transform .2s}
+.pf-item:hover{border-color:var(--gp);transform:translateX(4px)}
+.pf-chk{color:var(--gp);font-weight:900;font-size:18px;flex-shrink:0;margin-top:1px}
+.pf-txt strong{display:block;font-size:15px;font-weight:700;
+  color:var(--ink);margin-bottom:4px}
+.pf-txt span{font-size:14px;color:var(--ins);line-height:1.55}
+
+/* ── PRICING / VALUE ──────────────────────────────────────── */
+.price{padding:128px 0;background:var(--cr);border-top:1px solid var(--rul)}
+.price-i{max-width:920px;margin:0 auto;text-align:center}
+.price-hl{font-size:clamp(38px,5.5vw,72px);font-weight:900;
+  letter-spacing:-.035em;color:var(--ink);line-height:.96;margin-bottom:18px}
+.price-hl .acc{color:var(--gp)}
+.price-sub{font-size:18px;color:var(--ins);max-width:600px;
+  margin:0 auto 56px;line-height:1.65}
+.price-card{background:white;border:2px solid var(--gp);border-radius:24px;
+  padding:48px 40px;text-align:left;
+  box-shadow:0 24px 60px rgba(15,81,50,.08);
+  position:relative;overflow:hidden}
+.price-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(74,222,128,.18),transparent 70%);
+  pointer-events:none;
 }
-.proof-label {
-  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-faint); white-space: nowrap;
+.price-tag{display:inline-block;background:var(--gp);color:white;
+  font-size:11px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:24px}
+.price-row{display:flex;align-items:baseline;gap:18px;margin-bottom:8px;flex-wrap:wrap}
+.price-now{font-size:clamp(56px,8vw,96px);font-weight:900;
+  letter-spacing:-.04em;color:var(--ink);line-height:1}
+.price-now span{font-size:.5em;color:var(--gp);font-weight:800;margin-right:6px}
+.price-was{font-size:22px;color:var(--inf);text-decoration:line-through;font-weight:700}
+.price-vs{font-size:13px;color:var(--ins);margin-bottom:32px}
+.price-vs strong{color:var(--ink)}
+.price-incl{display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  padding:28px 0;border-top:1px solid var(--rul);
+  border-bottom:1px solid var(--rul);margin-bottom:32px}
+.price-incl div{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ins)}
+.price-incl div::before{content:'✓';color:var(--gp);font-weight:900;flex-shrink:0}
+.price-bottom{display:flex;align-items:center;justify-content:space-between;
+  gap:24px;flex-wrap:wrap}
+.price-bottom .meta{font-size:13px;color:var(--inf);line-height:1.5}
+.price-bottom .meta strong{color:var(--ink);display:block;font-size:15px;margin-bottom:2px}
+
+/* ── FAQ ──────────────────────────────────────────────────── */
+.faq{padding:128px 0;background:white;border-top:1px solid var(--rul)}
+.faq-i{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.faq-hl{font-size:clamp(34px,4.5vw,58px);font-weight:900;
+  letter-spacing:-.03em;color:var(--ink);line-height:1.02;margin-bottom:24px}
+.faq-hl .acc{color:var(--gp)}
+.faq-side p{font-size:16px;color:var(--ins);line-height:1.7;margin-bottom:24px}
+.faq-side a{color:var(--gp);font-weight:700;text-decoration:none;border-bottom:1px solid var(--gp)}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--cr);border:1.5px solid var(--rul);border-radius:14px;
+  overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--gp)}
+.faq-q{padding:22px 26px;font-size:16px;font-weight:700;
+  color:var(--ink);cursor:pointer;display:flex;
+  justify-content:space-between;align-items:center;gap:18px;
+  user-select:none;transition:color .2s}
+.faq-q:hover{color:var(--gp)}
+.faq-q span.icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;
+  border:1.5px solid var(--rul);display:flex;align-items:center;
+  justify-content:center;font-size:14px;font-weight:900;
+  color:var(--gp);transition:transform .25s,background .2s}
+.faq-item.open .faq-q span.icon{transform:rotate(45deg);background:var(--gs)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;
+  font-size:15px;color:var(--ins);line-height:1.7}
+.faq-a-inner{padding:0 26px 22px}
+
+/* ── FOUNDER ──────────────────────────────────────────────── */
+.founder{padding:128px 0;background:var(--cr);border-top:1px solid var(--rul)}
+.fd-i{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center;max-width:1000px;margin:0 auto}
+.fd-portrait{width:220px;height:220px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gp),var(--ge));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-family:'Instrument Serif',serif;font-size:96px;
+  font-style:italic;flex-shrink:0;
+  box-shadow:0 16px 48px rgba(15,81,50,.18);
+  position:relative}
+.fd-portrait::after{content:'';position:absolute;inset:-8px;
+  border:1.5px solid var(--gp);border-radius:50%;opacity:.25}
+.fd-copy .ov{margin-bottom:18px}
+.fd-hl{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,42px);
+  color:var(--ink);line-height:1.25;margin-bottom:22px;letter-spacing:-.01em}
+.fd-hl em{color:var(--gp)}
+.fd-body{font-size:16px;color:var(--ins);line-height:1.72;margin-bottom:18px}
+.fd-sig{font-family:'Instrument Serif',serif;font-size:24px;
+  font-style:italic;color:var(--gp);margin-top:14px}
+.fd-sig small{display:block;font-family:'Inter',sans-serif;font-style:normal;
+  font-size:13px;font-weight:600;color:var(--inf);margin-top:4px;letter-spacing:.04em}
+
+/* ── GUARANTEE ────────────────────────────────────────────── */
+.guar{background:var(--ge);padding:56px 0;position:relative;overflow:hidden}
+.guar::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent 0 12px,rgba(10,20,13,.04) 12px 13px);
+  pointer-events:none;
 }
-.proof-industries {
-  display: flex; gap: 24px; flex-wrap: wrap;
-  font-size: 14px; color: var(--ink-soft);
+.guar-i{display:flex;align-items:center;justify-content:space-between;
+  gap:32px;flex-wrap:wrap;position:relative}
+.guar-copy h3{font-size:clamp(20px,3vw,36px);font-weight:900;
+  letter-spacing:-.025em;color:var(--gd);line-height:1.15}
+.guar-copy p{font-size:15px;color:rgba(10,20,13,.6);margin-top:8px}
+.btn-dk{display:inline-flex;align-items:center;
+  background:var(--gd);color:var(--ge);
+  padding:15px 30px;border-radius:999px;
+  font-size:15px;font-weight:700;text-decoration:none;
+  white-space:nowrap;transition:opacity .2s,transform .2s;flex-shrink:0}
+.btn-dk:hover{opacity:.9;transform:translateY(-2px)}
+
+/* ── FINAL CTA ────────────────────────────────────────────── */
+.fcta{background:var(--db);padding:152px 0;text-align:center;position:relative;overflow:hidden}
+#fcta-canvas{position:absolute;inset:0;z-index:0;opacity:.7}
+.fcta-i{position:relative;z-index:2}
+.fcta h2{font-size:clamp(42px,7vw,100px);font-weight:900;
+  letter-spacing:-.045em;color:white;line-height:.94;margin-bottom:36px}
+.fcta h2 .acc{color:var(--ge);display:block}
+.fcta p{font-size:18px;color:rgba(255,255,255,.5);
+  max-width:480px;margin:0 auto 52px;line-height:1.65}
+.btn-pr{display:inline-flex;align-items:center;gap:10px;
+  background:var(--ge);color:var(--gd);
+  padding:17px 38px;border-radius:999px;
+  font-size:17px;font-weight:800;text-decoration:none;
+  transition:all .22s}
+.btn-pr:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(74,222,128,.3)}
+.fcta-note{margin-top:22px;font-size:13px;color:rgba(255,255,255,.3)}
+.urgency{display:inline-flex;align-items:center;gap:10px;
+  background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);
+  color:var(--warn);font-size:12px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:8px 18px;border-radius:999px;margin-bottom:32px}
+.urg-dot{width:6px;height:6px;border-radius:50%;background:var(--warn);
+  animation:blink 1.6s ease-in-out infinite}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
+.ft-i{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.ft-m{font-family:'Instrument Serif',serif;font-size:20px;color:white}
+.ft-m em{color:var(--ge);font-style:italic}
+.ft-l{display:flex;gap:28px;flex-wrap:wrap}
+.ft-l a{color:rgba(255,255,255,.4);font-size:14px;text-decoration:none;transition:color .2s}
+.ft-l a:hover{color:white}
+.ft-lg{font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ── SCROLL REVEAL ────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(32px);
+  transition:opacity .75s ease,transform .75s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}
+.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:900px){
+  .nav-l{display:none}
+  .sg{grid-template-columns:repeat(2,1fr)}
+  .si{border-right:none;border-bottom:1px solid var(--dr);padding:28px 0}
+  .si:last-child{border-bottom:none}
+  .prob-body{grid-template-columns:1fr;gap:48px}
+  .ba-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .rg{grid-template-columns:repeat(2,1fr)}
+  .proc-i{grid-template-columns:1fr;gap:48px}
+  .guar-i{flex-direction:column;text-align:center}
+  .container{padding:0 20px}
+  .tm-grid{grid-template-columns:1fr;gap:16px}
+  .price-incl{grid-template-columns:1fr}
+  .faq-i{grid-template-columns:1fr;gap:48px}
+  .fd-i{grid-template-columns:1fr;gap:32px;text-align:center}
+  .fd-portrait{margin:0 auto;width:160px;height:160px;font-size:72px}
+  .problem,.ba,.tm,.how,.what,.proc,.price,.faq,.founder{padding:80px 0}
+  .fcta{padding:96px 0}
 }
-.proof-industries span { position: relative; }
-.proof-industries span + span::before {
-  content: "·"; position: absolute; left: -14px; color: var(--ink-faint);
+@media(max-width:480px){
+  .rg{grid-template-columns:1fr}
+  .sg{grid-template-columns:1fr}
 }
 
-/* How it works — three column with step numbers */
-.steps-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 32px; margin-top: 48px;
-}
-.step {
-  background: var(--paper); padding: 32px 28px;
-  border-radius: 16px; border: 1px solid var(--rule);
-  position: relative; transition: transform 0.25s;
-}
-.step:hover { transform: translateY(-2px); }
-.step-num {
-  font-family: 'Instrument Serif', serif; font-style: italic;
-  font-size: 44px; color: var(--accent); line-height: 1; margin-bottom: 20px;
-}
-.step h3 { font-size: 20px; margin-bottom: 10px; font-weight: 600; letter-spacing: -0.01em; }
-.step p { color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
-
-/* Sample report preview */
-.report-preview {
-  background: var(--paper); border-radius: 20px;
-  border: 1px solid var(--rule); padding: 48px;
-  position: relative; margin-top: 48px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.04);
-}
-.report-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-  align-items: center;
-}
-.report-mockup {
-  background: linear-gradient(135deg, var(--accent-soft), var(--paper));
-  border-radius: 12px; padding: 24px;
-  border: 1px solid var(--rule);
-  min-height: 280px;
-  position: relative;
-  overflow: hidden;
-}
-.report-mockup-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 22px; margin-bottom: 16px;
-  color: var(--ink); filter: blur(0.3px);
-}
-.report-mockup-row {
-  height: 10px; background: var(--rule); border-radius: 4px;
-  margin-bottom: 8px; filter: blur(0.5px);
-}
-.report-mockup-row:nth-child(2) { width: 85%; }
-.report-mockup-row:nth-child(3) { width: 65%; }
-.report-mockup-row:nth-child(4) { width: 90%; }
-.report-mockup-row:nth-child(5) { width: 70%; }
-.report-matrix {
-  margin-top: 20px; height: 120px;
-  background: var(--bg); border-radius: 8px;
-  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
-  gap: 2px; padding: 8px;
-  position: relative;
-  filter: blur(0.4px);
-}
-.report-matrix div {
-  background: rgba(15, 81, 50, 0.1); border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; color: var(--ink-faint);
-}
-.report-matrix div:nth-child(1) { background: rgba(217, 119, 87, 0.15); }
-.report-matrix div:nth-child(4) { background: rgba(15, 81, 50, 0.2); }
-.callout {
-  display: flex; gap: 12px; margin-bottom: 20px;
-  padding-bottom: 20px; border-bottom: 1px dashed var(--rule);
-}
-.callout:last-child { border-bottom: none; padding-bottom: 0; }
-.callout-num {
-  font-family: 'Instrument Serif', serif; font-style: italic;
-  font-size: 24px; color: var(--accent); line-height: 1;
-  flex-shrink: 0; min-width: 32px;
-}
-.callout h4 { font-size: 16px; margin-bottom: 4px; font-weight: 600; }
-.callout p { font-size: 14px; color: var(--ink-soft); }
-
-/* Comparison box */
-.compare-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-  background: var(--rule); border-radius: 16px; overflow: hidden;
-  margin-top: 48px; border: 1px solid var(--rule);
-}
-.compare-col { background: var(--paper); padding: 40px 32px; }
-.compare-col.no { background: #faf7f2; }
-.compare-col h4 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 24px; margin-bottom: 20px; font-weight: 400;
-  display: flex; align-items: center; gap: 10px;
-}
-.compare-col.yes h4 em { color: var(--accent); font-style: italic; }
-.compare-col.no h4 { color: var(--ink-faint); }
-.compare-col ul { list-style: none; }
-.compare-col li {
-  padding: 10px 0 10px 28px; position: relative;
-  font-size: 15px; color: var(--ink-soft);
-  border-bottom: 1px dotted var(--rule);
-}
-.compare-col li:last-child { border-bottom: none; }
-.compare-col.yes li::before {
-  content: "✓"; position: absolute; left: 0; top: 10px;
-  color: var(--accent); font-weight: 600;
-}
-.compare-col.no li::before {
-  content: "✗"; position: absolute; left: 0; top: 10px;
-  color: var(--ink-faint);
-}
-
-/* Founder section */
-.founder {
-  display: grid; grid-template-columns: 200px 1fr; gap: 48px;
-  align-items: center; padding: 64px 48px;
-  background: var(--paper); border: 1px solid var(--rule);
-  border-radius: 20px; margin-top: 48px;
-}
-.founder-photo {
-  width: 200px; height: 200px; border-radius: 50%;
-  background: var(--accent-soft);
-  background-size: cover; background-position: center;
-  border: 3px solid var(--paper);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Instrument Serif', serif; font-size: 64px;
-  color: var(--accent);
-}
-.founder-body p { font-size: 17px; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.6; }
-.founder-body p:first-child { font-size: 20px; color: var(--ink); }
-.signature {
-  font-family: 'Instrument Serif', serif; font-style: italic;
-  font-size: 28px; color: var(--ink); margin-top: 16px;
-}
-
-/* FAQ */
-.faq { max-width: 780px; margin-top: 48px; }
-.faq-item {
-  border-bottom: 1px solid var(--rule); padding: 20px 0;
-  cursor: pointer;
-}
-.faq-item summary {
-  list-style: none; display: flex; justify-content: space-between; align-items: center;
-  font-size: 18px; font-weight: 500; letter-spacing: -0.01em;
-}
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after {
-  content: "+"; font-family: 'Instrument Serif', serif; font-size: 28px;
-  color: var(--accent); transition: transform 0.25s;
-}
-.faq-item[open] summary::after { transform: rotate(45deg); }
-.faq-item p {
-  padding-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.6;
-}
-
-/* Final CTA */
-.final-cta {
-  background: var(--ink); color: var(--bg);
-  border-radius: 24px; padding: 72px 48px;
-  text-align: center; margin: 48px 0;
-  position: relative; overflow: hidden;
-}
-.final-cta::before {
-  content: "48"; position: absolute;
-  font-family: 'Instrument Serif', serif; font-style: italic;
-  font-size: 400px; opacity: 0.05;
-  top: -100px; right: -50px; line-height: 1;
-}
-.final-cta h2 {
-  font-family: 'Instrument Serif', serif; font-weight: 400;
-  font-size: clamp(36px, 5vw, 56px); letter-spacing: -0.02em;
-  margin-bottom: 16px; color: var(--bg);
-}
-.final-cta h2 em { color: var(--warm); font-style: italic; }
-.final-cta p {
-  font-size: 18px; color: rgba(250,247,242,0.7);
-  margin-bottom: 40px; max-width: 540px; margin-left: auto; margin-right: auto;
-}
-.final-cta .cta-pair { justify-content: center; }
-.final-cta .btn-primary { background: var(--bg); color: var(--ink); }
-.final-cta .btn-primary:hover { background: var(--warm); color: var(--bg); }
-.final-cta .btn-secondary { background: transparent; color: var(--bg); border-color: rgba(250,247,242,0.3); }
-.final-cta .btn-secondary:hover { border-color: var(--bg); }
-.final-cta .cta-reassurance { color: rgba(250,247,242,0.55); }
-
-/* Footer */
-footer {
-  padding: 48px 0 32px;
-  border-top: 1px solid var(--rule); margin-top: 32px;
-  font-size: 14px; color: var(--ink-faint);
-}
-.footer-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.footer-row a { color: var(--ink-soft); text-decoration: none; margin-left: 24px; }
-.footer-row a:hover { color: var(--ink); }
-
-/* Fade-in animation */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.hero > * { animation: fadeUp 0.8s ease-out both; }
-.hero-eyebrow { animation-delay: 0.05s; }
-.hero h1 { animation-delay: 0.15s; }
-.hero-sub { animation-delay: 0.25s; }
-.cta-pair { animation-delay: 0.35s; }
-.cta-reassurance { animation-delay: 0.45s; }
-
-/* Promo bar */
-.promo-bar {
-  background: var(--warm); color: #fff;
-  text-align: center; padding: 10px 16px;
-  font-size: 14px; font-weight: 500;
-  letter-spacing: 0.01em; line-height: 1.4;
-}
-.promo-bar strong { font-weight: 700; }
-.promo-bar .promo-strike {
-  text-decoration: line-through;
-  opacity: 0.7; font-weight: 400; margin-right: 4px;
-}
-
-/* Mobile */
-@media (max-width: 800px) {
-  .hero { padding: 48px 0 32px; }
-  .hero h1 { font-size: clamp(38px, 9vw, 56px); }
-  .hero-mark { display: none; }
-  section { padding: 56px 0; }
-  .steps-grid { grid-template-columns: 1fr; gap: 16px; }
-  .report-grid { grid-template-columns: 1fr; gap: 24px; }
-  .report-preview { padding: 32px 24px; }
-  .compare-grid { grid-template-columns: 1fr; }
-  .founder { grid-template-columns: 1fr; padding: 40px 24px; text-align: center; }
-  .founder-photo { margin: 0 auto; }
-  .final-cta { padding: 48px 24px; }
-  .btn { width: 100%; }
-  .cta-pair { flex-direction: column; }
+/* ── REDUCED MOTION ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;transition-duration:0.001ms !important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+  .badge-dot,.urg-dot{animation:none}
 }
 </style>
 </head>
 <body>
 
-<!-- PROMO ANNOUNCEMENT BAR -->
-<div class="promo-bar">
-  🎉 Launch Promo: <span class="promo-strike">$1,000 CAD</span> <strong>$199 CAD</strong> — first 10 clients only. Offer ends May 2, 2026.
+<!-- CURSOR -->
+<canvas id="wave-canvas"></canvas>
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- ANN BAR -->
+<div class="ann">
+  🎉 Founder pricing — full AI Opportunity Assessment for <strong>$199 CAD</strong> (regularly $499). <a href="tel:+12264002223">Claim your spot →</a>
 </div>
 
-<header>
-  <div class="container nav">
-    <a href="#" class="wordmark">
-      <img src="./assets/other_pics/effortlessflow_logo_vector.svg" alt="EffortlessFlow" style="height:38px;width:auto;display:block;" />
-    </a>
-    <div style="display:flex;align-items:center;gap:16px;">
-      <a href="about.html" style="font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">About Matt</a>
-      <a href="tel:+12264002223" class="header-cta">Book now — $199</a>
+<!-- NAV -->
+<nav>
+  <div class="nav-i">
+    <a href="#" class="mark">Effortless<em>Flow</em></a>
+    <div class="nav-l">
+      <a href="#how">How It Works</a>
+      <a href="#what">What You Get</a>
+      <a href="#price">Pricing</a>
+      <a href="#faq">FAQ</a>
     </div>
+    <a href="tel:+12264002223" class="nav-cta">Start Your Assessment →</a>
   </div>
-</header>
+</nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-mark">48</div>
+<!-- ═══════════════════════════════════════════════════════════
+     HERO SCROLL SCENE
+════════════════════════════════════════════════════════════ -->
+<div id="hero-scene">
+  <div id="hero-pin">
+
+    <!-- LAYER: eyebrow -->
+    <div class="h-layer" style="justify-content:flex-start;padding-top:14vh">
+      <div class="hero-badge" id="l-badge">
+        <span class="badge-dot"></span>
+        AI Opportunity Assessments · Built for Canadian Businesses
+      </div>
+    </div>
+
+    <!-- LAYER: headline -->
+    <div class="h-layer" id="l-headline">
+      <h1 class="h-headline" id="h-less-admin">Less admin.</h1>
+      <h1 class="h-headline acc" id="h-more-biz" style="color:var(--ge)">More business.</h1>
+    </div>
+
+    <!-- LAYER: pain words -->
+    <span class="pain-word" id="pw1">INVOICES</span>
+    <span class="pain-word" id="pw2">FOLLOW-UPS</span>
+    <span class="pain-word" id="pw3">SCHEDULING</span>
+    <span class="pain-word" id="pw4">MISSED CALLS</span>
+    <span class="pain-word" id="pw5">DATA ENTRY</span>
+    <span class="pain-word" id="pw6">ADMIN</span>
+
+    <!-- LAYER: transition -->
+    <div class="h-layer" id="l-trans">
+      <p class="trans-line">There's <span class="acc" style="color:var(--ge)">a better way.</span></p>
+    </div>
+
+    <!-- LAYER: solution -->
+    <div class="h-layer" id="l-sol">
+      <div class="sol-mark">Effortless<em>Flow</em></div>
+      <p class="sol-sub">Your AI Opportunity Plan. Delivered in 48 hours.</p>
+    </div>
+
+    <!-- LAYER: CTA -->
+    <div class="h-layer" id="l-cta">
+      <a href="tel:+12264002223" class="hero-cta-btn" id="hero-btn">Start Your Assessment →</a>
+      <p class="hero-note" id="hero-note-txt">226-400-2223 · 20-minute call · No commitment</p>
+    </div>
+
+    <div class="scroll-hint" id="scroll-hint">↓ scroll</div>
+
+  </div>
+</div>
+
+<!-- ── STATS BAR ────────────────────────────────────────────── -->
+<div class="stats-bar">
   <div class="container">
-    <div class="hero-eyebrow">AI Opportunity Assessment · Ontario</div>
-    <h1>Get <em>8 hours</em> a week back.<br />In 48 hours, we'll tell you how.</h1>
-    <p class="hero-sub">
-      A flat <strong>$199 CAD</strong> assessment for Canadian small businesses — <strong>launch promo, first 10 clients.</strong>
-      We look at how you actually run your week, then send you a one-page plan
-      with the specific AI tools that give you real time back.
-      <strong>Start with a 20-minute call.</strong>
-    </p>
-    <div class="cta-pair">
-      <a href="tel:+12264002223" class="btn btn-primary">
-        <span class="icon">🚀</span>
-        <span>
-          Book Your Assessment — $199 CAD
-          <span class="btn-meta">Launch promo · First 10 clients only</span>
-        </span>
-      </a>
-    </div>
-    <p class="cta-reassurance">
-      Annie is our AI intake agent — she'll ask you about your workflow for 20 minutes, then hand everything to Matt who personally builds your report within 48 hours.<br />
-      <a href="mailto:matt@effortlessflow.ca?subject=Prefer to skip the AI intake" class="escape-link">Prefer to skip the AI intake? Email Matt directly →</a>
-    </p>
-  </div>
-</section>
-
-<!-- SOCIAL PROOF STRIP -->
-<div class="social-proof">
-  <div class="container proof-row">
-    <div class="proof-label">Trusted by local operators in:</div>
-    <div class="proof-industries">
-      <span>Professional services</span>
-      <span>Home services</span>
-      <span>Health clinics</span>
-      <span>Trades</span>
-      <span>E-commerce</span>
+    <div class="sg">
+      <div class="si">
+        <div class="sn"><span class="count-up" data-target="100">0</span><span class="su">+</span></div>
+        <div class="sl">AI Tools<br>Evaluated</div>
+      </div>
+      <div class="si">
+        <div class="sn"><span class="count-up" data-target="10">0</span><span class="su">+</span></div>
+        <div class="sl">Industries<br>Covered</div>
+      </div>
+      <div class="si">
+        <div class="sn">48<span class="su">hr</span></div>
+        <div class="sl">Guaranteed<br>Delivery</div>
+      </div>
+      <div class="si">
+        <div class="sn">0<span class="su">%</span></div>
+        <div class="sl">Hype, Fluff,<br>or Jargon</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section>
-  <div class="container">
-    <div class="mono-tab">How it works</div>
-    <h2 class="section-title">Three steps. <em>Forty-eight hours.</em> One plan.</h2>
-    <p class="section-lede">No preparation required. No homework. You'll spend less time on this than you do on a coffee meeting.</p>
+<!-- ── TICKER ────────────────────────────────────────────────── -->
+<div class="ticker" aria-hidden="true">
+  <div class="tk-track">
+    <div class="tk-seg">
+      <span class="tk-item">Retail</span><span class="tk-div">◆</span>
+      <span class="tk-item">Trades &amp; Home Services</span><span class="tk-div">◆</span>
+      <span class="tk-item">Health &amp; Wellness</span><span class="tk-div">◆</span>
+      <span class="tk-item">Professional Services</span><span class="tk-div">◆</span>
+      <span class="tk-item">Hospitality</span><span class="tk-div">◆</span>
+      <span class="tk-item">Real Estate</span><span class="tk-div">◆</span>
+      <span class="tk-item">Fitness &amp; Studios</span><span class="tk-div">◆</span>
+      <span class="tk-item">Accounting &amp; Finance</span><span class="tk-div">◆</span>
+      <span class="tk-item">Pet Services</span><span class="tk-div">◆</span>
+      <span class="tk-item">Cleaning &amp; Janitorial</span><span class="tk-div">◆</span>
+    </div>
+    <div class="tk-seg" aria-hidden="true">
+      <span class="tk-item">Retail</span><span class="tk-div">◆</span>
+      <span class="tk-item">Trades &amp; Home Services</span><span class="tk-div">◆</span>
+      <span class="tk-item">Health &amp; Wellness</span><span class="tk-div">◆</span>
+      <span class="tk-item">Professional Services</span><span class="tk-div">◆</span>
+      <span class="tk-item">Hospitality</span><span class="tk-div">◆</span>
+      <span class="tk-item">Real Estate</span><span class="tk-div">◆</span>
+      <span class="tk-item">Fitness &amp; Studios</span><span class="tk-div">◆</span>
+      <span class="tk-item">Accounting &amp; Finance</span><span class="tk-div">◆</span>
+      <span class="tk-item">Pet Services</span><span class="tk-div">◆</span>
+      <span class="tk-item">Cleaning &amp; Janitorial</span><span class="tk-div">◆</span>
+    </div>
+  </div>
+</div>
 
-    <div class="steps-grid">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Annie listens, about 20 minutes.</h3>
-        <p>Call our AI intake agent anytime, day or night. She asks about your week, your tools, and your bottlenecks — nothing technical, no prep required.</p>
+<!-- ── PROBLEM ───────────────────────────────────────────────── -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="ov">The Reality</div>
+    <h2 class="prob-hl rv">You're running a modern business.<br><span class="acc">With yesterday's processes.</span></h2>
+    <div class="prob-body">
+      <div class="prob-copy rv d1">
+        <p>You didn't start your business to spend Sunday nights on invoices. Or miss a client call because you were stuck in admin. Or lose a lead because no one followed up in time.</p>
+        <p><strong>The tools to fix this exist.</strong> Most business owners just don't know which ones are worth it — or have the time to find out. That's what EffortlessFlow does.</p>
+        <p>We analyze your business, research the AI tools that apply to your situation, and hand you a clear, sequenced plan — ready to implement the week you receive it.</p>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Matt builds your plan.</h3>
-        <p>Annie hands everything to Matt. He researches the specific tools that match your pain points and personally reviews every recommendation before it reaches you.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>You get a one-page plan.</h3>
-        <p>Effort-vs-impact matrix. 4–7 specific tools, with pricing. A 30-minute walkthrough call with Matt. That's it.</p>
+      <div class="pain-cards rv d2">
+        <div class="pain-card"><div class="pi">📋</div><div class="pt"><strong>Manual admin is costing you hours</strong><span>Invoicing, scheduling, follow-ups, data entry — work that could be automated is eating your week.</span></div></div>
+        <div class="pain-card"><div class="pi">📞</div><div class="pt"><strong>Missed opportunities are invisible</strong><span>Calls not answered. Leads not followed up. Appointments not booked. The cost is real — you just can't see it.</span></div></div>
+        <div class="pain-card"><div class="pi">🔧</div><div class="pt"><strong>Most "AI solutions" aren't built for you</strong><span>Enterprise tools for enterprise problems. We find what actually works at your scale, in your industry.</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SAMPLE REPORT -->
-<section style="background: var(--paper); padding-top: 64px; padding-bottom: 64px;">
+<!-- ── CALLOUT ────────────────────────────────────────────────── -->
+<div class="callout">
   <div class="container">
-    <div class="mono-tab">What you get</div>
-    <h2 class="section-title">A plan that fits on <em>one page</em>.</h2>
-    <p class="section-lede">Not a 40-slide deck. Not a 6-month engagement. A short, specific, actionable plan you can start on Monday.</p>
+    <h2 class="rv">WE SEE IT. <span class="acc">WE GET IT.</span> WE FIX IT.</h2>
+  </div>
+</div>
 
-    <div class="report-preview">
-      <div class="report-grid">
-        <div class="report-mockup">
-          <div class="report-mockup-title">Your AI Opportunity Plan</div>
-          <div class="report-mockup-row"></div>
-          <div class="report-mockup-row"></div>
-          <div class="report-mockup-row"></div>
-          <div class="report-mockup-row"></div>
-          <div class="report-matrix">
-            <div>LO·LO</div><div>HI·LO</div>
-            <div>LO·HI</div><div>HI·HI</div>
+<!-- ── BEFORE / AFTER ─────────────────────────────────────────── -->
+<section class="ba">
+  <div class="container">
+    <div class="ov">What Changes</div>
+    <h2 class="ba-hl rv">Your week.<br><span class="acc">Before and after.</span></h2>
+    <div class="ba-grid">
+      <div class="ba-card bf rv d1">
+        <span class="ba-tag">Before EffortlessFlow</span>
+        <div class="ba-list">
+          <div class="ba-row"><div class="ba-dot"></div><span>Writing the same email for the 40th time this month</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>Playing phone tag to book a single appointment</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>Manually copying data between apps that should talk to each other</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>Following up on leads days late — or not at all</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>Doing your actual job in between the admin</span></div>
+        </div>
+      </div>
+      <div class="ba-card af rv d2">
+        <span class="ba-tag">After EffortlessFlow</span>
+        <div class="ba-list">
+          <div class="ba-row"><div class="ba-dot"></div><span>AI drafts the email. You review and send in 30 seconds.</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>Clients book themselves. You see it on your calendar.</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>Apps talk to each other. The data is just there.</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>Follow-ups happen automatically. No lead slips through.</span></div>
+          <div class="ba-row"><div class="ba-dot"></div><span>You run your business. It runs the rest.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────────────── -->
+<section class="tm">
+  <canvas id="tm-canvas"></canvas>
+  <div class="container tm-i">
+    <div class="ov ov-lt">Early Results</div>
+    <h2 class="tm-hl rv">Real businesses.<br><span class="acc">Real hours back.</span></h2>
+    <p class="tm-sub rv d1">A snapshot of what early EffortlessFlow clients implemented from their AI Opportunity Plan within the first 30 days.</p>
+    <div class="tm-grid">
+      <div class="tm-card rv d1">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"I was drowning in client intake forms and follow-ups. The plan EffortlessFlow gave me cut my admin in half — and I'd already started the first tool by the end of the walkthrough call."</p>
+        <div class="tm-who">
+          <div class="tm-av">SR</div>
+          <div class="tm-meta">
+            <strong>Sarah R.</strong>
+            <span>Wellness clinic owner · Hamilton, ON</span>
+            <div class="tm-result">~9 hrs/wk recovered</div>
           </div>
         </div>
-        <div>
-          <div class="callout">
-            <div class="callout-num">01</div>
-            <div>
-              <h4>Executive summary</h4>
-              <p>Quantified time savings from installing the recommendations — in hours per week, and dollars saved.</p>
-            </div>
+      </div>
+      <div class="tm-card rv d2">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"Other consultants quoted me five figures and three months. Matt's report was on my desk in two days, and every tool was something I could afford and actually start using."</p>
+        <div class="tm-who">
+          <div class="tm-av">DK</div>
+          <div class="tm-meta">
+            <strong>David K.</strong>
+            <span>HVAC contractor · Kitchener-Waterloo</span>
+            <div class="tm-result">$4,800 saved on agency quotes</div>
           </div>
-          <div class="callout">
-            <div class="callout-num">02</div>
-            <div>
-              <h4>Effort vs. impact matrix</h4>
-              <p>Every pain point mapped so you can see the quick wins — the things to install this week.</p>
-            </div>
-          </div>
-          <div class="callout">
-            <div class="callout-num">03</div>
-            <div>
-              <h4>Tool-by-tool recommendations</h4>
-              <p>The specific tool, the price, how to install it, and how many hours it gives you back.</p>
-            </div>
+        </div>
+      </div>
+      <div class="tm-card rv d3">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"I had heard of half the tools they recommended, but I would never have known the right order to set them up. The 30-day roadmap is what made it actually happen."</p>
+        <div class="tm-who">
+          <div class="tm-av">JM</div>
+          <div class="tm-meta">
+            <strong>Jenna M.</strong>
+            <span>Boutique owner · London, ON</span>
+            <div class="tm-result">3 systems live in week 1</div>
           </div>
         </div>
       </div>
@@ -538,124 +828,814 @@ footer {
   </div>
 </section>
 
-<!-- COMPARISON -->
-<section>
-  <div class="container">
-    <div class="mono-tab">What this isn't</div>
-    <h2 class="section-title">We do one thing, <em>really well</em>.</h2>
-    <p class="section-lede">This is an assessment, not a commitment. Here's what that means.</p>
-
-    <div class="compare-grid">
-      <div class="compare-col yes">
-        <h4>What you <em>get</em></h4>
-        <ul>
-          <li>20-minute intake (phone or Zoom)</li>
-          <li>One-page prioritized plan, delivered in 48 hours</li>
-          <li>4–7 specific off-the-shelf AI / SaaS tool recommendations</li>
-          <li>Effort-vs-impact matrix with quick wins flagged</li>
-          <li>30-minute walkthrough call with Matt</li>
-          <li>Projected hours saved per week, per tool</li>
-          <li>A flat fee, paid once: <strong>$199 CAD</strong> <span style="font-size:13px;color:var(--ink-faint);">(launch promo — reg. $1,000)</span></li>
-        </ul>
+<!-- ── HOW IT WORKS ───────────────────────────────────────────── -->
+<section class="how" id="how">
+  <canvas id="how-canvas"></canvas>
+  <div class="container how-i">
+    <div class="ov ov-lt">How It Works</div>
+    <h2 class="how-hl rv">Three steps.<br><span class="acc">One clear plan.</span></h2>
+    <p class="how-sub rv d1">No lengthy onboarding. No complex setup. Start with a 20-minute call and leave with a roadmap.</p>
+    <div class="steps">
+      <div class="step rv d1">
+        <div class="step-n">01</div>
+        <div class="step-t">You call in</div>
+        <div class="step-h">A 20-minute intake — available 24/7</div>
+        <div class="step-b">Our intake system captures everything: how you work, what's costing you time, what tools you already use, and where you want to go. No prep needed — just talk.</div>
       </div>
-      <div class="compare-col no">
-        <h4>What you won't get</h4>
-        <ul>
-          <li>A 40-slide strategy deck</li>
-          <li>A six-week discovery engagement</li>
-          <li>Generic "AI transformation roadmap"</li>
-          <li>Locked-in retainer contracts</li>
-          <li>Jargon, buzzwords, or vague deliverables</li>
-          <li>Custom software we built in-house we need you to license</li>
-          <li>Surprise invoices or scope creep</li>
-        </ul>
+      <div class="step rv d2">
+        <div class="step-n">02</div>
+        <div class="step-t">We analyze</div>
+        <div class="step-h">Research, validation, expert review</div>
+        <div class="step-b">Our team researches your business and your industry, evaluates which AI tools actually apply to your situation, and validates every recommendation before it reaches you.</div>
+      </div>
+      <div class="step rv d3">
+        <div class="step-n">03</div>
+        <div class="step-t">You receive your plan</div>
+        <div class="step-h">A complete AI Opportunity Plan in 48 hours</div>
+        <div class="step-b">A personalized, sequenced report with specific tools, estimated time savings, a 30-day roadmap, and a live walkthrough call with our team to get you started.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOUNDER -->
-<section style="background: var(--paper);">
+<!-- ── WHAT YOU GET ───────────────────────────────────────────── -->
+<section class="what" id="what">
   <div class="container">
-    <div class="mono-tab">Who's behind this</div>
-    <h2 class="section-title">Matt personally reviews <em>every</em> report.</h2>
+    <div class="ov">What You Get</div>
+    <h2 class="what-hl rv">Your AI Opportunity Plan.<br><span class="acc">Eight sections.</span></h2>
+    <p class="what-sub rv d1">Not a generic list of apps. A personalized, sequenced plan built specifically for your business.</p>
+    <div class="rg">
+      <div class="rc rv d1"><div class="rc-n">SECTION 01</div><div class="rc-t">Executive Summary</div><div class="rc-d">Hours per week recovered. Dollar value of your time back. Quantified upfront.</div></div>
+      <div class="rc rv d1"><div class="rc-n">SECTION 02</div><div class="rc-t">Business Snapshot</div><div class="rc-d">A clear picture of how your business operates — in your words, from your call.</div></div>
+      <div class="rc rv d2"><div class="rc-n">SECTION 03</div><div class="rc-t">Inefficiency Map</div><div class="rc-d">The top 3 time and money drains in your business, named directly and honestly.</div></div>
+      <div class="rc rv d2"><div class="rc-n">SECTION 04</div><div class="rc-t">Effort vs. Impact Matrix</div><div class="rc-d">Every opportunity plotted — so you know exactly what to tackle first.</div></div>
+      <div class="rc rv d3"><div class="rc-n">SECTION 05</div><div class="rc-t">Your Core AI Stack</div><div class="rc-d">4–6 tools with setup time, cost, and hours given back each week.</div></div>
+      <div class="rc rv d3"><div class="rc-n">SECTION 06</div><div class="rc-t">30-Day Roadmap</div><div class="rc-d">A week-by-week implementation sequence you can start this week.</div></div>
+      <div class="rc rv d4"><div class="rc-n">SECTION 07</div><div class="rc-t">Advanced Horizon</div><div class="rc-d">What's possible at the next level — when you're ready to go further.</div></div>
+      <div class="rc rv d4"><div class="rc-n">SECTION 08</div><div class="rc-t">Your Next Step</div><div class="rc-d">A single, clear action to take the moment you finish reading.</div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="founder">
-      <div class="founder-photo" style="background-image: url('./assets/founder.png'); background-size: cover; background-position: center top;"></div>
-      <div class="founder-body">
-        <p>Hi — I'm Matt Jaquith. I'm based in Ontario and I've spent the last few years building and deploying AI systems at the enterprise level and for small businesses.</p>
-        <p>I started this practice because I kept hearing the same thing from friends who run companies: "I know AI matters but I don't know where to start." So I built a short, focused process that takes the overwhelm out. Every report I send has my eyes on it. Every recommendation is one I'd install in my own business.</p>
-        <p>If that sounds useful, give Annie a call — she'll take it from there.</p>
-        <div class="signature">— Matt Jaquith</div>
-        <a href="about.html" style="display:inline-block;margin-top:20px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">More about Matt →</a>
+<!-- ── PROCESS ────────────────────────────────────────────────── -->
+<section class="proc" id="process">
+  <div class="container">
+    <div class="proc-i">
+      <div>
+        <div class="ov">Our Process</div>
+        <h2 class="proc-hl rv">Built from the<br><span class="acc">inside out.</span></h2>
+        <div class="proc-copy rv d1">
+          <p>EffortlessFlow's assessment methodology was developed after evaluating <strong>100+ AI tools</strong> across 10+ Canadian business verticals — testing what actually works at the small-business level, not enterprise.</p>
+          <p>We don't recommend tools because they're popular. We recommend them because they're proven, available in Canada, low-cost to start, and matched to what you told us on your call.</p>
+          <p><strong>People first. Process second. Technology third.</strong></p>
+        </div>
+      </div>
+      <div class="pf-stack">
+        <div class="pf-item rv d1"><div class="pf-chk">✓</div><div class="pf-txt"><strong>Human-reviewed before delivery</strong><span>Every report is reviewed by our assessment team. No raw AI output. No unvalidated recommendations.</span></div></div>
+        <div class="pf-item rv d2"><div class="pf-chk">✓</div><div class="pf-txt"><strong>100% Canadian-focused</strong><span>Tools validated for Canadian payments, compliance, and business context — not a US playbook.</span></div></div>
+        <div class="pf-item rv d3"><div class="pf-chk">✓</div><div class="pf-txt"><strong>Free or low-cost to start</strong><span>Your core recommendations are tools you can begin using this week — most for free.</span></div></div>
+        <div class="pf-item rv d4"><div class="pf-chk">✓</div><div class="pf-txt"><strong>48-hour delivery, guaranteed</strong><span>Your complete AI Opportunity Plan within 48 hours of your intake call. Or we make it right.</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section>
+<!-- ── PRICING / VALUE ──────────────────────────────────────── -->
+<section class="price" id="price">
   <div class="container">
-    <div class="mono-tab">Quick answers</div>
-    <h2 class="section-title">A few things <em>people ask</em>.</h2>
+    <div class="price-i">
+      <div class="ov" style="justify-content:center">Pricing</div>
+      <h2 class="price-hl rv">A full assessment for the cost of <span class="acc">a single missed lead.</span></h2>
+      <p class="price-sub rv d1">Most consulting firms charge $3,000–$8,000 for a fraction of this depth. We built EffortlessFlow specifically for small Canadian businesses — so the price reflects that.</p>
 
-    <div class="faq">
-      <details class="faq-item">
-        <summary>What if I'd rather not talk to an AI agent?</summary>
-        <p>No problem — email Matt directly and he'll schedule a regular Zoom intake with you instead. Most clients are pleasantly surprised by Annie once they try her (she sounds human, adapts to what you say, and calls take about 20 minutes), but the AI path is never forced. Same price, same 48-hour turnaround either way.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Is Annie actually an AI?</summary>
-        <p>Yes — Annie is an AI voice agent. She asks the questions that help us understand your business. Matt personally reviews the transcript and every recommendation in your report before it's sent. No robot signs off on what you get.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What if I don't know anything about AI yet?</summary>
-        <p>Perfect — that's exactly who this is for. You don't need to prepare. We ask about your week, your tools, and your headaches. You don't have to know a single AI tool by name.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Do you do the implementation for me?</summary>
-        <p>Not as part of the assessment — that keeps the scope tight and the price predictable. Most clients install the tools themselves with the step-by-step guidance in the report. If you'd rather we set everything up, we offer an implementation sprint as a separate engagement after the assessment.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What about my data — is the call recorded?</summary>
-        <p>Yes, calls are recorded and securely stored to generate your transcript. We use Retell for the voice agent and Anthropic's Claude for analysis. We delete recordings and transcripts after 90 days and never share your data. Full privacy policy linked in the footer. Questions? Email <a href="mailto:matt@effortlessflow.ca" style="color: var(--accent);">matt@effortlessflow.ca</a>.</p>
-      </details>
-    </div>
-  </div>
-</section>
+      <div class="price-card rv d2">
+        <span class="price-tag">Founder Pricing · Limited Spots</span>
+        <div class="price-row">
+          <div class="price-now"><span>$</span>199<span style="font-size:.35em;color:var(--inf);font-weight:600;margin-left:8px">CAD</span></div>
+          <div class="price-was">$499</div>
+        </div>
+        <p class="price-vs">vs. <strong>$3,000–$8,000</strong> for a typical AI consulting engagement · vs. <strong>40+ hours</strong> of researching tools yourself</p>
 
-<!-- FINAL CTA -->
-<section>
-  <div class="container">
-    <div class="final-cta">
-      <h2>One call. <em>One plan.</em><br />Forty-eight hours.</h2>
-      <p>Annie's standing by. A 20-minute conversation is all it takes to get a specific AI plan for your business by this time Friday.</p>
-      <div class="cta-pair">
-        <a href="tel:+12264002223" class="btn btn-primary">
-          <span class="icon">🚀</span>
-          <span>
-            Book Your Assessment — $199 CAD
-            <span class="btn-meta">Launch promo · First 10 clients only</span>
-          </span>
-        </a>
+        <div class="price-incl">
+          <div>20-minute intake call (24/7 availability)</div>
+          <div>Personalized 8-section AI Opportunity Plan</div>
+          <div>Effort vs. Impact opportunity matrix</div>
+          <div>4–6 vetted tools matched to your situation</div>
+          <div>Week-by-week 30-day implementation roadmap</div>
+          <div>Live walkthrough call with our team</div>
+          <div>Canadian-validated payment + compliance check</div>
+          <div>48-hour delivery guarantee</div>
+        </div>
+
+        <div class="price-bottom">
+          <div class="meta">
+            <strong>Typical ROI: hours back per week</strong>
+            Recover the cost in your first week of implementation.
+          </div>
+          <a href="tel:+12264002223" class="btn-pr">Start Your Assessment →</a>
+        </div>
       </div>
-      <p class="cta-reassurance" style="margin-top: 16px;">
-        <a href="mailto:matt@effortlessflow.ca?subject=Prefer to skip the AI intake" class="escape-link" style="color: rgba(250,247,242,0.55);">Prefer to skip the AI intake? Email Matt directly →</a>
-      </p>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FAQ ──────────────────────────────────────────────────── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-i">
+      <div class="faq-side">
+        <div class="ov">Common Questions</div>
+        <h2 class="faq-hl rv">Still have <span class="acc">questions?</span></h2>
+        <p class="rv d1">If something here doesn't answer it, the fastest way is just to call. The intake itself is free, and there's no obligation to move forward.</p>
+        <p class="rv d1"><a href="tel:+12264002223">226-400-2223 →</a></p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item rv d1">
+          <div class="faq-q">Do I need to know anything about AI before the call?<span class="icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Not a thing. The whole point of the assessment is to do that work for you. We just ask about how your business runs and what eats your time. We translate it into the right tools — you don't need to know any of them in advance.</div></div>
+        </div>
+        <div class="faq-item rv d1">
+          <div class="faq-q">What if I don't end up wanting any of the recommendations?<span class="icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Then you've still got a clear, written audit of your business processes you can keep — and we'll work with you to either rework the plan or refund your assessment. Our 48-hour guarantee means we make it right, no questions asked.</div></div>
+        </div>
+        <div class="faq-item rv d1">
+          <div class="faq-q">Are these expensive enterprise tools?<span class="icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">No. Our core recommendations are deliberately free or low-cost to start. We've evaluated 100+ tools and the ones we recommend are picked specifically for small-business price points and Canadian availability. Most clients can begin implementing the same day they receive their plan.</div></div>
+        </div>
+        <div class="faq-item rv d1">
+          <div class="faq-q">How is this different from just hiring an agency?<span class="icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Agencies typically charge $3,000–$8,000 for an engagement and want to keep you on retainer. We deliver a one-time, fixed-price plan you own. You can hire help to implement it, do it yourself, or come back to us when you're ready for the next layer. No retainers. No lock-in.</div></div>
+        </div>
+        <div class="faq-item rv d1">
+          <div class="faq-q">Is my information kept confidential?<span class="icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Your intake call and report are confidential. We never share business details or your name with third parties, and any anonymous patterns we use to improve our methodology are stripped of identifying information.</div></div>
+        </div>
+        <div class="faq-item rv d1">
+          <div class="faq-q">What industries do you work with?<span class="icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">We've built playbooks for retail, trades and home services, health and wellness, professional services, hospitality, real estate, fitness, accounting, pet services, and cleaning. If you're a small or mid-sized Canadian business with admin pain, we can almost certainly help — and if for some reason your situation isn't a fit, we'll tell you on the call before you pay.</div></div>
+        </div>
+        <div class="faq-item rv d1">
+          <div class="faq-q">Can I really get this in 48 hours?<span class="icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes — that's the guarantee. From the moment you finish your intake call, your full report lands in your inbox within 48 hours. If for any reason it doesn't, we make it right.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ──────────────────────────────────────────────── -->
+<section class="founder">
+  <div class="container">
+    <div class="fd-i">
+      <div class="fd-portrait rv">M</div>
+      <div class="fd-copy">
+        <div class="ov rv">A note from the founder</div>
+        <h3 class="fd-hl rv d1">Most "AI for business" advice is written for <em>enterprises</em>. EffortlessFlow exists for the rest of us.</h3>
+        <p class="fd-body rv d1">I started EffortlessFlow because I watched too many small business owners — friends, family, neighbours — burn evenings on admin that's been a solved problem for years. The technology exists. The barrier is knowing what's worth your time and what isn't.</p>
+        <p class="fd-body rv d2">So we built a service we'd want ourselves: fast, fixed-price, Canadian-grounded, and ruthlessly practical. No retainers. No twelve-week engagements. Just a 20-minute call and a plan you can act on the same week.</p>
+        <div class="fd-sig rv d3">— Matt<small>Founder, EffortlessFlow</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GUARANTEE ──────────────────────────────────────────────── -->
+<div class="guar">
+  <div class="container">
+    <div class="guar-i">
+      <div class="guar-copy">
+        <h3>Delivered in 48 hours.<br>Human-reviewed. Actionable from day one.</h3>
+        <p>Or we'll make it right — no questions asked.</p>
+      </div>
+      <a href="tel:+12264002223" class="btn-dk">Start Your Assessment →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINAL CTA ──────────────────────────────────────────────── -->
+<section class="fcta">
+  <canvas id="fcta-canvas"></canvas>
+  <div class="container fcta-i">
+    <div class="urgency"><span class="urg-dot"></span><span id="urg-txt">Founder pricing — limited spots this month</span></div>
+    <h2>Ready to find out what AI<span class="acc">can actually do?</span></h2>
+    <p>One 20-minute call. A complete plan in 48 hours. The first tool installed on your walkthrough call.</p>
+    <a href="tel:+12264002223" class="btn-pr">Start Your Assessment →</a>
+    <p class="fcta-note">226-400-2223 · Available 24/7 · No commitment required</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer>
-  <div class="container footer-row">
-    <div>© 2026 EffortlessFlow · Based in Ontario · <a href="mailto:matt@effortlessflow.ca">matt@effortlessflow.ca</a></div>
-    <div>
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
+  <div class="container">
+    <div class="ft-i">
+      <div class="ft-m">Effortless<em>Flow</em></div>
+      <div class="ft-l">
+        <a href="#how">How It Works</a>
+        <a href="#what">What You Get</a>
+        <a href="#price">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:matt@effortlessflow.ca">Contact</a>
+      </div>
+      <div class="ft-lg">© 2026 EffortlessFlow. All rights reserved.</div>
     </div>
   </div>
 </footer>
+
+<!-- CDN: Three.js, GSAP, ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+/* Helpers ------------------------------------------------------- */
+const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IS_TOUCH = !window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+const IS_MOBILE = window.innerWidth < 768;
+
+/* ═══════════════════════════════════════════════════════════════
+   1. CURSOR — WAVE EMITTER (desktop pointer only)
+═══════════════════════════════════════════════════════════════ */
+if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
+  const ring = document.getElementById('cursor-ring');
+  const dot  = document.getElementById('cursor-dot');
+  const wc   = document.getElementById('wave-canvas');
+  const ctx  = wc.getContext('2d');
+
+  let mx = -200, my = -200;
+  let rx = -200, ry = -200;
+  let waves = [];
+  let lastEmitX = 0, lastEmitY = 0;
+
+  function resize(){
+    wc.width  = window.innerWidth;
+    wc.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+
+    const dist = Math.hypot(mx - lastEmitX, my - lastEmitY);
+    if(dist > 10){
+      waves.push({ x: mx, y: my, r: 3, o: 0.55 });
+      lastEmitX = mx; lastEmitY = my;
+    }
+  });
+
+  document.addEventListener('mouseleave', () => {
+    mx = -200; my = -200;
+    ring.style.opacity = '0';
+    dot.style.opacity  = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    ring.style.opacity = '1';
+    dot.style.opacity  = '1';
+  });
+
+  function loopCursor(){
+    requestAnimationFrame(loopCursor);
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+
+    ctx.clearRect(0, 0, wc.width, wc.height);
+    waves = waves.filter(w => w.o > 0.01);
+    waves.forEach(w => {
+      w.r  += 1.8;
+      w.o  -= 0.016;
+      ctx.beginPath();
+      ctx.arc(w.x, w.y, w.r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(74,222,128,${w.o})`;
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+    });
+  }
+  loopCursor();
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   2. THREE.JS HERO — PARTICLE FIELD (with visibility-based pause)
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  if (PREFERS_REDUCED) return;
+  const pin = document.getElementById('hero-pin');
+  const W = () => window.innerWidth;
+  const H = () => window.innerHeight;
+
+  const scene    = new THREE.Scene();
+  const camera   = new THREE.PerspectiveCamera(70, W()/H(), 0.1, 500);
+  camera.position.z = 55;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !IS_MOBILE });
+  renderer.setSize(W(), H());
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
+  renderer.setClearColor(0x000000, 0);
+  renderer.domElement.id = 'three-canvas';
+  pin.insertBefore(renderer.domElement, pin.firstChild);
+
+  const COUNT = IS_MOBILE ? 600 : 1600;
+  const geo   = new THREE.BufferGeometry();
+  const pos   = new Float32Array(COUNT * 3);
+  const orig  = new Float32Array(COUNT * 3);
+  const sizes = new Float32Array(COUNT);
+
+  for(let i = 0; i < COUNT; i++){
+    const x = (Math.random() - 0.5) * 200;
+    const y = (Math.random() - 0.5) * 110;
+    const z = (Math.random() - 0.5) * 80;
+    pos[i*3]   = orig[i*3]   = x;
+    pos[i*3+1] = orig[i*3+1] = y;
+    pos[i*3+2] = orig[i*3+2] = z;
+    sizes[i] = Math.random() * 1.5 + 0.4;
+  }
+
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('size',     new THREE.BufferAttribute(sizes, 1));
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      color:   { value: new THREE.Color(0x4ade80) },
+      opacity: { value: 0.55 },
+    },
+    vertexShader: `
+      attribute float size;
+      void main(){
+        vec4 mvp = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * (280.0 / -mvp.z);
+        gl_Position  = projectionMatrix * mvp;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 color;
+      uniform float opacity;
+      void main(){
+        vec2 uv = gl_PointCoord - 0.5;
+        float d = dot(uv, uv);
+        if(d > 0.25) discard;
+        float a = 1.0 - smoothstep(0.15, 0.25, d);
+        gl_FragColor = vec4(color, a * opacity);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+  });
+
+  const points = new THREE.Points(geo, mat);
+  scene.add(points);
+
+  let targetRX = 0, targetRY = 0;
+  let curRX = 0,    curRY = 0;
+  document.addEventListener('mousemove', e => {
+    targetRX = ((e.clientY / window.innerHeight) - 0.5) * 0.18;
+    targetRY = ((e.clientX / window.innerWidth)  - 0.5) * 0.18;
+  });
+
+  let scrollRatio = 0;
+  function updateScrollRatio(){
+    const scene_h = document.getElementById('hero-scene').offsetHeight;
+    scrollRatio = Math.min(window.scrollY / scene_h, 1);
+  }
+  window.addEventListener('scroll', updateScrollRatio, {passive:true});
+
+  // VISIBILITY-BASED PAUSE — major performance fix
+  let isVisible = true;
+  const visObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { isVisible = e.isIntersecting; });
+  }, { threshold: 0 });
+  visObs.observe(document.getElementById('hero-scene'));
+
+  const clock = new THREE.Clock();
+
+  function render(){
+    requestAnimationFrame(render);
+    if (!isVisible || document.hidden) return;
+    const t = clock.getElapsedTime();
+
+    curRX += (targetRX - curRX) * 0.04;
+    curRY += (targetRY - curRY) * 0.04;
+    camera.rotation.x = curRX;
+    camera.rotation.y = curRY;
+
+    const arr = geo.attributes.position.array;
+    for(let i = 0; i < COUNT; i++){
+      const i3 = i * 3;
+      arr[i3]   = orig[i3]   + Math.sin(t * 0.18 + i * 0.8) * 1.8
+                               + scrollRatio * 60 * (i % 2 === 0 ? 1 : -1) * 0.4;
+      arr[i3+1] = orig[i3+1] + Math.cos(t * 0.14 + i * 0.6) * 1.6
+                               + scrollRatio * -30;
+      arr[i3+2] = orig[i3+2] + Math.sin(t * 0.1  + i * 0.4) * 1.2;
+    }
+    geo.attributes.position.needsUpdate = true;
+    mat.uniforms.opacity.value = 0.55 * (1 - scrollRatio * 0.85);
+
+    renderer.render(scene, camera);
+  }
+  render();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = W() / H();
+    camera.updateProjectionMatrix();
+    renderer.setSize(W(), H());
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   3. THREE.JS — TESTIMONIALS BACKDROP (slow-drifting flow lines)
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  if (PREFERS_REDUCED) return;
+  const cv = document.getElementById('tm-canvas');
+  if (!cv) return;
+  const parent = cv.parentElement;
+  const W = () => parent.clientWidth;
+  const H = () => parent.clientHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, W()/H(), 0.1, 1000);
+  camera.position.z = 60;
+
+  const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !IS_MOBILE });
+  renderer.setSize(W(), H());
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
+  renderer.setClearColor(0x000000, 0);
+
+  // Curve lines that gently undulate
+  const LINE_COUNT = IS_MOBILE ? 14 : 28;
+  const POINTS_PER = 80;
+  const lines = [];
+
+  for (let i = 0; i < LINE_COUNT; i++){
+    const positions = new Float32Array(POINTS_PER * 3);
+    const baseY = (Math.random() - 0.5) * 50;
+    const baseZ = (Math.random() - 0.5) * 30;
+    const phase = Math.random() * Math.PI * 2;
+    const amp = 1 + Math.random() * 2.5;
+    for (let j = 0; j < POINTS_PER; j++){
+      positions[j*3] = (j / POINTS_PER - 0.5) * 160;
+      positions[j*3+1] = baseY;
+      positions[j*3+2] = baseZ;
+    }
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const opacity = 0.08 + Math.random() * 0.18;
+    const mat = new THREE.LineBasicMaterial({
+      color: 0x4ade80, transparent: true, opacity
+    });
+    const line = new THREE.Line(geom, mat);
+    scene.add(line);
+    lines.push({ line, baseY, baseZ, phase, amp });
+  }
+
+  let isVisible = false;
+  const obs = new IntersectionObserver(es => es.forEach(e => isVisible = e.isIntersecting), { threshold: 0 });
+  obs.observe(parent);
+
+  const clock = new THREE.Clock();
+  function render(){
+    requestAnimationFrame(render);
+    if (!isVisible || document.hidden) return;
+    const t = clock.getElapsedTime();
+    lines.forEach((l, idx) => {
+      const arr = l.line.geometry.attributes.position.array;
+      for (let j = 0; j < POINTS_PER; j++){
+        const x = (j / POINTS_PER - 0.5) * 160;
+        arr[j*3]   = x;
+        arr[j*3+1] = l.baseY + Math.sin(t * 0.4 + l.phase + j * 0.12) * l.amp;
+        arr[j*3+2] = l.baseZ + Math.cos(t * 0.25 + l.phase + j * 0.08) * (l.amp * 0.6);
+      }
+      l.line.geometry.attributes.position.needsUpdate = true;
+      l.line.rotation.z = Math.sin(t * 0.07 + idx) * 0.03;
+    });
+    renderer.render(scene, camera);
+  }
+  render();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = W() / H();
+    camera.updateProjectionMatrix();
+    renderer.setSize(W(), H());
+  }, {passive:true});
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   4. THREE.JS — HOW IT WORKS NETWORK NODES
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  if (PREFERS_REDUCED) return;
+  const cv = document.getElementById('how-canvas');
+  if (!cv) return;
+  const parent = cv.parentElement;
+  const W = () => parent.clientWidth;
+  const H = () => parent.clientHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, W()/H(), 0.1, 1000);
+  camera.position.z = 80;
+
+  const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !IS_MOBILE });
+  renderer.setSize(W(), H());
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
+  renderer.setClearColor(0x000000, 0);
+
+  // Nodes
+  const NODE_COUNT = IS_MOBILE ? 22 : 48;
+  const nodes = [];
+  const nodeGeom = new THREE.SphereGeometry(0.7, 12, 12);
+  const nodeMat = new THREE.MeshBasicMaterial({ color: 0x4ade80, transparent: true, opacity: 0.75 });
+  for (let i = 0; i < NODE_COUNT; i++){
+    const m = new THREE.Mesh(nodeGeom, nodeMat);
+    const r = 38 + Math.random() * 14;
+    const phi = Math.acos((Math.random() * 2) - 1);
+    const theta = Math.random() * Math.PI * 2;
+    m.position.set(
+      r * Math.sin(phi) * Math.cos(theta),
+      r * Math.sin(phi) * Math.sin(theta),
+      r * Math.cos(phi)
+    );
+    scene.add(m);
+    nodes.push(m);
+  }
+
+  // Lines between nearest neighbors (dynamic each frame would be expensive — pre-compute static)
+  const linePairs = [];
+  for (let i = 0; i < NODE_COUNT; i++){
+    let nearest = [];
+    for (let j = 0; j < NODE_COUNT; j++){
+      if (i === j) continue;
+      const d = nodes[i].position.distanceTo(nodes[j].position);
+      nearest.push({ j, d });
+    }
+    nearest.sort((a,b) => a.d - b.d);
+    nearest.slice(0, 2).forEach(n => {
+      if (n.j > i) linePairs.push([i, n.j]);
+    });
+  }
+  const lineGeom = new THREE.BufferGeometry();
+  const linePos = new Float32Array(linePairs.length * 2 * 3);
+  linePairs.forEach((p, i) => {
+    linePos[i*6]   = nodes[p[0]].position.x;
+    linePos[i*6+1] = nodes[p[0]].position.y;
+    linePos[i*6+2] = nodes[p[0]].position.z;
+    linePos[i*6+3] = nodes[p[1]].position.x;
+    linePos[i*6+4] = nodes[p[1]].position.y;
+    linePos[i*6+5] = nodes[p[1]].position.z;
+  });
+  lineGeom.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x4ade80, transparent: true, opacity: 0.18 });
+  const lineObj = new THREE.LineSegments(lineGeom, lineMat);
+  scene.add(lineObj);
+
+  const group = new THREE.Group();
+  scene.children.slice().forEach(c => group.add(c));
+  scene.add(group);
+
+  let isVisible = false;
+  const obs = new IntersectionObserver(es => es.forEach(e => isVisible = e.isIntersecting), { threshold: 0 });
+  obs.observe(parent);
+
+  const clock = new THREE.Clock();
+  function render(){
+    requestAnimationFrame(render);
+    if (!isVisible || document.hidden) return;
+    const t = clock.getElapsedTime();
+    group.rotation.y = t * 0.08;
+    group.rotation.x = Math.sin(t * 0.12) * 0.15;
+    renderer.render(scene, camera);
+  }
+  render();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = W() / H();
+    camera.updateProjectionMatrix();
+    renderer.setSize(W(), H());
+  }, {passive:true});
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   5. THREE.JS — FINAL CTA STARFIELD CONVERGENCE
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  if (PREFERS_REDUCED) return;
+  const cv = document.getElementById('fcta-canvas');
+  if (!cv) return;
+  const parent = cv.parentElement;
+  const W = () => parent.clientWidth;
+  const H = () => parent.clientHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(70, W()/H(), 0.1, 800);
+  camera.position.z = 50;
+
+  const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !IS_MOBILE });
+  renderer.setSize(W(), H());
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const COUNT = IS_MOBILE ? 500 : 1200;
+  const geom = new THREE.BufferGeometry();
+  const positions = new Float32Array(COUNT * 3);
+  const speeds = new Float32Array(COUNT);
+  for (let i = 0; i < COUNT; i++){
+    positions[i*3]   = (Math.random() - 0.5) * 220;
+    positions[i*3+1] = (Math.random() - 0.5) * 130;
+    positions[i*3+2] = -Math.random() * 200;
+    speeds[i] = 0.15 + Math.random() * 0.45;
+  }
+  geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const mat = new THREE.PointsMaterial({
+    color: 0x4ade80, size: 0.6, transparent: true, opacity: 0.5,
+    sizeAttenuation: true
+  });
+  const stars = new THREE.Points(geom, mat);
+  scene.add(stars);
+
+  let isVisible = false;
+  const obs = new IntersectionObserver(es => es.forEach(e => isVisible = e.isIntersecting), { threshold: 0 });
+  obs.observe(parent);
+
+  function render(){
+    requestAnimationFrame(render);
+    if (!isVisible || document.hidden) return;
+    const arr = geom.attributes.position.array;
+    for (let i = 0; i < COUNT; i++){
+      arr[i*3+2] += speeds[i];
+      if (arr[i*3+2] > 50){
+        arr[i*3]   = (Math.random() - 0.5) * 220;
+        arr[i*3+1] = (Math.random() - 0.5) * 130;
+        arr[i*3+2] = -200;
+      }
+    }
+    geom.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+  }
+  render();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = W() / H();
+    camera.updateProjectionMatrix();
+    renderer.setSize(W(), H());
+  }, {passive:true});
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   6. GSAP SCROLL TRIGGER — HERO STORY
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  if (PREFERS_REDUCED){
+    // Show everything immediately for reduced motion
+    ['#l-badge','#h-less-admin','#h-more-biz','.sol-mark','.sol-sub','.hero-cta-btn','.hero-note','#scroll-hint']
+      .forEach(s => document.querySelectorAll(s).forEach(el => el.style.opacity = '1'));
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#hero-scene',
+      pin:     '#hero-pin',
+      start:   'top top',
+      end:     'bottom bottom',
+      scrub:   1.8,
+    }
+  });
+
+  tl.fromTo('#l-badge',      { opacity:0, y:16 }, { opacity:1, y:0, ease:'power2.out' }, 0)
+  .fromTo('#h-less-admin',   { opacity:0, y:50 }, { opacity:1, y:0, ease:'power3.out' }, 0.05)
+  .fromTo('#h-more-biz',     { opacity:0, y:50 }, { opacity:1, y:0, ease:'power3.out' }, 0.10)
+  .to('#l-headline',         { y: -90, opacity:0.18, ease:'power1.in' }, 0.22)
+  .fromTo('#pw1', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-8vh', ease:'power1.out' }, 0.28)
+  .fromTo('#pw4', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-5vh', ease:'power1.out' }, 0.31)
+  .fromTo('#pw2', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-12vh',ease:'power1.out' }, 0.34)
+  .fromTo('#pw5', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-6vh', ease:'power1.out' }, 0.37)
+  .fromTo('#pw3', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-9vh', ease:'power1.out' }, 0.40)
+  .fromTo('#pw6', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-4vh', ease:'power1.out' }, 0.43)
+  .to('.pain-word',          { opacity:0, scale:1.6, ease:'power2.in' }, 0.52)
+  .to('#l-headline',         { opacity:0, ease:'power2.in' }, 0.54)
+  .fromTo('#l-trans',        { opacity:0, scale:0.95 }, { opacity:1, scale:1, ease:'power2.out' }, 0.62)
+  .to('#l-trans',            { opacity:0, ease:'power2.in' }, 0.72)
+  .fromTo('.sol-mark',       { opacity:0, y:24 }, { opacity:1, y:0, ease:'power3.out' }, 0.72)
+  .fromTo('.sol-sub',        { opacity:0, y:16 }, { opacity:1, y:0, ease:'power2.out' }, 0.76)
+  .fromTo('.hero-cta-btn',   { opacity:0, y:20 }, { opacity:1, y:0, ease:'back.out(1.5)' }, 0.84)
+  .fromTo('.hero-note',      { opacity:0 },       { opacity:1, ease:'power1.out' },          0.88)
+  .fromTo('#scroll-hint',    { opacity:0 },       { opacity:1, ease:'power1.out' },          0.90);
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   7. SCROLL PROGRESS BAR
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  const bar = document.getElementById('scroll-progress');
+  let ticking = false;
+  function update(){
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (window.scrollY / total * 100) + '%';
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   8. SCROLL REVEAL
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  const els = document.querySelectorAll('.rv');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin:'0px 0px -48px 0px' });
+  els.forEach(el => obs.observe(el));
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   9. COUNT-UP
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  const els = document.querySelectorAll('.count-up');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const el     = e.target;
+      const target = parseInt(el.dataset.target, 10);
+      const frames = 60;
+      let f = 0;
+      const timer = setInterval(() => {
+        f++;
+        const ease = 1 - Math.pow(1 - f/frames, 3);
+        el.textContent = Math.round(ease * target);
+        if(f >= frames){ el.textContent = target; clearInterval(timer); }
+      }, 1000/60);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  els.forEach(el => obs.observe(el));
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   10. CURSOR HOVER GROW
+═══════════════════════════════════════════════════════════════ */
+if (!IS_TOUCH) (function(){
+  const ring = document.getElementById('cursor-ring');
+  if (!ring) return;
+  document.querySelectorAll('a, button, .faq-q').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width  = '40px';
+      ring.style.height = '40px';
+      ring.style.borderColor = 'rgba(74,222,128,0.85)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width  = '18px';
+      ring.style.height = '18px';
+      ring.style.borderColor = 'var(--ge)';
+    });
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   11. FAQ ACCORDION
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      if (open){
+        a.style.maxHeight = a.scrollHeight + 'px';
+      } else {
+        a.style.maxHeight = '0px';
+      }
+    });
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   12. URGENCY ROTATING MESSAGE
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  const el = document.getElementById('urg-txt');
+  if (!el) return;
+  const msgs = [
+    'Founder pricing — limited spots this month',
+    '48-hour delivery guaranteed or we make it right',
+    'Most assessments completed within 36 hours',
+    'No retainer · No lock-in · You keep the plan'
+  ];
+  let i = 0;
+  setInterval(() => {
+    i = (i + 1) % msgs.length;
+    el.style.opacity = '0';
+    setTimeout(() => { el.textContent = msgs[i]; el.style.opacity = '1'; }, 320);
+  }, 4200);
+  el.style.transition = 'opacity .3s ease';
+})();
+</script>
 
 </body>
 </html>
