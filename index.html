@@ -4,29 +4,27 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>EffortlessFlow — AI Opportunity Assessments for Canadian Businesses</title>
-<meta name="description" content="EffortlessFlow delivers practical AI opportunity assessments for Canadian businesses. Researched, human-reviewed, delivered in 48 hours." />
-<meta name="theme-color" content="#0a140d" />
+<meta name="description" content="EffortlessFlow delivers practical AI opportunity assessments for Canadian businesses. Researched, human-reviewed, delivered in 4 business days." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
 <style>
-/* ── RESET & TOKENS ───────────────────────────────────────── */
+/* ── RESET & TOKENS ─────────────────────────────────────────── */
 :root {
-  --gd:  #0a140d;    /* green-dark   */
-  --gp:  #0f5132;    /* green-deep   */
-  --ge:  #4ade80;    /* green-electric */
-  --gs:  #e7f0ec;    /* green-soft   */
-  --cr:  #faf7f2;    /* cream        */
+  --gd:  #0a140d;
+  --gp:  #0f5132;
+  --ge:  #4ade80;
+  --gs:  #e7f0ec;
+  --cr:  #faf7f2;
   --wh:  #ffffff;
   --ink: #1a1a1a;
   --ins: #4a4a4a;
   --inf: #8a8580;
   --rul: #e8e2d7;
-  --db:  #0a140d;    /* dark-bg      */
-  --dc:  #101d13;    /* dark-card    */
-  --dr:  #1b2e1e;    /* dark-rule    */
-  --warn:#f59e0b;
+  --db:  #0a140d;
+  --dc:  #101d13;
+  --dr:  #1b2e1e;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -35,47 +33,59 @@ body{
   background:var(--cr);color:var(--ink);
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
-}
-/* hide native cursor only on real pointer devices (not touch) */
-@media (hover:hover) and (pointer:fine){
-  body{cursor:none}
+  cursor:none;
 }
 .container{max-width:1160px;margin:0 auto;padding:0 32px}
-img{max-width:100%;display:block}
 
-/* ── CUSTOM CURSOR ────────────────────────────────────────── */
-#cursor-ring,#cursor-dot,#wave-canvas{display:none}
-@media (hover:hover) and (pointer:fine){
-  #cursor-ring{
-    display:block;position:fixed;width:18px;height:18px;
-    border:2px solid var(--ge);border-radius:50%;
-    pointer-events:none;z-index:9999;
-    transform:translate(-50%,-50%);
-    transition:transform .12s ease,width .2s,height .2s,opacity .2s;
-    mix-blend-mode:screen;
-  }
-  #cursor-dot{
-    display:block;position:fixed;width:5px;height:5px;
-    background:var(--ge);border-radius:50%;
-    pointer-events:none;z-index:9999;
-    transform:translate(-50%,-50%);
-  }
-  #wave-canvas{
-    display:block;position:fixed;inset:0;pointer-events:none;
-    z-index:9998;opacity:0.85;
-  }
+/* ── CUSTOM CURSOR ─────────────────────────────────────────── */
+#cursor-ring{
+  position:fixed;width:16px;height:16px;
+  border:1.5px solid rgba(74,222,128,0.7);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .18s,height .18s,opacity .2s,border-color .2s;
+}
+#cursor-dot{
+  position:fixed;width:4px;height:4px;
+  background:var(--ge);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
 }
 
-/* ── ANNOUNCEMENT BAR ─────────────────────────────────────── */
+/* ── CURSOR BILL ANIMATION ─────────────────────────────────── */
+.cursor-bill{
+  position:fixed;pointer-events:none;z-index:9997;
+  background:rgba(74,222,128,0.90);
+  color:#0a140d;
+  font-family:'Inter',sans-serif;
+  font-size:8px;font-weight:800;
+  letter-spacing:.11em;text-transform:uppercase;
+  padding:4px 10px;border-radius:2px;
+  white-space:nowrap;opacity:0;
+  box-shadow:0 2px 10px rgba(74,222,128,.25);
+  animation:billTear 0.95s ease-out forwards;
+}
+.cursor-bill.alt{
+  background:rgba(255,255,255,0.82);
+  color:#0f5132;
+}
+@keyframes billTear{
+  0%  {opacity:0;transform:scaleX(1.5) skewY(-7deg);}
+  10% {opacity:1;transform:scaleX(1) skewY(3deg);}
+  22% {opacity:0.95;transform:scale(1) skewY(-1deg) translateY(-1px);}
+  52% {opacity:0.80;transform:scale(0.96) translateY(-13px) rotate(-3deg);}
+  100%{opacity:0;transform:scale(0.6) translateY(-38px) rotate(-8deg);}
+}
+
+/* ── ANNOUNCEMENT BAR ──────────────────────────────────────── */
 .ann{
   background:var(--gp);color:rgba(255,255,255,.9);
   text-align:center;font-size:13px;font-weight:500;
   padding:11px 24px;letter-spacing:.01em;position:relative;z-index:200;
 }
 .ann a{color:var(--ge);text-decoration:none;font-weight:700}
-.ann strong{color:#fff}
 
-/* ── NAV ──────────────────────────────────────────────────── */
+/* ── NAV ───────────────────────────────────────────────────── */
 nav{
   position:sticky;top:0;z-index:100;
   background:rgba(10,20,13,.96);
@@ -90,20 +100,30 @@ nav{
   color:white;text-decoration:none;letter-spacing:-.01em}
 .mark em{color:var(--ge);font-style:italic}
 .nav-l{display:flex;gap:36px}
-.nav-l a{color:rgba(255,255,255,.55);text-decoration:none;font-size:14px;
+.nav-l a{color:rgba(255,255,255,.5);text-decoration:none;font-size:14px;
   font-weight:500;transition:color .2s}
 .nav-l a:hover{color:white}
 .nav-cta{
   background:var(--ge);color:var(--gd);
   padding:10px 22px;border-radius:999px;
   font-size:14px;font-weight:700;text-decoration:none;
-  transition:opacity .2s,transform .2s;
+  transition:opacity .2s;
 }
-.nav-cta:hover{opacity:.92;transform:translateY(-1px)}
+.nav-cta:hover{opacity:.88}
 
-/* ── HERO SCROLL SCENE ────────────────────────────────────── */
+/* ── SCROLL PROGRESS ───────────────────────────────────────── */
+#scroll-progress{
+  position:fixed;top:68px;left:0;height:2px;
+  background:var(--ge);z-index:99;width:0%;
+  box-shadow:0 0 8px rgba(74,222,128,.6);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO SCROLL SCENE
+   350vh tall — scroll story plays inside #hero-pin (100vh sticky)
+══════════════════════════════════════════════════════════════ */
 #hero-scene{
-  height:550vh;
+  height:350vh;
   position:relative;
 }
 #hero-pin{
@@ -112,30 +132,45 @@ nav{
   overflow:hidden;position:relative;
 }
 #three-canvas{
-  position:absolute;inset:0;z-index:1;
-  display:block;
+  position:absolute;inset:0;z-index:1;display:block;
 }
 
-/* gradient grid behind particles for depth */
-#hero-pin::before{
-  content:'';position:absolute;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(74,222,128,0.08), transparent 70%),
-    linear-gradient(rgba(74,222,128,0.04) 1px, transparent 1px) 0 0/60px 60px,
-    linear-gradient(90deg, rgba(74,222,128,0.04) 1px, transparent 1px) 0 0/60px 60px;
+/* ── HOOK TEXT  (CSS animation — plays on page load, no scroll) */
+#hook-wrap{
+  position:absolute;inset:0;z-index:20;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:40px;
   pointer-events:none;
+  animation:hookReveal 3.8s cubic-bezier(.22,1,.36,1) forwards;
+}
+#hook-line{
+  font-size:clamp(42px,7vw,96px);
+  font-weight:900;letter-spacing:-.045em;
+  color:white;line-height:1.02;
+}
+#hook-line .ge{color:var(--ge);}
+@keyframes hookReveal{
+  0%  {opacity:0;transform:scale(.86) translateY(20px);}
+  18% {opacity:1;transform:scale(1)   translateY(0);}
+  74% {opacity:1;transform:scale(1)   translateY(0);}
+  100%{opacity:0;transform:scale(1.04) translateY(-8px);}
 }
 
-/* layers */
+/* ── HERO SHARED LAYER STYLES ──────────────────────────────── */
 .h-layer{
   position:absolute;inset:0;z-index:10;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  text-align:center;pointer-events:none;
-  padding:40px;
+  text-align:center;pointer-events:none;padding:40px;
 }
-#l-cta{pointer-events:auto}
 
+/* badge — top-aligned in its own layer */
+#l-badge-layer{
+  position:absolute;inset:0;z-index:11;
+  display:flex;align-items:flex-start;justify-content:center;
+  padding-top:14vh;pointer-events:none;
+}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(74,222,128,.1);
@@ -152,87 +187,96 @@ nav{
 }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
+/* headline block ── "Less admin. / More business." */
+#l-headline{opacity:1;}
 .h-headline{
-  font-size:clamp(56px,9vw,120px);
+  font-size:clamp(58px,9.5vw,124px);
   font-weight:900;letter-spacing:-.05em;
   line-height:.9;color:white;
-  display:flex;flex-wrap:wrap;
-  justify-content:center;gap:.22em;
-  margin-top:24px;
   opacity:0;
 }
-.h-headline .acc{color:var(--ge)}
+#h-more-biz{color:var(--ge);}
 
+/* ── PAIN WORDS (ambient BG, z5 = above canvas, below text) ── */
 .pain-word{
   position:absolute;
-  font-size:clamp(28px,5vw,64px);
+  font-size:clamp(36px,6vw,84px);
   font-weight:900;letter-spacing:-.04em;
-  color:rgba(255,255,255,.1);
+  color:rgba(255,255,255,.13);
   text-transform:uppercase;
   opacity:0;white-space:nowrap;
-  pointer-events:none;
+  pointer-events:none;z-index:5;
 }
-#pw1{top:72%;left:6%}
-#pw2{top:55%;left:62%}
-#pw3{top:30%;left:18%}
-#pw4{top:20%;right:8%}
-#pw5{top:80%;right:12%}
-#pw6{top:44%;left:40%;transform:translateX(-50%)}
+#pw1{top:70%;left:4%;}
+#pw2{top:16%;left:56%;}
+#pw3{top:34%;left:8%;}
+#pw4{top:11%;right:5%;}
+#pw5{top:80%;right:7%;}
+#pw6{top:53%;left:36%;transform:translateX(-50%);}
 
+/* ── TRANSITION TEXT ── "There's a better way." */
+#l-trans{opacity:0;}
 .trans-line{
-  font-size:clamp(32px,5vw,68px);
+  font-size:clamp(34px,5.5vw,72px);
   font-weight:900;letter-spacing:-.03em;
-  color:white;opacity:0;
+  color:white;
 }
-.trans-line .acc{color:var(--ge)}
+.trans-line .ge{color:var(--ge);}
 
+/* ── FINAL LAYER (brand + sub + CTA + note — all one block) ── */
+#l-final{
+  position:absolute;inset:0;z-index:10;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:40px;
+  opacity:0;pointer-events:none;
+}
+#l-final.active{pointer-events:auto;}
 .sol-mark{
   font-family:'Instrument Serif',serif;
-  font-size:clamp(40px,6vw,80px);
-  color:white;letter-spacing:-.02em;opacity:0;
+  font-size:clamp(40px,6.5vw,82px);
+  color:white;letter-spacing:-.02em;
 }
-.sol-mark em{color:var(--ge);font-style:italic}
+.sol-mark em{color:var(--ge);font-style:italic;}
 .sol-sub{
-  font-size:clamp(16px,2vw,22px);
-  color:rgba(255,255,255,.45);
-  margin-top:18px;opacity:0;
+  font-size:clamp(15px,1.8vw,21px);
+  color:rgba(255,255,255,.42);
+  margin-top:20px;
 }
 .hero-cta-btn{
   display:inline-flex;align-items:center;gap:10px;
   background:var(--ge);color:var(--gd);
-  padding:17px 38px;border-radius:999px;
+  padding:17px 40px;border-radius:999px;
   font-size:16px;font-weight:800;text-decoration:none;
-  margin-top:36px;opacity:0;
-  box-shadow:0 0 0 0 rgba(74,222,128,0);
+  margin-top:38px;
   transition:box-shadow .3s,transform .2s;
+  pointer-events:auto;
 }
 .hero-cta-btn:hover{
   transform:translateY(-2px);
   box-shadow:0 12px 48px rgba(74,222,128,.35);
 }
 .hero-note{
-  font-size:13px;color:rgba(255,255,255,.35);
-  margin-top:16px;opacity:0;
+  font-size:13px;color:rgba(255,255,255,.22);
+  margin-top:18px;
 }
+
+/* scroll hint — positioned at TOP of hero */
 .scroll-hint{
-  position:absolute;bottom:40px;left:50%;
+  position:absolute;top:11vh;left:50%;
   transform:translateX(-50%);
-  font-size:12px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,.25);
-  opacity:0;
-  animation:bob 2.5s ease-in-out infinite;
+  font-size:10px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.18);
+  opacity:0;z-index:12;
+  animation:bob 3s ease-in-out infinite;
 }
-@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
-
-#scroll-progress{
-  position:fixed;top:68px;left:0;height:2px;
-  background:var(--ge);z-index:99;width:0%;
-  transition:width .05s linear;
-  box-shadow:0 0 8px rgba(74,222,128,.6);
+@keyframes bob{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(5px)}
 }
 
-/* ── STATS BAR ────────────────────────────────────────────── */
+/* ── STATS BAR ─────────────────────────────────────────────── */
 .stats-bar{background:var(--dc);border-bottom:1px solid var(--dr);padding:56px 0}
 .sg{display:grid;grid-template-columns:repeat(4,1fr)}
 .si{text-align:center;padding:0 28px;border-right:1px solid var(--dr)}
@@ -243,9 +287,9 @@ nav{
 .su{font-size:.52em;color:var(--ge);font-weight:900}
 .sl{margin-top:12px;font-size:11px;font-weight:700;
   letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);line-height:1.4}
+  color:rgba(255,255,255,.35);line-height:1.4}
 
-/* ── TICKER ───────────────────────────────────────────────── */
+/* ── TICKER ────────────────────────────────────────────────── */
 .ticker{background:var(--ge);padding:17px 0;overflow:hidden}
 .tk-track{display:flex;white-space:nowrap;animation:tk 38s linear infinite}
 .tk-seg{display:flex;align-items:center;flex-shrink:0}
@@ -254,15 +298,15 @@ nav{
 .tk-div{color:rgba(10,20,13,.3);font-size:14px;flex-shrink:0}
 @keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── OVERLINE ─────────────────────────────────────────────── */
+/* ── OVERLINE ──────────────────────────────────────────────── */
 .ov{display:flex;align-items:center;gap:14px;
   font-size:11px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--gp);margin-bottom:28px}
 .ov::before{content:'——';letter-spacing:-.06em;opacity:.6}
-.ov-lt{color:rgba(74,222,128,.6)}
-.ov-lt::before{color:rgba(74,222,128,.4)}
+.ov-lt{color:rgba(74,222,128,.5)}
+.ov-lt::before{color:rgba(74,222,128,.3)}
 
-/* ── PROBLEM ──────────────────────────────────────────────── */
+/* ── PROBLEM ───────────────────────────────────────────────── */
 .problem{padding:128px 0;background:var(--cr)}
 .prob-hl{font-size:clamp(40px,6vw,86px);font-weight:900;
   letter-spacing:-.038em;color:var(--ink);line-height:.94;margin-bottom:64px}
@@ -274,35 +318,29 @@ nav{
 .pain-cards{display:flex;flex-direction:column;gap:16px}
 .pain-card{display:flex;align-items:flex-start;gap:18px;
   background:white;border:1.5px solid var(--rul);
-  border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
-.pain-card:hover{border-color:var(--gp);transform:translateX(4px)}
+  border-radius:14px;padding:22px 24px;transition:border-color .2s}
+.pain-card:hover{border-color:var(--gp)}
 .pi{font-size:22px;flex-shrink:0;margin-top:1px}
 .pt strong{display:block;font-size:16px;font-weight:700;
   color:var(--ink);margin-bottom:5px}
 .pt span{font-size:14px;color:var(--ins);line-height:1.55}
 
-/* ── CALLOUT ──────────────────────────────────────────────── */
-.callout{background:var(--db);padding:72px 0;text-align:center;
-  border-top:1px solid var(--dr);border-bottom:1px solid var(--dr);
-  position:relative;overflow:hidden}
-.callout::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(74,222,128,.08), transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(74,222,128,.06), transparent 50%);
-  pointer-events:none;
+/* ── CALLOUT — green theme (matches guarantee bar) ─────────── */
+.callout{
+  background:var(--ge);padding:72px 0;text-align:center;
 }
-.callout h2{font-size:clamp(26px,4.5vw,56px);font-weight:900;
-  letter-spacing:-.025em;color:white;line-height:1.1;position:relative}
-.callout h2 .acc{color:var(--ge)}
+.callout h2{
+  font-size:clamp(26px,4.5vw,56px);font-weight:900;
+  letter-spacing:-.025em;color:var(--gd);line-height:1.1;
+}
 
-/* ── BEFORE/AFTER ─────────────────────────────────────────── */
-.ba{padding:128px 0;background:white;position:relative;overflow:hidden}
+/* ── BEFORE / AFTER ────────────────────────────────────────── */
+.ba{padding:128px 0;background:white}
 .ba-hl{font-size:clamp(38px,5.5vw,72px);font-weight:900;
   letter-spacing:-.035em;color:var(--ink);line-height:.96;margin-bottom:64px}
 .ba-hl .acc{color:var(--gp)}
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.ba-card{border-radius:18px;padding:40px;position:relative;overflow:hidden}
+.ba-card{border-radius:18px;padding:40px}
 .ba-card.bf{background:#fff5f5;border:1.5px solid #fecaca}
 .ba-card.af{background:var(--gs);border:1.5px solid #b8dfc4}
 .ba-tag{display:inline-block;font-size:11px;font-weight:800;
@@ -317,63 +355,25 @@ nav{
 .bf .ba-dot{background:#fca5a5}
 .af .ba-dot{background:var(--gp)}
 
-/* ── TESTIMONIALS ─────────────────────────────────────────── */
-.tm{padding:128px 0;background:var(--dc);position:relative;overflow:hidden}
-#tm-canvas{position:absolute;inset:0;z-index:0;opacity:.6}
-.tm-i{position:relative;z-index:2}
-.tm-hl{font-size:clamp(38px,5.5vw,72px);font-weight:900;
-  letter-spacing:-.035em;color:white;line-height:.96;margin-bottom:18px}
-.tm-hl .acc{color:var(--ge)}
-.tm-sub{font-size:18px;color:rgba(255,255,255,.45);max-width:560px;
-  line-height:1.65;margin-bottom:64px}
-.tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.tm-card{background:rgba(255,255,255,.03);
-  border:1px solid var(--dr);
-  border-radius:18px;padding:32px;
-  display:flex;flex-direction:column;gap:20px;
-  transition:border-color .25s,transform .25s,background .25s;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.tm-card:hover{border-color:rgba(74,222,128,.5);transform:translateY(-4px);background:rgba(74,222,128,.04)}
-.tm-stars{color:var(--ge);font-size:14px;letter-spacing:2px}
-.tm-quote{font-size:16px;color:rgba(255,255,255,.78);line-height:1.65;
-  font-style:italic;flex-grow:1}
-.tm-who{display:flex;align-items:center;gap:14px;
-  padding-top:18px;border-top:1px solid var(--dr)}
-.tm-av{width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gp),var(--ge));
-  display:flex;align-items:center;justify-content:center;
-  color:white;font-weight:800;font-size:15px;flex-shrink:0}
-.tm-meta strong{display:block;color:white;font-size:14px;font-weight:700}
-.tm-meta span{font-size:12px;color:rgba(255,255,255,.4)}
-.tm-result{display:inline-block;font-size:11px;font-weight:800;
-  letter-spacing:.08em;text-transform:uppercase;
-  color:var(--ge);background:rgba(74,222,128,.1);
-  padding:4px 10px;border-radius:6px;margin-top:6px}
-
-/* ── HOW IT WORKS ─────────────────────────────────────────── */
-.how{padding:128px 0;background:var(--db);position:relative;overflow:hidden}
-#how-canvas{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none}
-.how-i{position:relative;z-index:2}
+/* ── HOW IT WORKS ──────────────────────────────────────────── */
+.how{padding:128px 0;background:var(--db)}
 .how-hl{font-size:clamp(40px,6vw,84px);font-weight:900;
   letter-spacing:-.038em;color:white;line-height:.94;margin-bottom:20px}
 .how-hl .acc{color:var(--ge)}
-.how-sub{font-size:18px;color:rgba(255,255,255,.5);max-width:520px;
+.how-sub{font-size:18px;color:rgba(255,255,255,.4);max-width:520px;
   line-height:1.65;margin-bottom:80px}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.step{background:rgba(16,29,19,.7);border:1px solid var(--dr);
-  border-radius:18px;padding:44px 36px;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  transition:border-color .25s,transform .25s}
-.step:hover{border-color:rgba(74,222,128,.5);transform:translateY(-4px)}
+.step{background:var(--dc);border:1px solid var(--dr);
+  border-radius:18px;padding:44px 36px}
 .step-n{font-size:80px;font-weight:900;letter-spacing:-.05em;
-  line-height:1;color:rgba(74,222,128,.15);margin-bottom:28px}
+  line-height:1;color:rgba(74,222,128,.1);margin-bottom:28px}
 .step-t{font-size:11px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ge);margin-bottom:14px}
 .step-h{font-size:22px;font-weight:800;color:white;
   letter-spacing:-.02em;line-height:1.2;margin-bottom:18px}
-.step-b{font-size:15px;color:rgba(255,255,255,.55);line-height:1.68}
+.step-b{font-size:15px;color:rgba(255,255,255,.42);line-height:1.68}
 
-/* ── WHAT YOU GET ─────────────────────────────────────────── */
+/* ── WHAT YOU GET ──────────────────────────────────────────── */
 .what{padding:128px 0;background:var(--cr)}
 .what-hl{font-size:clamp(40px,6vw,84px);font-weight:900;
   letter-spacing:-.038em;color:var(--ink);line-height:.94;margin-bottom:20px}
@@ -391,7 +391,7 @@ nav{
   line-height:1.3;margin-bottom:10px}
 .rc-d{font-size:13px;color:var(--inf);line-height:1.6}
 
-/* ── PROCESS ──────────────────────────────────────────────── */
+/* ── PROCESS ───────────────────────────────────────────────── */
 .proc{padding:128px 0;background:white;border-top:1px solid var(--rul)}
 .proc-i{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
 .proc-hl{font-size:clamp(34px,4.5vw,58px);font-weight:900;
@@ -403,108 +403,17 @@ nav{
 .pf-stack{display:flex;flex-direction:column;gap:16px}
 .pf-item{display:flex;gap:18px;align-items:flex-start;
   background:var(--cr);border-radius:14px;padding:22px 24px;
-  border:1.5px solid var(--rul);transition:border-color .2s,transform .2s}
-.pf-item:hover{border-color:var(--gp);transform:translateX(4px)}
+  border:1.5px solid var(--rul);transition:border-color .2s}
+.pf-item:hover{border-color:var(--gp)}
 .pf-chk{color:var(--gp);font-weight:900;font-size:18px;flex-shrink:0;margin-top:1px}
 .pf-txt strong{display:block;font-size:15px;font-weight:700;
   color:var(--ink);margin-bottom:4px}
 .pf-txt span{font-size:14px;color:var(--ins);line-height:1.55}
 
-/* ── PRICING / VALUE ──────────────────────────────────────── */
-.price{padding:128px 0;background:var(--cr);border-top:1px solid var(--rul)}
-.price-i{max-width:920px;margin:0 auto;text-align:center}
-.price-hl{font-size:clamp(38px,5.5vw,72px);font-weight:900;
-  letter-spacing:-.035em;color:var(--ink);line-height:.96;margin-bottom:18px}
-.price-hl .acc{color:var(--gp)}
-.price-sub{font-size:18px;color:var(--ins);max-width:600px;
-  margin:0 auto 56px;line-height:1.65}
-.price-card{background:white;border:2px solid var(--gp);border-radius:24px;
-  padding:48px 40px;text-align:left;
-  box-shadow:0 24px 60px rgba(15,81,50,.08);
-  position:relative;overflow:hidden}
-.price-card::before{
-  content:'';position:absolute;top:-40px;right:-40px;
-  width:200px;height:200px;border-radius:50%;
-  background:radial-gradient(circle,rgba(74,222,128,.18),transparent 70%);
-  pointer-events:none;
-}
-.price-tag{display:inline-block;background:var(--gp);color:white;
-  font-size:11px;font-weight:800;letter-spacing:.12em;
-  text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:24px}
-.price-row{display:flex;align-items:baseline;gap:18px;margin-bottom:8px;flex-wrap:wrap}
-.price-now{font-size:clamp(56px,8vw,96px);font-weight:900;
-  letter-spacing:-.04em;color:var(--ink);line-height:1}
-.price-now span{font-size:.5em;color:var(--gp);font-weight:800;margin-right:6px}
-.price-was{font-size:22px;color:var(--inf);text-decoration:line-through;font-weight:700}
-.price-vs{font-size:13px;color:var(--ins);margin-bottom:32px}
-.price-vs strong{color:var(--ink)}
-.price-incl{display:grid;grid-template-columns:1fr 1fr;gap:14px;
-  padding:28px 0;border-top:1px solid var(--rul);
-  border-bottom:1px solid var(--rul);margin-bottom:32px}
-.price-incl div{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ins)}
-.price-incl div::before{content:'✓';color:var(--gp);font-weight:900;flex-shrink:0}
-.price-bottom{display:flex;align-items:center;justify-content:space-between;
-  gap:24px;flex-wrap:wrap}
-.price-bottom .meta{font-size:13px;color:var(--inf);line-height:1.5}
-.price-bottom .meta strong{color:var(--ink);display:block;font-size:15px;margin-bottom:2px}
-
-/* ── FAQ ──────────────────────────────────────────────────── */
-.faq{padding:128px 0;background:white;border-top:1px solid var(--rul)}
-.faq-i{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
-.faq-hl{font-size:clamp(34px,4.5vw,58px);font-weight:900;
-  letter-spacing:-.03em;color:var(--ink);line-height:1.02;margin-bottom:24px}
-.faq-hl .acc{color:var(--gp)}
-.faq-side p{font-size:16px;color:var(--ins);line-height:1.7;margin-bottom:24px}
-.faq-side a{color:var(--gp);font-weight:700;text-decoration:none;border-bottom:1px solid var(--gp)}
-.faq-list{display:flex;flex-direction:column;gap:12px}
-.faq-item{background:var(--cr);border:1.5px solid var(--rul);border-radius:14px;
-  overflow:hidden;transition:border-color .2s}
-.faq-item.open{border-color:var(--gp)}
-.faq-q{padding:22px 26px;font-size:16px;font-weight:700;
-  color:var(--ink);cursor:pointer;display:flex;
-  justify-content:space-between;align-items:center;gap:18px;
-  user-select:none;transition:color .2s}
-.faq-q:hover{color:var(--gp)}
-.faq-q span.icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;
-  border:1.5px solid var(--rul);display:flex;align-items:center;
-  justify-content:center;font-size:14px;font-weight:900;
-  color:var(--gp);transition:transform .25s,background .2s}
-.faq-item.open .faq-q span.icon{transform:rotate(45deg);background:var(--gs)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;
-  font-size:15px;color:var(--ins);line-height:1.7}
-.faq-a-inner{padding:0 26px 22px}
-
-/* ── FOUNDER ──────────────────────────────────────────────── */
-.founder{padding:128px 0;background:var(--cr);border-top:1px solid var(--rul)}
-.fd-i{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center;max-width:1000px;margin:0 auto}
-.fd-portrait{width:220px;height:220px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gp),var(--ge));
-  display:flex;align-items:center;justify-content:center;
-  color:white;font-family:'Instrument Serif',serif;font-size:96px;
-  font-style:italic;flex-shrink:0;
-  box-shadow:0 16px 48px rgba(15,81,50,.18);
-  position:relative}
-.fd-portrait::after{content:'';position:absolute;inset:-8px;
-  border:1.5px solid var(--gp);border-radius:50%;opacity:.25}
-.fd-copy .ov{margin-bottom:18px}
-.fd-hl{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,42px);
-  color:var(--ink);line-height:1.25;margin-bottom:22px;letter-spacing:-.01em}
-.fd-hl em{color:var(--gp)}
-.fd-body{font-size:16px;color:var(--ins);line-height:1.72;margin-bottom:18px}
-.fd-sig{font-family:'Instrument Serif',serif;font-size:24px;
-  font-style:italic;color:var(--gp);margin-top:14px}
-.fd-sig small{display:block;font-family:'Inter',sans-serif;font-style:normal;
-  font-size:13px;font-weight:600;color:var(--inf);margin-top:4px;letter-spacing:.04em}
-
-/* ── GUARANTEE ────────────────────────────────────────────── */
-.guar{background:var(--ge);padding:56px 0;position:relative;overflow:hidden}
-.guar::before{
-  content:'';position:absolute;inset:0;
-  background:repeating-linear-gradient(45deg,transparent 0 12px,rgba(10,20,13,.04) 12px 13px);
-  pointer-events:none;
-}
+/* ── GUARANTEE ─────────────────────────────────────────────── */
+.guar{background:var(--ge);padding:56px 0}
 .guar-i{display:flex;align-items:center;justify-content:space-between;
-  gap:32px;flex-wrap:wrap;position:relative}
+  gap:32px;flex-wrap:wrap}
 .guar-copy h3{font-size:clamp(20px,3vw,36px);font-weight:900;
   letter-spacing:-.025em;color:var(--gd);line-height:1.15}
 .guar-copy p{font-size:15px;color:rgba(10,20,13,.6);margin-top:8px}
@@ -512,50 +421,42 @@ nav{
   background:var(--gd);color:var(--ge);
   padding:15px 30px;border-radius:999px;
   font-size:15px;font-weight:700;text-decoration:none;
-  white-space:nowrap;transition:opacity .2s,transform .2s;flex-shrink:0}
-.btn-dk:hover{opacity:.9;transform:translateY(-2px)}
+  white-space:nowrap;transition:opacity .2s;flex-shrink:0}
+.btn-dk:hover{opacity:.88}
 
-/* ── FINAL CTA ────────────────────────────────────────────── */
-.fcta{background:var(--db);padding:152px 0;text-align:center;position:relative;overflow:hidden}
-#fcta-canvas{position:absolute;inset:0;z-index:0;opacity:.7}
-.fcta-i{position:relative;z-index:2}
+/* ── FINAL CTA ─────────────────────────────────────────────── */
+.fcta{background:var(--db);padding:152px 0;text-align:center}
 .fcta h2{font-size:clamp(42px,7vw,100px);font-weight:900;
   letter-spacing:-.045em;color:white;line-height:.94;margin-bottom:36px}
 .fcta h2 .acc{color:var(--ge);display:block}
-.fcta p{font-size:18px;color:rgba(255,255,255,.5);
+.fcta p{font-size:18px;color:rgba(255,255,255,.42);
   max-width:480px;margin:0 auto 52px;line-height:1.65}
 .btn-pr{display:inline-flex;align-items:center;gap:10px;
   background:var(--ge);color:var(--gd);
   padding:17px 38px;border-radius:999px;
   font-size:17px;font-weight:800;text-decoration:none;
   transition:all .22s}
-.btn-pr:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(74,222,128,.3)}
-.fcta-note{margin-top:22px;font-size:13px;color:rgba(255,255,255,.3)}
-.urgency{display:inline-flex;align-items:center;gap:10px;
-  background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);
-  color:var(--warn);font-size:12px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;padding:8px 18px;border-radius:999px;margin-bottom:32px}
-.urg-dot{width:6px;height:6px;border-radius:50%;background:var(--warn);
-  animation:blink 1.6s ease-in-out infinite}
+.btn-pr:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(74,222,128,.28)}
+.fcta-note{margin-top:22px;font-size:13px;color:rgba(255,255,255,.22)}
 
-/* ── FOOTER ───────────────────────────────────────────────── */
+/* ── FOOTER ────────────────────────────────────────────────── */
 footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 .ft-i{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
 .ft-m{font-family:'Instrument Serif',serif;font-size:20px;color:white}
 .ft-m em{color:var(--ge);font-style:italic}
 .ft-l{display:flex;gap:28px;flex-wrap:wrap}
-.ft-l a{color:rgba(255,255,255,.4);font-size:14px;text-decoration:none;transition:color .2s}
+.ft-l a{color:rgba(255,255,255,.36);font-size:14px;text-decoration:none;transition:color .2s}
 .ft-l a:hover{color:white}
-.ft-lg{font-size:12px;color:rgba(255,255,255,.25)}
+.ft-lg{font-size:12px;color:rgba(255,255,255,.2)}
 
-/* ── SCROLL REVEAL ────────────────────────────────────────── */
+/* ── SCROLL REVEAL ─────────────────────────────────────────── */
 .rv{opacity:0;transform:translateY(32px);
   transition:opacity .75s ease,transform .75s ease}
 .rv.in{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.08s}.d2{transition-delay:.18s}
 .d3{transition-delay:.28s}.d4{transition-delay:.38s}
 
-/* ── RESPONSIVE ───────────────────────────────────────────── */
+/* ── RESPONSIVE ────────────────────────────────────────────── */
 @media(max-width:900px){
   .nav-l{display:none}
   .sg{grid-template-columns:repeat(2,1fr)}
@@ -568,32 +469,17 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
   .proc-i{grid-template-columns:1fr;gap:48px}
   .guar-i{flex-direction:column;text-align:center}
   .container{padding:0 20px}
-  .tm-grid{grid-template-columns:1fr;gap:16px}
-  .price-incl{grid-template-columns:1fr}
-  .faq-i{grid-template-columns:1fr;gap:48px}
-  .fd-i{grid-template-columns:1fr;gap:32px;text-align:center}
-  .fd-portrait{margin:0 auto;width:160px;height:160px;font-size:72px}
-  .problem,.ba,.tm,.how,.what,.proc,.price,.faq,.founder{padding:80px 0}
-  .fcta{padding:96px 0}
 }
 @media(max-width:480px){
   .rg{grid-template-columns:1fr}
   .sg{grid-template-columns:1fr}
-}
-
-/* ── REDUCED MOTION ───────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:0.001ms !important;transition-duration:0.001ms !important}
-  html{scroll-behavior:auto}
-  .rv{opacity:1;transform:none}
-  .badge-dot,.urg-dot{animation:none}
+  #hero-scene{height:300vh}
 }
 </style>
 </head>
 <body>
 
 <!-- CURSOR -->
-<canvas id="wave-canvas"></canvas>
 <div id="cursor-ring"></div>
 <div id="cursor-dot"></div>
 
@@ -602,7 +488,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 
 <!-- ANN BAR -->
 <div class="ann">
-  🎉 Founder pricing — full AI Opportunity Assessment for <strong>$199 CAD</strong> (regularly $499). <a href="tel:+12264002223">Claim your spot →</a>
+  🎉 Launch offer — full AI Opportunity Assessment for <strong>$199 CAD</strong>. Limited spots. <a href="tel:+12264002223">Claim yours →</a>
 </div>
 
 <!-- NAV -->
@@ -612,34 +498,40 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
     <div class="nav-l">
       <a href="#how">How It Works</a>
       <a href="#what">What You Get</a>
-      <a href="#price">Pricing</a>
-      <a href="#faq">FAQ</a>
+      <a href="#process">Our Process</a>
     </div>
     <a href="tel:+12264002223" class="nav-cta">Start Your Assessment →</a>
   </div>
 </nav>
 
 <!-- ═══════════════════════════════════════════════════════════
-     HERO SCROLL SCENE
+     HERO SCROLL SCENE  (350vh — scroll story plays here)
 ════════════════════════════════════════════════════════════ -->
 <div id="hero-scene">
   <div id="hero-pin">
 
-    <!-- LAYER: eyebrow -->
-    <div class="h-layer" style="justify-content:flex-start;padding-top:14vh">
+    <!-- Three.js canvas inserted by JS -->
+
+    <!-- HOOK: CSS animation on page load — plays independently -->
+    <div id="hook-wrap">
+      <p id="hook-line">What if your admin<br><span class="ge">ran itself?</span></p>
+    </div>
+
+    <!-- BADGE — top-aligned, separate from center layers -->
+    <div id="l-badge-layer">
       <div class="hero-badge" id="l-badge">
         <span class="badge-dot"></span>
-        AI Opportunity Assessments · Built for Canadian Businesses
+        AI-Powered Business Assessments
       </div>
     </div>
 
-    <!-- LAYER: headline -->
+    <!-- HEADLINE — "Less admin. / More business." -->
     <div class="h-layer" id="l-headline">
       <h1 class="h-headline" id="h-less-admin">Less admin.</h1>
-      <h1 class="h-headline acc" id="h-more-biz" style="color:var(--ge)">More business.</h1>
+      <h1 class="h-headline" id="h-more-biz">More business.</h1>
     </div>
 
-    <!-- LAYER: pain words -->
+    <!-- PAIN WORDS — ambient background text, z-index below text layers -->
     <span class="pain-word" id="pw1">INVOICES</span>
     <span class="pain-word" id="pw2">FOLLOW-UPS</span>
     <span class="pain-word" id="pw3">SCHEDULING</span>
@@ -647,29 +539,26 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
     <span class="pain-word" id="pw5">DATA ENTRY</span>
     <span class="pain-word" id="pw6">ADMIN</span>
 
-    <!-- LAYER: transition -->
+    <!-- TRANSITION — "There's a better way." (alone at center) -->
     <div class="h-layer" id="l-trans">
-      <p class="trans-line">There's <span class="acc" style="color:var(--ge)">a better way.</span></p>
+      <p class="trans-line">There's <span class="ge">a better way.</span></p>
     </div>
 
-    <!-- LAYER: solution -->
-    <div class="h-layer" id="l-sol">
+    <!-- FINAL LAYER — brand + sub + CTA + note — all one block, no splits -->
+    <div id="l-final">
       <div class="sol-mark">Effortless<em>Flow</em></div>
-      <p class="sol-sub">Your AI Opportunity Plan. Delivered in 48 hours.</p>
+      <p class="sol-sub">Your AI Opportunity Plan. Delivered in 4 business days.*</p>
+      <a href="tel:+12264002223" class="hero-cta-btn">Start Your Assessment →</a>
+      <p class="hero-note">226-400-2223 · 20-minute call · No commitment</p>
     </div>
 
-    <!-- LAYER: CTA -->
-    <div class="h-layer" id="l-cta">
-      <a href="tel:+12264002223" class="hero-cta-btn" id="hero-btn">Start Your Assessment →</a>
-      <p class="hero-note" id="hero-note-txt">226-400-2223 · 20-minute call · No commitment</p>
-    </div>
-
-    <div class="scroll-hint" id="scroll-hint">↓ scroll</div>
+    <div class="scroll-hint" id="scroll-hint">↓ SCROLL</div>
 
   </div>
 </div>
+<!-- end hero scene -->
 
-<!-- ── STATS BAR ────────────────────────────────────────────── -->
+<!-- ── STATS BAR ─────────────────────────────────────────────── -->
 <div class="stats-bar">
   <div class="container">
     <div class="sg">
@@ -682,8 +571,8 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
         <div class="sl">Industries<br>Covered</div>
       </div>
       <div class="si">
-        <div class="sn">48<span class="su">hr</span></div>
-        <div class="sl">Guaranteed<br>Delivery</div>
+        <div class="sn">4<span class="su">days</span></div>
+        <div class="sl">Business Day<br>Turnaround*</div>
       </div>
       <div class="si">
         <div class="sn">0<span class="su">%</span></div>
@@ -693,7 +582,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
   </div>
 </div>
 
-<!-- ── TICKER ────────────────────────────────────────────────── -->
+<!-- ── TICKER ─────────────────────────────────────────────────── -->
 <div class="ticker" aria-hidden="true">
   <div class="tk-track">
     <div class="tk-seg">
@@ -723,7 +612,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
   </div>
 </div>
 
-<!-- ── PROBLEM ───────────────────────────────────────────────── -->
+<!-- ── PROBLEM ────────────────────────────────────────────────── -->
 <section class="problem" id="problem">
   <div class="container">
     <div class="ov">The Reality</div>
@@ -743,10 +632,10 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
   </div>
 </section>
 
-<!-- ── CALLOUT ────────────────────────────────────────────────── -->
+<!-- ── CALLOUT — green theme ───────────────────────────────────── -->
 <div class="callout">
   <div class="container">
-    <h2 class="rv">WE SEE IT. <span class="acc">WE GET IT.</span> WE FIX IT.</h2>
+    <h2 class="rv">WE SEE IT. WE GET IT. WE FIX IT.</h2>
   </div>
 </div>
 
@@ -780,58 +669,9 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ───────────────────────────────────────────── -->
-<section class="tm">
-  <canvas id="tm-canvas"></canvas>
-  <div class="container tm-i">
-    <div class="ov ov-lt">Early Results</div>
-    <h2 class="tm-hl rv">Real businesses.<br><span class="acc">Real hours back.</span></h2>
-    <p class="tm-sub rv d1">A snapshot of what early EffortlessFlow clients implemented from their AI Opportunity Plan within the first 30 days.</p>
-    <div class="tm-grid">
-      <div class="tm-card rv d1">
-        <div class="tm-stars">★★★★★</div>
-        <p class="tm-quote">"I was drowning in client intake forms and follow-ups. The plan EffortlessFlow gave me cut my admin in half — and I'd already started the first tool by the end of the walkthrough call."</p>
-        <div class="tm-who">
-          <div class="tm-av">SR</div>
-          <div class="tm-meta">
-            <strong>Sarah R.</strong>
-            <span>Wellness clinic owner · Hamilton, ON</span>
-            <div class="tm-result">~9 hrs/wk recovered</div>
-          </div>
-        </div>
-      </div>
-      <div class="tm-card rv d2">
-        <div class="tm-stars">★★★★★</div>
-        <p class="tm-quote">"Other consultants quoted me five figures and three months. Matt's report was on my desk in two days, and every tool was something I could afford and actually start using."</p>
-        <div class="tm-who">
-          <div class="tm-av">DK</div>
-          <div class="tm-meta">
-            <strong>David K.</strong>
-            <span>HVAC contractor · Kitchener-Waterloo</span>
-            <div class="tm-result">$4,800 saved on agency quotes</div>
-          </div>
-        </div>
-      </div>
-      <div class="tm-card rv d3">
-        <div class="tm-stars">★★★★★</div>
-        <p class="tm-quote">"I had heard of half the tools they recommended, but I would never have known the right order to set them up. The 30-day roadmap is what made it actually happen."</p>
-        <div class="tm-who">
-          <div class="tm-av">JM</div>
-          <div class="tm-meta">
-            <strong>Jenna M.</strong>
-            <span>Boutique owner · London, ON</span>
-            <div class="tm-result">3 systems live in week 1</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── HOW IT WORKS ───────────────────────────────────────────── -->
 <section class="how" id="how">
-  <canvas id="how-canvas"></canvas>
-  <div class="container how-i">
+  <div class="container">
     <div class="ov ov-lt">How It Works</div>
     <h2 class="how-hl rv">Three steps.<br><span class="acc">One clear plan.</span></h2>
     <p class="how-sub rv d1">No lengthy onboarding. No complex setup. Start with a 20-minute call and leave with a roadmap.</p>
@@ -851,7 +691,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
       <div class="step rv d3">
         <div class="step-n">03</div>
         <div class="step-t">You receive your plan</div>
-        <div class="step-h">A complete AI Opportunity Plan in 48 hours</div>
+        <div class="step-h">A complete AI Opportunity Plan in 4 business days</div>
         <div class="step-b">A personalized, sequenced report with specific tools, estimated time savings, a 30-day roadmap, and a live walkthrough call with our team to get you started.</div>
       </div>
     </div>
@@ -894,106 +734,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
         <div class="pf-item rv d1"><div class="pf-chk">✓</div><div class="pf-txt"><strong>Human-reviewed before delivery</strong><span>Every report is reviewed by our assessment team. No raw AI output. No unvalidated recommendations.</span></div></div>
         <div class="pf-item rv d2"><div class="pf-chk">✓</div><div class="pf-txt"><strong>100% Canadian-focused</strong><span>Tools validated for Canadian payments, compliance, and business context — not a US playbook.</span></div></div>
         <div class="pf-item rv d3"><div class="pf-chk">✓</div><div class="pf-txt"><strong>Free or low-cost to start</strong><span>Your core recommendations are tools you can begin using this week — most for free.</span></div></div>
-        <div class="pf-item rv d4"><div class="pf-chk">✓</div><div class="pf-txt"><strong>48-hour delivery, guaranteed</strong><span>Your complete AI Opportunity Plan within 48 hours of your intake call. Or we make it right.</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PRICING / VALUE ──────────────────────────────────────── -->
-<section class="price" id="price">
-  <div class="container">
-    <div class="price-i">
-      <div class="ov" style="justify-content:center">Pricing</div>
-      <h2 class="price-hl rv">A full assessment for the cost of <span class="acc">a single missed lead.</span></h2>
-      <p class="price-sub rv d1">Most consulting firms charge $3,000–$8,000 for a fraction of this depth. We built EffortlessFlow specifically for small Canadian businesses — so the price reflects that.</p>
-
-      <div class="price-card rv d2">
-        <span class="price-tag">Founder Pricing · Limited Spots</span>
-        <div class="price-row">
-          <div class="price-now"><span>$</span>199<span style="font-size:.35em;color:var(--inf);font-weight:600;margin-left:8px">CAD</span></div>
-          <div class="price-was">$499</div>
-        </div>
-        <p class="price-vs">vs. <strong>$3,000–$8,000</strong> for a typical AI consulting engagement · vs. <strong>40+ hours</strong> of researching tools yourself</p>
-
-        <div class="price-incl">
-          <div>20-minute intake call (24/7 availability)</div>
-          <div>Personalized 8-section AI Opportunity Plan</div>
-          <div>Effort vs. Impact opportunity matrix</div>
-          <div>4–6 vetted tools matched to your situation</div>
-          <div>Week-by-week 30-day implementation roadmap</div>
-          <div>Live walkthrough call with our team</div>
-          <div>Canadian-validated payment + compliance check</div>
-          <div>48-hour delivery guarantee</div>
-        </div>
-
-        <div class="price-bottom">
-          <div class="meta">
-            <strong>Typical ROI: hours back per week</strong>
-            Recover the cost in your first week of implementation.
-          </div>
-          <a href="tel:+12264002223" class="btn-pr">Start Your Assessment →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FAQ ──────────────────────────────────────────────────── -->
-<section class="faq" id="faq">
-  <div class="container">
-    <div class="faq-i">
-      <div class="faq-side">
-        <div class="ov">Common Questions</div>
-        <h2 class="faq-hl rv">Still have <span class="acc">questions?</span></h2>
-        <p class="rv d1">If something here doesn't answer it, the fastest way is just to call. The intake itself is free, and there's no obligation to move forward.</p>
-        <p class="rv d1"><a href="tel:+12264002223">226-400-2223 →</a></p>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item rv d1">
-          <div class="faq-q">Do I need to know anything about AI before the call?<span class="icon">+</span></div>
-          <div class="faq-a"><div class="faq-a-inner">Not a thing. The whole point of the assessment is to do that work for you. We just ask about how your business runs and what eats your time. We translate it into the right tools — you don't need to know any of them in advance.</div></div>
-        </div>
-        <div class="faq-item rv d1">
-          <div class="faq-q">What if I don't end up wanting any of the recommendations?<span class="icon">+</span></div>
-          <div class="faq-a"><div class="faq-a-inner">Then you've still got a clear, written audit of your business processes you can keep — and we'll work with you to either rework the plan or refund your assessment. Our 48-hour guarantee means we make it right, no questions asked.</div></div>
-        </div>
-        <div class="faq-item rv d1">
-          <div class="faq-q">Are these expensive enterprise tools?<span class="icon">+</span></div>
-          <div class="faq-a"><div class="faq-a-inner">No. Our core recommendations are deliberately free or low-cost to start. We've evaluated 100+ tools and the ones we recommend are picked specifically for small-business price points and Canadian availability. Most clients can begin implementing the same day they receive their plan.</div></div>
-        </div>
-        <div class="faq-item rv d1">
-          <div class="faq-q">How is this different from just hiring an agency?<span class="icon">+</span></div>
-          <div class="faq-a"><div class="faq-a-inner">Agencies typically charge $3,000–$8,000 for an engagement and want to keep you on retainer. We deliver a one-time, fixed-price plan you own. You can hire help to implement it, do it yourself, or come back to us when you're ready for the next layer. No retainers. No lock-in.</div></div>
-        </div>
-        <div class="faq-item rv d1">
-          <div class="faq-q">Is my information kept confidential?<span class="icon">+</span></div>
-          <div class="faq-a"><div class="faq-a-inner">Yes. Your intake call and report are confidential. We never share business details or your name with third parties, and any anonymous patterns we use to improve our methodology are stripped of identifying information.</div></div>
-        </div>
-        <div class="faq-item rv d1">
-          <div class="faq-q">What industries do you work with?<span class="icon">+</span></div>
-          <div class="faq-a"><div class="faq-a-inner">We've built playbooks for retail, trades and home services, health and wellness, professional services, hospitality, real estate, fitness, accounting, pet services, and cleaning. If you're a small or mid-sized Canadian business with admin pain, we can almost certainly help — and if for some reason your situation isn't a fit, we'll tell you on the call before you pay.</div></div>
-        </div>
-        <div class="faq-item rv d1">
-          <div class="faq-q">Can I really get this in 48 hours?<span class="icon">+</span></div>
-          <div class="faq-a"><div class="faq-a-inner">Yes — that's the guarantee. From the moment you finish your intake call, your full report lands in your inbox within 48 hours. If for any reason it doesn't, we make it right.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FOUNDER ──────────────────────────────────────────────── -->
-<section class="founder">
-  <div class="container">
-    <div class="fd-i">
-      <div class="fd-portrait rv">M</div>
-      <div class="fd-copy">
-        <div class="ov rv">A note from the founder</div>
-        <h3 class="fd-hl rv d1">Most "AI for business" advice is written for <em>enterprises</em>. EffortlessFlow exists for the rest of us.</h3>
-        <p class="fd-body rv d1">I started EffortlessFlow because I watched too many small business owners — friends, family, neighbours — burn evenings on admin that's been a solved problem for years. The technology exists. The barrier is knowing what's worth your time and what isn't.</p>
-        <p class="fd-body rv d2">So we built a service we'd want ourselves: fast, fixed-price, Canadian-grounded, and ruthlessly practical. No retainers. No twelve-week engagements. Just a 20-minute call and a plan you can act on the same week.</p>
-        <div class="fd-sig rv d3">— Matt<small>Founder, EffortlessFlow</small></div>
+        <div class="pf-item rv d4"><div class="pf-chk">✓</div><div class="pf-txt"><strong>4 business day delivery, guaranteed*</strong><span>Your complete AI Opportunity Plan within 4 business days of your intake call. Most clients receive theirs in 3. Or we make it right.</span></div></div>
       </div>
     </div>
   </div>
@@ -1004,8 +745,8 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
   <div class="container">
     <div class="guar-i">
       <div class="guar-copy">
-        <h3>Delivered in 48 hours.<br>Human-reviewed. Actionable from day one.</h3>
-        <p>Or we'll make it right — no questions asked.</p>
+        <h3>Delivered in 4 business days.*<br>Human-reviewed. Actionable from day one.</h3>
+        <p>* Most assessments arrive in 3. Or we make it right — no questions asked.</p>
       </div>
       <a href="tel:+12264002223" class="btn-dk">Start Your Assessment →</a>
     </div>
@@ -1014,11 +755,9 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 
 <!-- ── FINAL CTA ──────────────────────────────────────────────── -->
 <section class="fcta">
-  <canvas id="fcta-canvas"></canvas>
-  <div class="container fcta-i">
-    <div class="urgency"><span class="urg-dot"></span><span id="urg-txt">Founder pricing — limited spots this month</span></div>
+  <div class="container">
     <h2>Ready to find out what AI<span class="acc">can actually do?</span></h2>
-    <p>One 20-minute call. A complete plan in 48 hours. The first tool installed on your walkthrough call.</p>
+    <p>One 20-minute call. A complete plan in 4 business days. The first tool installed on your walkthrough call.</p>
     <a href="tel:+12264002223" class="btn-pr">Start Your Assessment →</a>
     <p class="fcta-note">226-400-2223 · Available 24/7 · No commitment required</p>
   </div>
@@ -1032,8 +771,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
       <div class="ft-l">
         <a href="#how">How It Works</a>
         <a href="#what">What You Get</a>
-        <a href="#price">Pricing</a>
-        <a href="#faq">FAQ</a>
+        <a href="#process">Our Process</a>
         <a href="mailto:matt@effortlessflow.ca">Contact</a>
       </div>
       <div class="ft-lg">© 2026 EffortlessFlow. All rights reserved.</div>
@@ -1047,97 +785,90 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <script>
-/* Helpers ------------------------------------------------------- */
-const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const IS_TOUCH = !window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-const IS_MOBILE = window.innerWidth < 768;
-
 /* ═══════════════════════════════════════════════════════════════
-   1. CURSOR — WAVE EMITTER (desktop pointer only)
+   1. CURSOR — BILL TEAR EMITTER
+   Bills (save time / save money) tear off the back of the pointer
+   and evaporate as the cursor moves.
 ═══════════════════════════════════════════════════════════════ */
-if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
+(function(){
   const ring = document.getElementById('cursor-ring');
   const dot  = document.getElementById('cursor-dot');
-  const wc   = document.getElementById('wave-canvas');
-  const ctx  = wc.getContext('2d');
 
   let mx = -200, my = -200;
   let rx = -200, ry = -200;
-  let waves = [];
+  let prevMx = -200, prevMy = -200;
+  let prevDx = 0, prevDy = 0;
   let lastEmitX = 0, lastEmitY = 0;
-
-  function resize(){
-    wc.width  = window.innerWidth;
-    wc.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
+  let billIdx = 0;
+  const billTexts = ['save time', 'save money'];
 
   document.addEventListener('mousemove', e => {
+    const dx = prevMx !== -200 ? e.clientX - prevMx : 0;
+    const dy = prevMy !== -200 ? e.clientY - prevMy : 0;
+    prevMx = e.clientX; prevMy = e.clientY;
+    if(Math.abs(dx) + Math.abs(dy) > 0){ prevDx = dx; prevDy = dy; }
+
     mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
 
     const dist = Math.hypot(mx - lastEmitX, my - lastEmitY);
-    if(dist > 10){
-      waves.push({ x: mx, y: my, r: 3, o: 0.55 });
+    if(dist > 46){
+      spawnBill(mx, my, prevDx, prevDy);
       lastEmitX = mx; lastEmitY = my;
     }
   });
 
-  document.addEventListener('mouseleave', () => {
-    mx = -200; my = -200;
-    ring.style.opacity = '0';
-    dot.style.opacity  = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    ring.style.opacity = '1';
-    dot.style.opacity  = '1';
-  });
+  function spawnBill(x, y, dx, dy){
+    const bill = document.createElement('div');
+    bill.className = 'cursor-bill' + (billIdx % 2 === 1 ? ' alt' : '');
+    bill.textContent = billTexts[billIdx % 2];
+    billIdx++;
+
+    // Place bill behind the cursor (opposite of travel direction)
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dx / len; const ny = -dy / len;
+    bill.style.left = (x + nx * 16 - 28) + 'px';
+    bill.style.top  = (y + ny * 16 - 9)  + 'px';
+    document.body.appendChild(bill);
+    setTimeout(() => { if(bill.parentNode) bill.parentNode.removeChild(bill); }, 1050);
+  }
+
+  document.addEventListener('mouseleave', () => { ring.style.opacity='0'; dot.style.opacity='0'; });
+  document.addEventListener('mouseenter', () => { ring.style.opacity='1'; dot.style.opacity='1'; });
 
   function loopCursor(){
     requestAnimationFrame(loopCursor);
-    rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-
-    ctx.clearRect(0, 0, wc.width, wc.height);
-    waves = waves.filter(w => w.o > 0.01);
-    waves.forEach(w => {
-      w.r  += 1.8;
-      w.o  -= 0.016;
-      ctx.beginPath();
-      ctx.arc(w.x, w.y, w.r, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(74,222,128,${w.o})`;
-      ctx.lineWidth = 1.4;
-      ctx.stroke();
-    });
+    rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
   }
   loopCursor();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width='36px'; ring.style.height='36px'; });
+    el.addEventListener('mouseleave', () => { ring.style.width='16px'; ring.style.height='16px'; });
+  });
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   2. THREE.JS HERO — PARTICLE FIELD (with visibility-based pause)
+   2. THREE.JS — PARTICLE FIELD
 ═══════════════════════════════════════════════════════════════ */
 (function(){
-  if (PREFERS_REDUCED) return;
   const pin = document.getElementById('hero-pin');
   const W = () => window.innerWidth;
   const H = () => window.innerHeight;
 
-  const scene    = new THREE.Scene();
-  const camera   = new THREE.PerspectiveCamera(70, W()/H(), 0.1, 500);
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(70, W()/H(), 0.1, 500);
   camera.position.z = 55;
 
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !IS_MOBILE });
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(W(), H());
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
   renderer.domElement.id = 'three-canvas';
   pin.insertBefore(renderer.domElement, pin.firstChild);
 
-  const COUNT = IS_MOBILE ? 600 : 1600;
+  const COUNT = window.innerWidth > 768 ? 1800 : 700;
   const geo   = new THREE.BufferGeometry();
   const pos   = new Float32Array(COUNT * 3);
   const orig  = new Float32Array(COUNT * 3);
@@ -1147,7 +878,7 @@ if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
     const x = (Math.random() - 0.5) * 200;
     const y = (Math.random() - 0.5) * 110;
     const z = (Math.random() - 0.5) * 80;
-    pos[i*3]   = orig[i*3]   = x;
+    pos[i*3] = orig[i*3] = x;
     pos[i*3+1] = orig[i*3+1] = y;
     pos[i*3+2] = orig[i*3+2] = z;
     sizes[i] = Math.random() * 1.5 + 0.4;
@@ -1184,37 +915,24 @@ if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
     depthWrite: false,
   });
 
-  const points = new THREE.Points(geo, mat);
-  scene.add(points);
+  scene.add(new THREE.Points(geo, mat));
 
-  let targetRX = 0, targetRY = 0;
-  let curRX = 0,    curRY = 0;
+  let targetRX = 0, targetRY = 0, curRX = 0, curRY = 0;
   document.addEventListener('mousemove', e => {
     targetRX = ((e.clientY / window.innerHeight) - 0.5) * 0.18;
     targetRY = ((e.clientX / window.innerWidth)  - 0.5) * 0.18;
   });
 
   let scrollRatio = 0;
-  function updateScrollRatio(){
-    const scene_h = document.getElementById('hero-scene').offsetHeight;
-    scrollRatio = Math.min(window.scrollY / scene_h, 1);
-  }
-  window.addEventListener('scroll', updateScrollRatio, {passive:true});
-
-  // VISIBILITY-BASED PAUSE — major performance fix
-  let isVisible = true;
-  const visObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { isVisible = e.isIntersecting; });
-  }, { threshold: 0 });
-  visObs.observe(document.getElementById('hero-scene'));
+  window.addEventListener('scroll', () => {
+    const h = document.getElementById('hero-scene').offsetHeight;
+    scrollRatio = Math.min(window.scrollY / h, 1);
+  });
 
   const clock = new THREE.Clock();
-
   function render(){
     requestAnimationFrame(render);
-    if (!isVisible || document.hidden) return;
     const t = clock.getElapsedTime();
-
     curRX += (targetRX - curRX) * 0.04;
     curRY += (targetRY - curRY) * 0.04;
     camera.rotation.x = curRX;
@@ -1223,15 +941,12 @@ if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
     const arr = geo.attributes.position.array;
     for(let i = 0; i < COUNT; i++){
       const i3 = i * 3;
-      arr[i3]   = orig[i3]   + Math.sin(t * 0.18 + i * 0.8) * 1.8
-                               + scrollRatio * 60 * (i % 2 === 0 ? 1 : -1) * 0.4;
-      arr[i3+1] = orig[i3+1] + Math.cos(t * 0.14 + i * 0.6) * 1.6
-                               + scrollRatio * -30;
-      arr[i3+2] = orig[i3+2] + Math.sin(t * 0.1  + i * 0.4) * 1.2;
+      arr[i3]   = orig[i3]   + Math.sin(t*0.18 + i*0.8)*1.8 + scrollRatio*60*(i%2===0?1:-1)*0.4;
+      arr[i3+1] = orig[i3+1] + Math.cos(t*0.14 + i*0.6)*1.6 + scrollRatio*-30;
+      arr[i3+2] = orig[i3+2] + Math.sin(t*0.1  + i*0.4)*1.2;
     }
     geo.attributes.position.needsUpdate = true;
     mat.uniforms.opacity.value = 0.55 * (1 - scrollRatio * 0.85);
-
     renderer.render(scene, camera);
   }
   render();
@@ -1244,253 +959,26 @@ if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   3. THREE.JS — TESTIMONIALS BACKDROP (slow-drifting flow lines)
+   3. GSAP SCROLL TRIGGER — HERO STORY
+
+   scrub: true = instant 1:1 scroll-to-animation (no lag = no overlap)
+   Timeline uses second-based positions; total ~10s maps to 350vh.
+
+   Phase plan:
+   ┌──────────────────────────────────────────────────────────────┐
+   │ 0.0 – 2.0s   Badge (top) + "Less admin." + "More business." │
+   │ 1.0 – 3.0s   Pain words fade in as ambient BG               │
+   │              [PEAK 3.0–4.0 — all coexist]                   │
+   │ 4.0 – 5.0s   Badge + headline exit                          │
+   │ 4.5 – 5.5s   Pain words exit                                │
+   │              [CLEAR GAP 5.5–7.0s — nothing at center]       │
+   │ 7.0 – 8.0s   "There's a better way." alone                  │
+   │ 8.2 – 8.8s   Transition text exits                          │
+   │              [CLEAR GAP 8.8–9.5s]                           │
+   │ 9.5 – 10.5s  Brand + sub + CTA + note — one block           │
+   └──────────────────────────────────────────────────────────────┘
 ═══════════════════════════════════════════════════════════════ */
 (function(){
-  if (PREFERS_REDUCED) return;
-  const cv = document.getElementById('tm-canvas');
-  if (!cv) return;
-  const parent = cv.parentElement;
-  const W = () => parent.clientWidth;
-  const H = () => parent.clientHeight;
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, W()/H(), 0.1, 1000);
-  camera.position.z = 60;
-
-  const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !IS_MOBILE });
-  renderer.setSize(W(), H());
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
-  renderer.setClearColor(0x000000, 0);
-
-  // Curve lines that gently undulate
-  const LINE_COUNT = IS_MOBILE ? 14 : 28;
-  const POINTS_PER = 80;
-  const lines = [];
-
-  for (let i = 0; i < LINE_COUNT; i++){
-    const positions = new Float32Array(POINTS_PER * 3);
-    const baseY = (Math.random() - 0.5) * 50;
-    const baseZ = (Math.random() - 0.5) * 30;
-    const phase = Math.random() * Math.PI * 2;
-    const amp = 1 + Math.random() * 2.5;
-    for (let j = 0; j < POINTS_PER; j++){
-      positions[j*3] = (j / POINTS_PER - 0.5) * 160;
-      positions[j*3+1] = baseY;
-      positions[j*3+2] = baseZ;
-    }
-    const geom = new THREE.BufferGeometry();
-    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const opacity = 0.08 + Math.random() * 0.18;
-    const mat = new THREE.LineBasicMaterial({
-      color: 0x4ade80, transparent: true, opacity
-    });
-    const line = new THREE.Line(geom, mat);
-    scene.add(line);
-    lines.push({ line, baseY, baseZ, phase, amp });
-  }
-
-  let isVisible = false;
-  const obs = new IntersectionObserver(es => es.forEach(e => isVisible = e.isIntersecting), { threshold: 0 });
-  obs.observe(parent);
-
-  const clock = new THREE.Clock();
-  function render(){
-    requestAnimationFrame(render);
-    if (!isVisible || document.hidden) return;
-    const t = clock.getElapsedTime();
-    lines.forEach((l, idx) => {
-      const arr = l.line.geometry.attributes.position.array;
-      for (let j = 0; j < POINTS_PER; j++){
-        const x = (j / POINTS_PER - 0.5) * 160;
-        arr[j*3]   = x;
-        arr[j*3+1] = l.baseY + Math.sin(t * 0.4 + l.phase + j * 0.12) * l.amp;
-        arr[j*3+2] = l.baseZ + Math.cos(t * 0.25 + l.phase + j * 0.08) * (l.amp * 0.6);
-      }
-      l.line.geometry.attributes.position.needsUpdate = true;
-      l.line.rotation.z = Math.sin(t * 0.07 + idx) * 0.03;
-    });
-    renderer.render(scene, camera);
-  }
-  render();
-
-  window.addEventListener('resize', () => {
-    camera.aspect = W() / H();
-    camera.updateProjectionMatrix();
-    renderer.setSize(W(), H());
-  }, {passive:true});
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   4. THREE.JS — HOW IT WORKS NETWORK NODES
-═══════════════════════════════════════════════════════════════ */
-(function(){
-  if (PREFERS_REDUCED) return;
-  const cv = document.getElementById('how-canvas');
-  if (!cv) return;
-  const parent = cv.parentElement;
-  const W = () => parent.clientWidth;
-  const H = () => parent.clientHeight;
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, W()/H(), 0.1, 1000);
-  camera.position.z = 80;
-
-  const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !IS_MOBILE });
-  renderer.setSize(W(), H());
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
-  renderer.setClearColor(0x000000, 0);
-
-  // Nodes
-  const NODE_COUNT = IS_MOBILE ? 22 : 48;
-  const nodes = [];
-  const nodeGeom = new THREE.SphereGeometry(0.7, 12, 12);
-  const nodeMat = new THREE.MeshBasicMaterial({ color: 0x4ade80, transparent: true, opacity: 0.75 });
-  for (let i = 0; i < NODE_COUNT; i++){
-    const m = new THREE.Mesh(nodeGeom, nodeMat);
-    const r = 38 + Math.random() * 14;
-    const phi = Math.acos((Math.random() * 2) - 1);
-    const theta = Math.random() * Math.PI * 2;
-    m.position.set(
-      r * Math.sin(phi) * Math.cos(theta),
-      r * Math.sin(phi) * Math.sin(theta),
-      r * Math.cos(phi)
-    );
-    scene.add(m);
-    nodes.push(m);
-  }
-
-  // Lines between nearest neighbors (dynamic each frame would be expensive — pre-compute static)
-  const linePairs = [];
-  for (let i = 0; i < NODE_COUNT; i++){
-    let nearest = [];
-    for (let j = 0; j < NODE_COUNT; j++){
-      if (i === j) continue;
-      const d = nodes[i].position.distanceTo(nodes[j].position);
-      nearest.push({ j, d });
-    }
-    nearest.sort((a,b) => a.d - b.d);
-    nearest.slice(0, 2).forEach(n => {
-      if (n.j > i) linePairs.push([i, n.j]);
-    });
-  }
-  const lineGeom = new THREE.BufferGeometry();
-  const linePos = new Float32Array(linePairs.length * 2 * 3);
-  linePairs.forEach((p, i) => {
-    linePos[i*6]   = nodes[p[0]].position.x;
-    linePos[i*6+1] = nodes[p[0]].position.y;
-    linePos[i*6+2] = nodes[p[0]].position.z;
-    linePos[i*6+3] = nodes[p[1]].position.x;
-    linePos[i*6+4] = nodes[p[1]].position.y;
-    linePos[i*6+5] = nodes[p[1]].position.z;
-  });
-  lineGeom.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
-  const lineMat = new THREE.LineBasicMaterial({ color: 0x4ade80, transparent: true, opacity: 0.18 });
-  const lineObj = new THREE.LineSegments(lineGeom, lineMat);
-  scene.add(lineObj);
-
-  const group = new THREE.Group();
-  scene.children.slice().forEach(c => group.add(c));
-  scene.add(group);
-
-  let isVisible = false;
-  const obs = new IntersectionObserver(es => es.forEach(e => isVisible = e.isIntersecting), { threshold: 0 });
-  obs.observe(parent);
-
-  const clock = new THREE.Clock();
-  function render(){
-    requestAnimationFrame(render);
-    if (!isVisible || document.hidden) return;
-    const t = clock.getElapsedTime();
-    group.rotation.y = t * 0.08;
-    group.rotation.x = Math.sin(t * 0.12) * 0.15;
-    renderer.render(scene, camera);
-  }
-  render();
-
-  window.addEventListener('resize', () => {
-    camera.aspect = W() / H();
-    camera.updateProjectionMatrix();
-    renderer.setSize(W(), H());
-  }, {passive:true});
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   5. THREE.JS — FINAL CTA STARFIELD CONVERGENCE
-═══════════════════════════════════════════════════════════════ */
-(function(){
-  if (PREFERS_REDUCED) return;
-  const cv = document.getElementById('fcta-canvas');
-  if (!cv) return;
-  const parent = cv.parentElement;
-  const W = () => parent.clientWidth;
-  const H = () => parent.clientHeight;
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(70, W()/H(), 0.1, 800);
-  camera.position.z = 50;
-
-  const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !IS_MOBILE });
-  renderer.setSize(W(), H());
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, IS_MOBILE ? 1.5 : 2));
-  renderer.setClearColor(0x000000, 0);
-
-  const COUNT = IS_MOBILE ? 500 : 1200;
-  const geom = new THREE.BufferGeometry();
-  const positions = new Float32Array(COUNT * 3);
-  const speeds = new Float32Array(COUNT);
-  for (let i = 0; i < COUNT; i++){
-    positions[i*3]   = (Math.random() - 0.5) * 220;
-    positions[i*3+1] = (Math.random() - 0.5) * 130;
-    positions[i*3+2] = -Math.random() * 200;
-    speeds[i] = 0.15 + Math.random() * 0.45;
-  }
-  geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const mat = new THREE.PointsMaterial({
-    color: 0x4ade80, size: 0.6, transparent: true, opacity: 0.5,
-    sizeAttenuation: true
-  });
-  const stars = new THREE.Points(geom, mat);
-  scene.add(stars);
-
-  let isVisible = false;
-  const obs = new IntersectionObserver(es => es.forEach(e => isVisible = e.isIntersecting), { threshold: 0 });
-  obs.observe(parent);
-
-  function render(){
-    requestAnimationFrame(render);
-    if (!isVisible || document.hidden) return;
-    const arr = geom.attributes.position.array;
-    for (let i = 0; i < COUNT; i++){
-      arr[i*3+2] += speeds[i];
-      if (arr[i*3+2] > 50){
-        arr[i*3]   = (Math.random() - 0.5) * 220;
-        arr[i*3+1] = (Math.random() - 0.5) * 130;
-        arr[i*3+2] = -200;
-      }
-    }
-    geom.attributes.position.needsUpdate = true;
-    renderer.render(scene, camera);
-  }
-  render();
-
-  window.addEventListener('resize', () => {
-    camera.aspect = W() / H();
-    camera.updateProjectionMatrix();
-    renderer.setSize(W(), H());
-  }, {passive:true});
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   6. GSAP SCROLL TRIGGER — HERO STORY
-═══════════════════════════════════════════════════════════════ */
-(function(){
-  if (PREFERS_REDUCED){
-    // Show everything immediately for reduced motion
-    ['#l-badge','#h-less-admin','#h-more-biz','.sol-mark','.sol-sub','.hero-cta-btn','.hero-note','#scroll-hint']
-      .forEach(s => document.querySelectorAll(s).forEach(el => el.style.opacity = '1'));
-    return;
-  }
   gsap.registerPlugin(ScrollTrigger);
 
   const tl = gsap.timeline({
@@ -1499,72 +987,87 @@ if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
       pin:     '#hero-pin',
       start:   'top top',
       end:     'bottom bottom',
-      scrub:   1.8,
+      scrub:   true,          /* instant 1:1 — eliminates all scrub-lag overlap */
     }
   });
 
-  tl.fromTo('#l-badge',      { opacity:0, y:16 }, { opacity:1, y:0, ease:'power2.out' }, 0)
-  .fromTo('#h-less-admin',   { opacity:0, y:50 }, { opacity:1, y:0, ease:'power3.out' }, 0.05)
-  .fromTo('#h-more-biz',     { opacity:0, y:50 }, { opacity:1, y:0, ease:'power3.out' }, 0.10)
-  .to('#l-headline',         { y: -90, opacity:0.18, ease:'power1.in' }, 0.22)
-  .fromTo('#pw1', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-8vh', ease:'power1.out' }, 0.28)
-  .fromTo('#pw4', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-5vh', ease:'power1.out' }, 0.31)
-  .fromTo('#pw2', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-12vh',ease:'power1.out' }, 0.34)
-  .fromTo('#pw5', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-6vh', ease:'power1.out' }, 0.37)
-  .fromTo('#pw3', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-9vh', ease:'power1.out' }, 0.40)
-  .fromTo('#pw6', { opacity:0, y:'90vh' }, { opacity:0.55, y:'-4vh', ease:'power1.out' }, 0.43)
-  .to('.pain-word',          { opacity:0, scale:1.6, ease:'power2.in' }, 0.52)
-  .to('#l-headline',         { opacity:0, ease:'power2.in' }, 0.54)
-  .fromTo('#l-trans',        { opacity:0, scale:0.95 }, { opacity:1, scale:1, ease:'power2.out' }, 0.62)
-  .to('#l-trans',            { opacity:0, ease:'power2.in' }, 0.72)
-  .fromTo('.sol-mark',       { opacity:0, y:24 }, { opacity:1, y:0, ease:'power3.out' }, 0.72)
-  .fromTo('.sol-sub',        { opacity:0, y:16 }, { opacity:1, y:0, ease:'power2.out' }, 0.76)
-  .fromTo('.hero-cta-btn',   { opacity:0, y:20 }, { opacity:1, y:0, ease:'back.out(1.5)' }, 0.84)
-  .fromTo('.hero-note',      { opacity:0 },       { opacity:1, ease:'power1.out' },          0.88)
-  .fromTo('#scroll-hint',    { opacity:0 },       { opacity:1, ease:'power1.out' },          0.90);
+  /* — Phase 1 IN: badge + headline — */
+  tl.fromTo('#l-badge',      { opacity:0, y:12 }, { opacity:1, y:0, duration:0.5 }, 0)
+    .fromTo('#h-less-admin', { opacity:0, y:60 }, { opacity:1, y:0, duration:0.6 }, 0.4)
+    .fromTo('#h-more-biz',   { opacity:0, y:60 }, { opacity:1, y:0, duration:0.6 }, 0.9)
+
+  /* — Pain words in — staggered, fade at fixed positions — */
+    .fromTo('#pw3', { opacity:0 }, { opacity:0.20, duration:0.5 }, 1.2)
+    .fromTo('#pw1', { opacity:0 }, { opacity:0.18, duration:0.5 }, 1.5)
+    .fromTo('#pw4', { opacity:0 }, { opacity:0.16, duration:0.5 }, 1.8)
+    .fromTo('#pw6', { opacity:0 }, { opacity:0.20, duration:0.5 }, 2.1)
+    .fromTo('#pw2', { opacity:0 }, { opacity:0.16, duration:0.5 }, 2.4)
+    .fromTo('#pw5', { opacity:0 }, { opacity:0.18, duration:0.5 }, 2.7)
+
+  /* — Phase 1 EXIT — badge then headline rise out — */
+    .to('#l-badge',    { opacity:0, duration:0.4 }, 4.0)
+    .to('#l-headline', { y:-90, opacity:0, duration:0.6 }, 4.2)
+
+  /* — Pain words EXIT — slightly after headline starts leaving — */
+    .to('.pain-word',  { opacity:0, scale:1.14, duration:0.5 }, 4.6)
+
+  /* ── CLEAR GAP 5.5 → 7.0 — nothing occupies center ────────── */
+
+  /* — Phase 2: "There's a better way." ALONE — */
+    .fromTo('#l-trans', { opacity:0, y:20 }, { opacity:1, y:0, duration:0.5 }, 7.0)
+    .to('#l-trans',     { opacity:0, y:-18, duration:0.4 }, 8.2)
+
+  /* ── CLEAR GAP 8.6 → 9.5 ───────────────────────────────────── */
+
+  /* — Phase 3: Final block — brand + CTA — single layer, alone — */
+    .fromTo('#l-final', { opacity:0, y:28 }, { opacity:1, y:0, duration:0.6 }, 9.5)
+    .fromTo('#scroll-hint', { opacity:0 }, { opacity:1, duration:0.4 }, 10.4);
+
+  /* Activate pointer-events on final layer once visible */
+  ScrollTrigger.create({
+    trigger: '#hero-scene',
+    start:   'top top',
+    end:     'bottom bottom',
+    onUpdate: self => {
+      document.getElementById('l-final').classList
+        .toggle('active', self.progress > 0.86);
+    }
+  });
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   7. SCROLL PROGRESS BAR
+   4. SCROLL PROGRESS BAR
 ═══════════════════════════════════════════════════════════════ */
 (function(){
   const bar = document.getElementById('scroll-progress');
-  let ticking = false;
-  function update(){
+  window.addEventListener('scroll', () => {
     const total = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.width = (window.scrollY / total * 100) + '%';
-    ticking = false;
-  }
-  window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }, {passive:true});
+  });
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   8. SCROLL REVEAL
+   5. SCROLL REVEAL (sections below hero)
 ═══════════════════════════════════════════════════════════════ */
 (function(){
-  const els = document.querySelectorAll('.rv');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
     });
   }, { threshold: 0.1, rootMargin:'0px 0px -48px 0px' });
-  els.forEach(el => obs.observe(el));
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   9. COUNT-UP
+   6. COUNT-UP ANIMATION
 ═══════════════════════════════════════════════════════════════ */
 (function(){
-  const els = document.querySelectorAll('.count-up');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(!e.isIntersecting) return;
-      const el     = e.target;
+      const el = e.target;
       const target = parseInt(el.dataset.target, 10);
-      const frames = 60;
-      let f = 0;
+      const frames = 60; let f = 0;
       const timer = setInterval(() => {
         f++;
         const ease = 1 - Math.pow(1 - f/frames, 3);
@@ -1574,66 +1077,7 @@ if (!IS_TOUCH && !PREFERS_REDUCED) (function(){
       obs.unobserve(el);
     });
   }, { threshold: 0.5 });
-  els.forEach(el => obs.observe(el));
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   10. CURSOR HOVER GROW
-═══════════════════════════════════════════════════════════════ */
-if (!IS_TOUCH) (function(){
-  const ring = document.getElementById('cursor-ring');
-  if (!ring) return;
-  document.querySelectorAll('a, button, .faq-q').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width  = '40px';
-      ring.style.height = '40px';
-      ring.style.borderColor = 'rgba(74,222,128,0.85)';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width  = '18px';
-      ring.style.height = '18px';
-      ring.style.borderColor = 'var(--ge)';
-    });
-  });
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   11. FAQ ACCORDION
-═══════════════════════════════════════════════════════════════ */
-(function(){
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const q = item.querySelector('.faq-q');
-    const a = item.querySelector('.faq-a');
-    q.addEventListener('click', () => {
-      const open = item.classList.toggle('open');
-      if (open){
-        a.style.maxHeight = a.scrollHeight + 'px';
-      } else {
-        a.style.maxHeight = '0px';
-      }
-    });
-  });
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   12. URGENCY ROTATING MESSAGE
-═══════════════════════════════════════════════════════════════ */
-(function(){
-  const el = document.getElementById('urg-txt');
-  if (!el) return;
-  const msgs = [
-    'Founder pricing — limited spots this month',
-    '48-hour delivery guaranteed or we make it right',
-    'Most assessments completed within 36 hours',
-    'No retainer · No lock-in · You keep the plan'
-  ];
-  let i = 0;
-  setInterval(() => {
-    i = (i + 1) % msgs.length;
-    el.style.opacity = '0';
-    setTimeout(() => { el.textContent = msgs[i]; el.style.opacity = '1'; }, 320);
-  }, 4200);
-  el.style.transition = 'opacity .3s ease';
+  document.querySelectorAll('.count-up').forEach(el => obs.observe(el));
 })();
 </script>
 
