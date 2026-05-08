@@ -52,29 +52,94 @@ body{
   transform:translate(-50%,-50%);
 }
 
-/* ── CURSOR BILL ANIMATION ─────────────────────────────────── */
-.cursor-bill{
-  position:fixed;pointer-events:none;z-index:9997;
-  background:rgba(74,222,128,0.90);
+/* ── FOUNTAIN BILLS ────────────────────────────────────────── */
+/* JS-driven physics — no CSS keyframes here. Uses translate() each frame. */
+.fountain-bill{
+  position:fixed;top:0;left:0;
+  pointer-events:none;z-index:9997;
+  background:rgba(74,222,128,0.95);
   color:#0a140d;
   font-family:'Inter',sans-serif;
-  font-size:8px;font-weight:800;
-  letter-spacing:.11em;text-transform:uppercase;
+  font-size:9px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
   padding:4px 10px;border-radius:2px;
-  white-space:nowrap;opacity:0;
-  box-shadow:0 2px 10px rgba(74,222,128,.25);
-  animation:billTear 0.95s ease-out forwards;
+  white-space:nowrap;
+  box-shadow:0 2px 12px rgba(74,222,128,.35);
+  will-change:transform,opacity;
+  opacity:0;
 }
-.cursor-bill.alt{
-  background:rgba(255,255,255,0.82);
+.fountain-bill.alt{
+  background:rgba(255,255,255,0.92);
   color:#0f5132;
+  box-shadow:0 2px 10px rgba(255,255,255,.18);
 }
-@keyframes billTear{
-  0%  {opacity:0;transform:scaleX(1.5) skewY(-7deg);}
-  10% {opacity:1;transform:scaleX(1) skewY(3deg);}
-  22% {opacity:0.95;transform:scale(1) skewY(-1deg) translateY(-1px);}
-  52% {opacity:0.80;transform:scale(0.96) translateY(-13px) rotate(-3deg);}
-  100%{opacity:0;transform:scale(0.6) translateY(-38px) rotate(-8deg);}
+
+/* ── PRE-SCROLL HINT (shown alongside fountain) ────────────── */
+#pre-scroll-hint{
+  position:fixed;left:50%;bottom:44px;
+  transform:translateX(-50%);
+  z-index:9996;
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .55s ease;
+}
+#pre-scroll-hint.visible{opacity:1}
+.ps-label{
+  font-size:14px;font-weight:800;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(74,222,128,.92);
+}
+.ps-arrows{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1}
+.ps-arrow{
+  font-size:20px;color:var(--ge);line-height:1;
+  animation:psBob 1.5s ease-in-out infinite;
+  opacity:.35;
+}
+.ps-arrow:nth-child(2){animation-delay:.22s}
+@keyframes psBob{
+  0%,100%{transform:translateY(0);opacity:.35}
+  50%    {transform:translateY(4px);opacity:1}
+}
+
+/* ── LED SIDE ARROWS (chill backlit scroll cue) ────────────── */
+.side-arrow{
+  position:fixed;top:50%;
+  z-index:9995;pointer-events:none;
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:800;line-height:1;
+  color:rgba(74,222,128,0.95);
+  background:radial-gradient(circle at 50% 50%,
+    rgba(74,222,128,0.18),
+    rgba(74,222,128,0.04) 60%,
+    transparent 82%);
+  border:1.5px solid rgba(74,222,128,0.5);
+  opacity:0;
+  transition:opacity .6s ease;
+  animation:ledChill 3.6s ease-in-out infinite;
+}
+.side-arrow.left {left:24px;transform:translateY(-50%)}
+.side-arrow.right{right:24px;transform:translateY(-50%)}
+.side-arrow.visible{opacity:1}
+@keyframes ledChill{
+  0%,100%{
+    box-shadow:
+      0 0 6px rgba(74,222,128,0.20),
+      0 0 14px rgba(74,222,128,0.10),
+      inset 0 0 4px rgba(74,222,128,0.12);
+    border-color:rgba(74,222,128,0.38);
+    color:rgba(74,222,128,0.78);
+  }
+  50%{
+    box-shadow:
+      0 0 18px rgba(74,222,128,0.55),
+      0 0 36px rgba(74,222,128,0.30),
+      0 0 60px rgba(74,222,128,0.15),
+      inset 0 0 12px rgba(74,222,128,0.40);
+    border-color:rgba(74,222,128,0.88);
+    color:rgba(74,222,128,1);
+  }
 }
 
 /* ── ANNOUNCEMENT BAR ──────────────────────────────────────── */
@@ -120,10 +185,9 @@ nav{
 
 /* ══════════════════════════════════════════════════════════════
    HERO SCROLL SCENE
-   350vh tall — scroll story plays inside #hero-pin (100vh sticky)
 ══════════════════════════════════════════════════════════════ */
 #hero-scene{
-  height:350vh;
+  height:280vh;
   position:relative;
 }
 #hero-pin{
@@ -261,7 +325,7 @@ nav{
   margin-top:18px;
 }
 
-/* scroll hint — positioned at TOP of hero */
+/* end-of-hero scroll hint (timeline reveal) */
 .scroll-hint{
   position:absolute;top:11vh;left:50%;
   transform:translateX(-50%);
@@ -473,7 +537,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 @media(max-width:480px){
   .rg{grid-template-columns:1fr}
   .sg{grid-template-columns:1fr}
-  #hero-scene{height:300vh}
+  #hero-scene{height:240vh}
 }
 </style>
 </head>
@@ -482,6 +546,19 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 <!-- CURSOR -->
 <div id="cursor-ring"></div>
 <div id="cursor-dot"></div>
+
+<!-- PRE-SCROLL HINT (shown alongside fountain) -->
+<div id="pre-scroll-hint" aria-hidden="true">
+  <span class="ps-label">Scroll</span>
+  <span class="ps-arrows">
+    <span class="ps-arrow">↓</span>
+    <span class="ps-arrow">↓</span>
+  </span>
+</div>
+
+<!-- LED SIDE ARROWS (chill backlit scroll cue) -->
+<div class="side-arrow left"  aria-hidden="true">↓</div>
+<div class="side-arrow right" aria-hidden="true">↓</div>
 
 <!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
@@ -786,67 +863,187 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 
 <script>
 /* ═══════════════════════════════════════════════════════════════
-   1. CURSOR — BILL TEAR EMITTER
-   Bills (save time / save money) tear off the back of the pointer
-   and evaporate as the cursor moves.
+   1. CURSOR + FOUNTAIN EMITTER
+   ─────────────────────────────────────────────────────────────
+   - Custom cursor (ring + dot) lerps to mouse position.
+   - After the hook animation finishes, a "fountain" of bills
+     ("save time" / "save money") sprays UPWARD out of the cursor
+     with gravity-based physics. The pre-scroll hint also appears.
+   - The fountain stops when the user has scrolled past ~1/8 of
+     the viewport. Bills already in flight finish their arcs.
+   - The hero GSAP scroll story is unaffected and continues at
+     the user's natural scroll pace.
 ═══════════════════════════════════════════════════════════════ */
 (function(){
-  const ring = document.getElementById('cursor-ring');
-  const dot  = document.getElementById('cursor-dot');
+  const ring       = document.getElementById('cursor-ring');
+  const dot        = document.getElementById('cursor-dot');
+  const hookWrap   = document.getElementById('hook-wrap');
+  const preHint    = document.getElementById('pre-scroll-hint');
+  const sideArrows = document.querySelectorAll('.side-arrow');
 
-  let mx = -200, my = -200;
-  let rx = -200, ry = -200;
-  let prevMx = -200, prevMy = -200;
-  let prevDx = 0, prevDy = 0;
-  let lastEmitX = 0, lastEmitY = 0;
-  let billIdx = 0;
-  const billTexts = ['save time', 'save money'];
-
-  document.addEventListener('mousemove', e => {
-    const dx = prevMx !== -200 ? e.clientX - prevMx : 0;
-    const dy = prevMy !== -200 ? e.clientY - prevMy : 0;
-    prevMx = e.clientX; prevMy = e.clientY;
-    if(Math.abs(dx) + Math.abs(dy) > 0){ prevDx = dx; prevDy = dy; }
-
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-
-    const dist = Math.hypot(mx - lastEmitX, my - lastEmitY);
-    if(dist > 46){
-      spawnBill(mx, my, prevDx, prevDy);
-      lastEmitX = mx; lastEmitY = my;
-    }
-  });
-
-  function spawnBill(x, y, dx, dy){
-    const bill = document.createElement('div');
-    bill.className = 'cursor-bill' + (billIdx % 2 === 1 ? ' alt' : '');
-    bill.textContent = billTexts[billIdx % 2];
-    billIdx++;
-
-    // Place bill behind the cursor (opposite of travel direction)
-    const len = Math.hypot(dx, dy) || 1;
-    const nx = -dx / len; const ny = -dy / len;
-    bill.style.left = (x + nx * 16 - 28) + 'px';
-    bill.style.top  = (y + ny * 16 - 9)  + 'px';
-    document.body.appendChild(bill);
-    setTimeout(() => { if(bill.parentNode) bill.parentNode.removeChild(bill); }, 1050);
+  // Toggle the scroll-hint group (center button + LED side arrows together)
+  function setHintsVisible(v){
+    preHint.classList.toggle('visible', v);
+    sideArrows.forEach(a => a.classList.toggle('visible', v));
   }
 
-  document.addEventListener('mouseleave', () => { ring.style.opacity='0'; dot.style.opacity='0'; });
-  document.addEventListener('mouseenter', () => { ring.style.opacity='1'; dot.style.opacity='1'; });
+  let mx = -200, my = -200;       // current mouse
+  let rx = -200, ry = -200;       // ring lerped position
+  let cursorOnPage = false;
 
+  // --- Phase flags --------------------------------------------------
+  let hookDone        = false;    // hook animation has finished
+  let scrolledPast    = false;    // user has scrolled past threshold
+  let fountainRunning = false;    // guards against double-pump on scroll-back
+
+  // Threshold = 1/8 of viewport height (~12.5vh)
+  const STOP_THRESHOLD = Math.max(60, window.innerHeight / 8);
+
+  // --- Mouse tracking ----------------------------------------------
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursorOnPage = true;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+  document.addEventListener('mouseleave', () => {
+    ring.style.opacity = '0'; dot.style.opacity = '0';
+    cursorOnPage = false;
+  });
+  document.addEventListener('mouseenter', () => {
+    ring.style.opacity = '1'; dot.style.opacity = '1';
+    cursorOnPage = true;
+  });
+
+  // --- Cursor ring lerp loop ---------------------------------------
   function loopCursor(){
     requestAnimationFrame(loopCursor);
-    rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
   }
   loopCursor();
 
+  // Cursor grow on hover
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => { ring.style.width='36px'; ring.style.height='36px'; });
     el.addEventListener('mouseleave', () => { ring.style.width='16px'; ring.style.height='16px'; });
   });
+
+  // ════════════════════════════════════════════════════════════════
+  //  FOUNTAIN
+  // ════════════════════════════════════════════════════════════════
+  const billTexts = ['save time', 'save money'];
+  const bills     = [];           // active in-flight bills
+  let   billIdx   = 0;
+  const GRAVITY   = 0.55;         // px / frame²
+
+  function spawnBill(){
+    // Only spawn if cursor is on the page and roughly within viewport
+    if (!cursorOnPage || mx < 0 || my < 0) return;
+    if (mx > window.innerWidth || my > window.innerHeight) return;
+
+    const el = document.createElement('div');
+    el.className = 'fountain-bill' + (billIdx % 2 === 0 ? '' : ' alt');
+    el.textContent = billTexts[billIdx % 2];
+    billIdx++;
+
+    // Initial position offset so the bill is centered on the cursor
+    // (bill is roughly 56–70px wide × 18px tall — small offset for emergence)
+    const startX = mx - 30;
+    const startY = my - 14;
+
+    // Velocity: mostly UP, with mild horizontal spread (~±20° from vertical)
+    const angle = -Math.PI/2 + (Math.random() - 0.5) * 0.65;
+    const speed = 13 + Math.random() * 6;
+    const vx = Math.cos(angle) * speed;
+    const vy = Math.sin(angle) * speed;            // negative = up
+
+    // Tiny initial rotation + spin
+    const rot  = (Math.random() - 0.5) * 18;
+    const vrot = (Math.random() - 0.5) * 6;
+
+    el.style.transform = `translate(${startX}px, ${startY}px) rotate(${rot}deg)`;
+    document.body.appendChild(el);
+
+    bills.push({ el, x: startX, y: startY, vx, vy, rot, vrot, born: performance.now() });
+  }
+
+  // Spawn loop: only runs while fountain is active
+  function pumpFountain(){
+    if (scrolledPast){ fountainRunning = false; return; } // fountain off
+    if (hookDone) spawnBill();
+    fountainRunning = true;
+    // ~4× slower than before — chill spray cadence
+    setTimeout(pumpFountain, 300 + Math.random() * 220);
+  }
+
+  // Physics + render loop for bills already in flight
+  // (always runs; cleans up its own list when empty)
+  function physicsLoop(){
+    requestAnimationFrame(physicsLoop);
+    if (bills.length === 0) return;
+    const now = performance.now();
+    for (let i = bills.length - 1; i >= 0; i--){
+      const b = bills[i];
+      b.vy  += GRAVITY;
+      b.x   += b.vx;
+      b.y   += b.vy;
+      b.rot += b.vrot;
+
+      const age = now - b.born;
+      let opacity;
+      if      (age < 110)  opacity = age / 110;            // fade in
+      else if (age > 900)  opacity = Math.max(0, (1500 - age) / 600); // fade out
+      else                 opacity = 1;
+
+      b.el.style.transform = `translate(${b.x}px, ${b.y}px) rotate(${b.rot}deg)`;
+      b.el.style.opacity   = opacity;
+
+      if (age > 1500 || b.y > window.innerHeight + 80){
+        b.el.remove();
+        bills.splice(i, 1);
+      }
+    }
+  }
+  physicsLoop();
+
+  // ── Activate fountain when the hook animation finishes ──────────
+  let started = false;
+  function activate(){
+    if (started) return;
+    started = true;
+    hookDone = true;
+    if (!scrolledPast) setHintsVisible(true);
+    pumpFountain();
+  }
+  // Primary trigger: animationend on the hook element (most accurate).
+  if (hookWrap){
+    hookWrap.addEventListener('animationend', activate, { once: true });
+  }
+  // Safety fallback: 4.0s timeout in case animationend doesn't fire
+  // (e.g., tab inactive during the animation, animation overridden, etc.)
+  setTimeout(activate, 4000);
+
+  // ── Bidirectional scroll hint: hide when scrolling down, restore on return ─
+  function onScroll(){
+    if (window.scrollY >= STOP_THRESHOLD){
+      // Scrolled past threshold — hide hints and stop fountain
+      if (!scrolledPast){
+        scrolledPast = true;
+        setHintsVisible(false);
+        // pumpFountain checks `scrolledPast` and stops scheduling further spawns.
+        // In-flight bills continue their arcs and clean themselves up.
+      }
+    } else if (hookDone && scrolledPast){
+      // Returned to top after initial hook — restore hints and restart fountain
+      scrolledPast = false;
+      setHintsVisible(true);
+      if (!fountainRunning) pumpFountain();
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
 })();
 
 /* ═══════════════════════════════════════════════════════════════
@@ -927,7 +1124,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
   window.addEventListener('scroll', () => {
     const h = document.getElementById('hero-scene').offsetHeight;
     scrollRatio = Math.min(window.scrollY / h, 1);
-  });
+  }, { passive: true });
 
   const clock = new THREE.Clock();
   function render(){
@@ -959,24 +1156,7 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   3. GSAP SCROLL TRIGGER — HERO STORY
-
-   scrub: true = instant 1:1 scroll-to-animation (no lag = no overlap)
-   Timeline uses second-based positions; total ~10s maps to 350vh.
-
-   Phase plan:
-   ┌──────────────────────────────────────────────────────────────┐
-   │ 0.0 – 2.0s   Badge (top) + "Less admin." + "More business." │
-   │ 1.0 – 3.0s   Pain words fade in as ambient BG               │
-   │              [PEAK 3.0–4.0 — all coexist]                   │
-   │ 4.0 – 5.0s   Badge + headline exit                          │
-   │ 4.5 – 5.5s   Pain words exit                                │
-   │              [CLEAR GAP 5.5–7.0s — nothing at center]       │
-   │ 7.0 – 8.0s   "There's a better way." alone                  │
-   │ 8.2 – 8.8s   Transition text exits                          │
-   │              [CLEAR GAP 8.8–9.5s]                           │
-   │ 9.5 – 10.5s  Brand + sub + CTA + note — one block           │
-   └──────────────────────────────────────────────────────────────┘
+   3. GSAP SCROLL TRIGGER — HERO STORY (UNCHANGED)
 ═══════════════════════════════════════════════════════════════ */
 (function(){
   gsap.registerPlugin(ScrollTrigger);
@@ -987,50 +1167,71 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
       pin:     '#hero-pin',
       start:   'top top',
       end:     'bottom bottom',
-      scrub:   true,          /* instant 1:1 — eliminates all scrub-lag overlap */
+      scrub:   true,
     }
   });
 
-  /* — Phase 1 IN: badge + headline — */
-  tl.fromTo('#l-badge',      { opacity:0, y:12 }, { opacity:1, y:0, duration:0.5 }, 0)
-    .fromTo('#h-less-admin', { opacity:0, y:60 }, { opacity:1, y:0, duration:0.6 }, 0.4)
-    .fromTo('#h-more-biz',   { opacity:0, y:60 }, { opacity:1, y:0, duration:0.6 }, 0.9)
+  /* ─────────────────────────────────────────────────────────────
+     Crossfaded timeline — no blank gaps. Each phase holds longer,
+     and the next phase begins fading IN before the previous is gone.
 
-  /* — Pain words in — staggered, fade at fixed positions — */
-    .fromTo('#pw3', { opacity:0 }, { opacity:0.20, duration:0.5 }, 1.2)
-    .fromTo('#pw1', { opacity:0 }, { opacity:0.18, duration:0.5 }, 1.5)
-    .fromTo('#pw4', { opacity:0 }, { opacity:0.16, duration:0.5 }, 1.8)
-    .fromTo('#pw6', { opacity:0 }, { opacity:0.20, duration:0.5 }, 2.1)
-    .fromTo('#pw2', { opacity:0 }, { opacity:0.16, duration:0.5 }, 2.4)
-    .fromTo('#pw5', { opacity:0 }, { opacity:0.18, duration:0.5 }, 2.7)
+     Total ≈ 8.5s. Mapped 1:1 to 180vh of scroll (280vh hero - 100vh
+     viewport = 180vh of pinned scroll).
 
-  /* — Phase 1 EXIT — badge then headline rise out — */
-    .to('#l-badge',    { opacity:0, duration:0.4 }, 4.0)
-    .to('#l-headline', { y:-90, opacity:0, duration:0.6 }, 4.2)
+     Phase 1 (badge + headline + pain words):
+        IN     0.00 – 2.50      (cascade)
+        HOLD   2.50 – 4.20      (~1.7s fully visible)
+        OUT    4.20 – 4.75
+     Phase 2 ("There's a better way."):
+        IN     4.45 – 5.00      (overlaps Phase 1 exit by 0.30s)
+        HOLD   5.00 – 6.50      (~1.5s fully visible)
+        OUT    6.50 – 6.95
+     Phase 3 (final block + scroll hint):
+        IN     6.70 – 7.35      (overlaps Phase 2 exit by 0.25s)
+        HINT   8.10 – 8.50
+  ───────────────────────────────────────────────────────────── */
 
-  /* — Pain words EXIT — slightly after headline starts leaving — */
-    .to('.pain-word',  { opacity:0, scale:1.14, duration:0.5 }, 4.6)
+  /* — Phase 1 IN: badge + headline + pain word cascade — */
+  tl.fromTo('#l-badge',      { opacity:0, y:12 }, { opacity:1, y:0, duration:0.50 }, 0.00)
+    .fromTo('#h-less-admin', { opacity:0, y:60 }, { opacity:1, y:0, duration:0.60 }, 0.35)
+    .fromTo('#h-more-biz',   { opacity:0, y:60 }, { opacity:1, y:0, duration:0.60 }, 0.75)
 
-  /* ── CLEAR GAP 5.5 → 7.0 — nothing occupies center ────────── */
+    .fromTo('#pw3', { opacity:0 }, { opacity:0.20, duration:0.45 }, 1.30)
+    .fromTo('#pw1', { opacity:0 }, { opacity:0.18, duration:0.45 }, 1.45)
+    .fromTo('#pw4', { opacity:0 }, { opacity:0.16, duration:0.45 }, 1.60)
+    .fromTo('#pw6', { opacity:0 }, { opacity:0.20, duration:0.45 }, 1.75)
+    .fromTo('#pw2', { opacity:0 }, { opacity:0.16, duration:0.45 }, 1.90)
+    .fromTo('#pw5', { opacity:0 }, { opacity:0.18, duration:0.45 }, 2.05)
 
-  /* — Phase 2: "There's a better way." ALONE — */
-    .fromTo('#l-trans', { opacity:0, y:20 }, { opacity:1, y:0, duration:0.5 }, 7.0)
-    .to('#l-trans',     { opacity:0, y:-18, duration:0.4 }, 8.2)
+  /* — HOLD ~2.50 → 4.20 — full hero composition fully visible — */
 
-  /* ── CLEAR GAP 8.6 → 9.5 ───────────────────────────────────── */
+  /* — Phase 1 EXIT — */
+    .to('#l-badge',    { opacity:0, duration:0.45 }, 4.20)
+    .to('#l-headline', { y:-90, opacity:0, duration:0.55 }, 4.20)
+    .to('.pain-word',  { opacity:0, scale:1.14, duration:0.50 }, 4.25)
 
-  /* — Phase 3: Final block — brand + CTA — single layer, alone — */
-    .fromTo('#l-final', { opacity:0, y:28 }, { opacity:1, y:0, duration:0.6 }, 9.5)
-    .fromTo('#scroll-hint', { opacity:0 }, { opacity:1, duration:0.4 }, 10.4);
+  /* — Phase 2 IN (crossfades with Phase 1 exit; overlap ≈ 0.30s) — */
+    .fromTo('#l-trans', { opacity:0, y:20 }, { opacity:1, y:0, duration:0.55 }, 4.45)
 
-  /* Activate pointer-events on final layer once visible */
+  /* — HOLD 5.00 → 6.50 — "There's a better way." stays — */
+
+  /* — Phase 2 EXIT — */
+    .to('#l-trans', { opacity:0, y:-18, duration:0.45 }, 6.50)
+
+  /* — Phase 3 IN (crossfades with Phase 2 exit; overlap ≈ 0.25s) — */
+    .fromTo('#l-final', { opacity:0, y:28 }, { opacity:1, y:0, duration:0.65 }, 6.70)
+    .fromTo('#scroll-hint', { opacity:0 }, { opacity:1, duration:0.40 }, 8.10);
+
+  /* Activate pointer-events on final block once mostly visible.
+     Final block reaches full opacity at progress ≈ 0.865 — set
+     threshold slightly below so the CTA is clickable just before. */
   ScrollTrigger.create({
     trigger: '#hero-scene',
     start:   'top top',
     end:     'bottom bottom',
     onUpdate: self => {
       document.getElementById('l-final').classList
-        .toggle('active', self.progress > 0.86);
+        .toggle('active', self.progress > 0.84);
     }
   });
 })();
@@ -1040,10 +1241,15 @@ footer{background:var(--dc);border-top:1px solid var(--dr);padding:52px 0}
 ═══════════════════════════════════════════════════════════════ */
 (function(){
   const bar = document.getElementById('scroll-progress');
-  window.addEventListener('scroll', () => {
+  let ticking = false;
+  function update(){
     const total = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.width = (window.scrollY / total * 100) + '%';
-  });
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
 })();
 
 /* ═══════════════════════════════════════════════════════════════
